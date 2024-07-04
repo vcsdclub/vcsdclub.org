@@ -115,12 +115,12 @@ export const headerData = {
       href: "/resources",
     },
     {
-      text: "Contact",
-      href: "/contact",
-    },
-    {
       text: "About Us",
       href: "/about",
+    },
+    {
+      text: "Contact",
+      href: "/contact",
     },
   ],
   actions: [
