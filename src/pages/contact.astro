@@ -13,12 +13,33 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <HeroText tagline="Contact" title="Let's Connect!">
+    <Features2
+      slot="content"
+      columns={2}
+      classes={{ container: "text-left" }}
+      items={[
+        {
+          title: "Email Us!",
+          description: `We're always open to emails at <a class="text-blue-600 underline" href="mailto:vchs.software@gmail.com">vchs.software@gmail.com</a>`,
+          icon: "flat-color-icons:feedback",
+        },
+        {
+          title: "Join our Discord server",
+          description:
+            'We have an official Discord server <a class="text-blue-600 underline" href="https://discord.gg/hayb3xUZRD">here</a> where you can chat with us and other club members, ask questions, and get help.',
+          icon: "logos:discord-icon",
+        },
+        // {
+        //   title: "Technical Support",
+        //   description:
+        //     "Providing customer support for any technical issues related to the templates or their implementation.",
+        //   icon: "flat-color-icons:voice-presentation",
+        // },
+      ]}
+    /></HeroText
+  >
 
-  <CallToAction
-    title="Coming soon"
-    subtitle="We are working on the content of pages. You will see them very soon. Stay tuned! In the meantime, our email address is vchs.software@gmail.com"
-  />
   <!-- <ContactUs
     id="form"
     title="Drop us a message today!"
