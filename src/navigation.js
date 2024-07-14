@@ -188,7 +188,7 @@ export const footerData = {
     {
       ariaLabel: "Instagram",
       icon: "tabler:brand-instagram",
-      href: "https://www.instagram.com/vcsdclub",
+      href: "https://www.instagram.com/vchs_software",
     },
     // { ariaLabel: "Facebook", icon: "tabler:brand-facebook", href: "#" },
     {
