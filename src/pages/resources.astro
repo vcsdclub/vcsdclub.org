@@ -15,14 +15,14 @@ const metadata = {
   <Hero2
     tagline="Our Resources"
     title="Completely free. Always."
-    subtitle="Check out all of our club resources. We have everything you need to get started."
+    subtitle="Check out all of our club resources below. We have everything you need to get started."
     actions={[
-      {
-        variant: "primary",
-        text: "Google Drive",
-        href: "https://drive.google.com/drive/folders/1_GhPeE93us6rnAU4eXRhZhCAZgp_TMjK?usp=sharing",
-        icon: "tabler:brand-google-drive",
-      },
+      // {
+      //   variant: "primary",
+      //   text: "Google Drive",
+      //   href: "https://drive.google.com/drive/folders/1_GhPeE93us6rnAU4eXRhZhCAZgp_TMjK?usp=sharing",
+      //   icon: "tabler:brand-google-drive",
+      // },
       { text: "Contact Us", href: "/contact" },
     ]}
     image={{
@@ -30,17 +30,30 @@ const metadata = {
       alt: "Children telling a story. Long-form Sales Landing Page demo",
     }}
   />
-
-  <!-- <CallToAction
-    title="Coming soon"
-    subtitle="We are working on the content of these demo pages. You will see them very soon. Stay tuned Stay tuned!"
-    actions={[
-      {
-        variant: "primary",
-        text: "Download Template",
-        href: "https://github.com/onwidget/astrowind",
-        icon: "tabler:download",
-      },
-    ]}
-  /> -->
+  <div class="flex">
+    <CallToAction
+      title="Free API access"
+      subtitle="We offer Valley Christian club members FREE access to any paid API that they want for semester 2 season. Just request it in the form"
+      actions={[
+        {
+          variant: "primary",
+          text: "Request now",
+          href: "https://forms.gle/epF1jEWE2hRngEEu8",
+          icon: "tabler:sparkles",
+        },
+      ]}
+    />
+    <CallToAction
+      title="Public Google Drive"
+      subtitle="Here is our public Google Drive containing our club curriculum slides and other resources"
+      actions={[
+        {
+          variant: "primary",
+          text: "Visit",
+          href: "https://drive.google.com/drive/folders/1_GhPeE93us6rnAU4eXRhZhCAZgp_TMjK?usp=sharing",
+          icon: "tabler:brand-google-drive",
+        },
+      ]}
+    />
+  </div>
 </Layout>
