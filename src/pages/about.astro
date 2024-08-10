@@ -9,6 +9,7 @@ import Layout from "~/layouts/PageLayout.astro";
 import bryan from "~/assets/images/bryan.webp";
 import ryan from "~/assets/images/ryan.JPG";
 import amaar from "~/assets/images/amaar.jpg";
+import OurLocations from "~/components/common/OurLocations.astro";
 const metadata = {
   title: "About us",
 };
@@ -262,30 +263,7 @@ const metadata = {
   /> -->
 
   <!-- Features2 Widget ************** -->
-
-  <Features2
-    title="Our locations"
-    tagline="Join us"
-    columns={2}
-    items={[
-      {
-        title: "In person",
-        description: "Location tentative",
-      },
-      {
-        title: "Online",
-        description: "Zoom link tentative",
-      },
-      // {
-      //   title: "Australia",
-      //   description: "9012 Lorem Ipsum St, 90123, Sydney",
-      // },
-      // {
-      //   title: "Brazil",
-      //   description: "3456 Lorem Ipsum St, 34567, São Paulo",
-      // },
-    ]}
-  />
+  <OurLocations />
 
   <!-- Features2 Widget ************** -->
 
