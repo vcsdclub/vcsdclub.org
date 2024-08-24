@@ -4,12 +4,15 @@ import Features2 from "~/components/widgets/Features2.astro";
 
 <Features2
   title="Our locations"
+  id="our-locations"
   tagline="Join us"
   columns={2}
   items={[
     {
       title: "In person",
-      description: "G126 (Mr. Mac's room) on Mondays",
+      description:
+        // TODO: Make it more readable and adapted to user timezone
+        "G126 (Mr. Mac's room) on Mondays Warrior Time (10:45-11:25 am PST)",
     },
     {
       title: "Online",
