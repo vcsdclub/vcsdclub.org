@@ -48,7 +48,7 @@ export default defineConfig({
     ...whenExternalScripts(() =>
       partytown({
         config: { forward: ["dataLayer.push"] },
-      })
+      }),
     ),
 
     compress({
