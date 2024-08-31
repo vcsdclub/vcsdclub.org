@@ -18,9 +18,9 @@ metadata:
   openGraph:
     site_name: vcsdclub.org
     images:
-      - url: "~/assets/images/default.png"
-        width: 1200
-        height: 628
+      - url: "~/assets/images/club.png"
+        width: 1024
+        height: 1024
     type: website
   # twitter:
   #   handle: "@onwidget"
