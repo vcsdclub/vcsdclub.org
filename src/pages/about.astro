@@ -6,9 +6,6 @@ import Hero from "~/components/widgets/Hero.astro";
 import Stats from "~/components/widgets/Stats.astro";
 import Steps2 from "~/components/widgets/Steps2.astro";
 import Layout from "~/layouts/PageLayout.astro";
-import bryan from "~/assets/images/bryan.webp";
-import ryan from "~/assets/images/ryan.JPG";
-import amaar from "~/assets/images/amaar.jpg";
 import OurLocations from "~/components/common/OurLocations.astro";
 const metadata = {
   title: "About us",
@@ -21,8 +18,8 @@ const metadata = {
   <Hero
     tagline="About us"
     image={{
-      src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      alt: "Caos Image",
+      src: "~/assets/images/group.webp",
+      alt: "All 4 officers",
     }}
   >
     <Fragment slot="title">
@@ -69,8 +66,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: bryan.src,
-      alt: "An image of me",
+      src: "~/assets/images/bryan.webp",
+      alt: "Bryan Hu",
     }}
   >
     <Fragment slot="content">
@@ -115,8 +112,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: amaar.src,
-      alt: "An image of me",
+      src: "~/assets/images/amaar.jpg",
+      alt: "Amaar Chughtai",
     }}
   >
     <Fragment slot="content">
@@ -155,8 +152,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: ryan.src,
-      alt: "Astronauts Image",
+      src: "~/assets/images/ryan.JPG",
+      alt: "Ryan Abraham",
     }}
   >
     <Fragment slot="content">
@@ -189,8 +186,8 @@ const metadata = {
       // },
     ]}
     image={{
-      src: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80",
-      alt: "Blueprint Image",
+      src: "~/assets/images/shiloh.jpeg",
+      alt: "Shiloh Samuel",
     }}
   >
     <Fragment slot="content">
