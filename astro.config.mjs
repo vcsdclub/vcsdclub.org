@@ -30,12 +30,17 @@ const whenExternalScripts = (items = []) =>
 
 export default defineConfig({
   output: "static",
+  site: "https://vcsdclub.org",
 
   integrations: [
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+  serialize(item) {
+    return item;
+  },
+}),
     mdx(),
     icon({
       include: {
