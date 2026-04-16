@@ -14,11 +14,23 @@ const officers = [
     role: "Co-President",
     image: bryan,
     alt: "Bryan Hu",
-    bio: "A passionate software developer who'd rather ship something than talk about it.",
+    bio: "I'm a very passionate software developer.",
     stats: [
-      ["Experience", "5+ yrs programming"],
-      ["Languages", "Python, Java, C++, Rust, JS"],
-      ["Achievements", "USACO Silver · OSS contributor"],
+      {
+        title: "5+ years of programming experience",
+        description:
+          "I have mastery in Python and expertise in programming languages such as Java, C++, Rust, and JavaScript (including various frameworks). I have also made various projects",
+      },
+      {
+        title: "USACO Silver",
+        description:
+          "The USA Computing Olympiad (USACO) is a programming competition for U.S. middle and high school students, featuring online contests with algorithmic problems with levels ranging from bronze to platnium.",
+      },
+      {
+        title: "Open Source Contributor",
+        description:
+          "I've contributed to many open source projects and have made several of my own. I have experience with Git, GitHub, and all the various tooling everyone uses.",
+      },
     ],
   },
   {
@@ -26,11 +38,23 @@ const officers = [
     role: "Co-President",
     image: amaar,
     alt: "Amaar Chughtai",
-    bio: "15-year-old software engineer in the Bay Area. Builds across the stack and into the model layer.",
+    bio: "My name is Amaar. I am a 15 year old software engineer in the Bay Area.",
     stats: [
-      ["Experience", "5+ yrs programming"],
-      ["Stack", "Next.js, Svelte (sadly), Astro"],
-      ["Focus", "ML — DL, CV, NLP · PyTorch"],
+      {
+        title: "5+ Years of Programming Experience",
+        description:
+          "Proficient in programming languages such as C++, Python, Java, JavaScript, SQL, +more. I use a wide variety of frameworks including NextJS, Svelte (sadly), Astro, +more. I have worked on many projects & business technologies.",
+      },
+      {
+        title: "USACO Silver",
+        description:
+          "The USA Computing Olympiad (USACO) is a programming competition for U.S. middle and high school students, featuring online contests with algorithmic problems with levels ranging from bronze to platnium.",
+      },
+      {
+        title: "Machine Learning Engineer",
+        description:
+          "I am a machine learning engineer with experience in DL, CV, and NLP. I have studied the mathematics behind DL and have experience with PyTorch, TensorFlow, Keras, +more.",
+      },
     ],
   },
   {
@@ -38,11 +62,18 @@ const officers = [
     role: "Vice President",
     image: ryan,
     alt: "Ryan Abraham",
-    bio: "High school student interested in programming and robotics mentorship.",
+    bio: "I'm a high school student interested in programming.",
     stats: [
-      ["Experience", "5+ yrs programming"],
-      ["Background", "Former FTC 21463 team captain"],
-      ["Stack", "Java, Python, C++, Svelte, Kotlin"],
+      {
+        title: "FTC Team Captain",
+        description:
+          "I'm a former team captain of FTC team 21463, Delta Robotics. Additionally, I've had the privilege of mentoring two FLL Explore teams, sharing my knowledge and fostering a love for robotics among younger students.",
+      },
+      {
+        title: "5+ years of programming experience",
+        description:
+          "My technical skills span a variety of languages and frameworks including Java, Python, C++, HTML, CSS, Svelte, React, PostgreSQL, and Kotlin.",
+      },
     ],
   },
   {
@@ -50,108 +81,105 @@ const officers = [
     role: "Head of Business",
     image: maya,
     alt: "Maya Rao",
-    bio: "Keeps the operations running so the rest of us can keep building.",
+    bio: null,
     stats: [],
   },
 ];
 
 const vision = [
   {
-    n: "I",
-    title: "Empower",
-    body: "Bring out the best in people, and get out of their way so they can build great things.",
+    title: "empower",
+    body: "I want our club to bring the very best out of people, allowing them to build great things without anything to slow them down.",
   },
   {
-    n: "II",
-    title: "Impact",
-    body: "Create something tangible — for our members, and for the community around us.",
+    title: "impact",
+    body: "I want to be able to create a tangible impact on the world what we do (in a positive way), which includes reaching out to the local community",
   },
   {
-    n: "III",
-    title: "Last",
-    body: "Not a flash in the pan. A club that outlives its founders and shapes the next generation.",
+    title: "last",
+    body: "I don't want this club to just die out when I graduate but instead, I want it to be a club that lasts for a long time. A long enough time that it can create a real impact on the next generation of software engineers",
   },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <section class="px-6 md:px-10 pt-8 md:pt-14">
-    <div class="mx-auto w-full max-w-[1400px]">
-      <div
-        class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-rule"
-      >
-        <p class="label"><span class="text-ink">§ 03</span> — About</p>
-        <p class="label hidden sm:block">Who runs this thing</p>
-      </div>
-
-      <div class="pt-10 md:pt-16 grid lg:grid-cols-12 gap-8">
-        <div class="lg:col-span-8">
-          <p class="label mb-5">A note from the editors</p>
-          <h1
-            class="serif-display text-[12vw] sm:text-[8vw] lg:text-[6.5vw] xl:text-[6rem] text-ink"
-          >
-            Built by<br />
-            <span class="italic">high schoolers</span>.<br />
-            For <span class="underline-accent">high schoolers</span>.
-          </h1>
-          <p class="mt-10 text-ink-soft text-lg leading-relaxed max-w-xl">
-            We're a group of students who got tired of programming being
-            taught like a test. This club is the course we wish we'd had —
-            real engineering, taught by people who are still figuring it out
-            alongside you.
-          </p>
-        </div>
-      </div>
-    </div>
+  <!-- HERO -->
+  <section class="page-gutter pt-10 md:pt-20">
+    <p class="eyebrow mb-6">About</p>
+    <h1
+      class="display text-ink max-w-[16ch]"
+      style="font-size: clamp(2.5rem, 6.5vw, 5rem);"
+    >
+      Built by high schoolers.<br />
+      For <span class="italic">high schoolers</span>.
+    </h1>
+    <p class="prose-lead mt-8 max-w-xl">
+      We are just a group of high school students who are passionate about
+      software development — teaching the course we wish we'd had.
+    </p>
   </section>
 
-  <!-- Officers -->
-  <section class="px-6 md:px-10 mt-24 md:mt-36">
-    <div class="mx-auto w-full max-w-[1400px]">
-      <header class="pb-8 border-b-2 border-rule">
-        <p class="label mb-3">§ 04 — The officers</p>
-        <h2 class="serif-head text-5xl md:text-7xl text-ink">Meet the team.</h2>
-      </header>
+  <!-- OFFICERS -->
+  <section class="page-gutter mt-28 md:mt-36">
+    <header class="flex items-baseline justify-between pb-5 mb-14 md:mb-20 border-b border-rule">
+      <h2
+        class="display-tight text-ink"
+        style="font-size: clamp(1.5rem, 2.2vw, 2rem);"
+      >
+        Meet the team.
+      </h2>
+      <p class="eyebrow hidden md:block">Four officers</p>
+    </header>
 
+    <div class="flex flex-col gap-24 md:gap-32">
       {
         officers.map((o, i) => (
-          <article
-            class:list={[
-              "grid md:grid-cols-12 gap-8 md:gap-12 py-14 md:py-20 border-b border-rule",
-              i % 2 === 1 && "md:[&_figure]:order-2",
-            ]}
-          >
-            <figure class="md:col-span-5">
-              <div class="overflow-hidden border border-rule bg-raised">
-                <Image
-                  src={o.image}
-                  alt={o.alt}
-                  widths={[400, 800]}
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  class="w-full h-auto block"
-                />
-              </div>
-              <figcaption class="mt-3 font-mono text-xs text-muted">
-                <span class="text-accent">Fig.&nbsp;0{i + 2} —</span> {o.name}
-              </figcaption>
+          <article class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+            <figure
+              class:list={[
+                "md:col-span-5",
+                i % 2 === 1 && "md:order-2 md:col-start-8",
+              ]}
+            >
+              <Image
+                src={o.image}
+                alt={o.alt}
+                widths={[400, 800]}
+                sizes="(max-width: 768px) 100vw, 40vw"
+                class="w-full h-auto block bg-raised"
+              />
+              <figcaption class="caption mt-3">{o.name}.</figcaption>
             </figure>
 
-            <div class="md:col-span-7 flex flex-col justify-center">
-              <p class="label mb-3">{o.role}</p>
-              <h3 class="serif-head text-5xl md:text-7xl text-ink leading-none">
+            <div
+              class:list={[
+                "md:col-span-6",
+                i % 2 === 1 ? "md:order-1 md:col-start-1" : "md:col-start-7",
+              ]}
+            >
+              <p class="eyebrow mb-3">{o.role}</p>
+              <h3
+                class="display text-ink"
+                style="font-size: clamp(2rem, 4vw, 3.25rem);"
+              >
                 {o.name}
               </h3>
-              <p class="mt-6 text-ink-soft text-lg leading-relaxed max-w-xl">
-                {o.bio}
-              </p>
+              {o.bio && (
+                <p class="prose-lead mt-6 max-w-xl italic">{o.bio}</p>
+              )}
 
               {o.stats.length > 0 && (
-                <dl class="mt-8 divide-y divide-rule border-t border-rule max-w-xl">
-                  {o.stats.map(([k, v]) => (
-                    <div class="grid grid-cols-3 gap-4 py-3">
-                      <dt class="label col-span-1">{k}</dt>
-                      <dd class="col-span-2 text-ink font-mono text-sm">
-                        {v}
+                <dl class="mt-8 divide-y divide-rule border-t border-rule">
+                  {o.stats.map((s) => (
+                    <div class="py-5">
+                      <dt
+                        class="display-tight text-ink mb-2"
+                        style="font-size: 1.125rem;"
+                      >
+                        {s.title}
+                      </dt>
+                      <dd class="text-ink-soft leading-relaxed">
+                        {s.description}
                       </dd>
                     </div>
                   ))}
@@ -164,31 +192,46 @@ const vision = [
     </div>
   </section>
 
-  <!-- Vision -->
-  <section class="px-6 md:px-10 mt-24 md:mt-32">
-    <div class="mx-auto w-full max-w-[1400px]">
-      <header class="pb-8 border-b-2 border-rule">
-        <p class="label mb-3">§ 05 — The vision</p>
-        <h2 class="serif-head text-5xl md:text-7xl text-ink">What we're after.</h2>
-      </header>
-
-      <div class="grid md:grid-cols-3">
-        {
-          vision.map((v, i) => (
-            <div
-              class:list={[
-                "py-12 md:py-16 md:px-10",
-                i !== 2 && "md:border-r border-rule",
-                i !== vision.length - 1 && "border-b md:border-b-0 border-rule",
-              ]}
-            >
-              <span class="serif-head text-6xl text-accent italic">{v.n}.</span>
-              <h3 class="serif-head text-3xl text-ink mt-2">{v.title}</h3>
-              <p class="mt-4 text-muted leading-relaxed">{v.body}</p>
-            </div>
-          ))
-        }
-      </div>
+  <!-- VISION -->
+  <section class="page-gutter mt-28 md:mt-36">
+    <div class="max-w-[62ch]">
+      <p class="eyebrow mb-5">Our vision</p>
+      <blockquote
+        class="display-tight text-ink"
+        style="font-size: clamp(1.25rem, 1.8vw, 1.625rem); line-height: 1.4;"
+      >
+        I take this very seriously. Too many kids these days are forced into
+        learning programming, especially competitive programming. So they learn,
+        because they were forced to learn. But then afterwards, they realize
+        that their skills are put to waste as they did not know how to put them
+        into practical use.
+        <span class="italic">I want to change that with this club.</span>
+      </blockquote>
+      <p class="eyebrow mt-8">
+        <span class="text-ink">Bryan Hu</span>, Co-President
+      </p>
     </div>
+
+    <ol class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 max-w-[1100px]">
+      {
+        vision.map((v, i) => (
+          <li>
+            <span
+              class="font-mono text-ink-soft"
+              style="font-size: 0.75rem;"
+            >
+              0{i + 1}
+            </span>
+            <h3
+              class="display-tight text-ink mt-2 mb-3"
+              style="font-size: 1.375rem;"
+            >
+              To <span class="italic">{v.title}</span>
+            </h3>
+            <p class="text-ink-soft leading-relaxed">{v.body}</p>
+          </li>
+        ))
+      }
+    </ol>
   </section>
 </Layout>

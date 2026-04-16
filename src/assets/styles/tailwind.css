@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: var(--aw-font-sans);
+    color: var(--aw-color-ink);
+    background: var(--aw-color-bg-page);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background: var(--aw-color-ink);
+    color: var(--aw-color-bg-page);
+  }
+}
+
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);
@@ -16,62 +33,71 @@
     border-color: var(--aw-color-rule);
   }
 
-  /* Editorial primitives */
-  .label {
-    font-family: var(--aw-font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--aw-color-muted);
+  /* Fluid gutter — one system across all pages */
+  .page-gutter {
+    padding-left: clamp(1.5rem, 5vw, 5rem);
+    padding-right: clamp(1.5rem, 5vw, 5rem);
+    max-width: 1600px;
+    margin-inline: auto;
+    width: 100%;
   }
 
-  .label-ink {
-    font-family: var(--aw-font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--aw-color-ink);
-  }
-
-  .serif-display {
+  /* Editorial display — Fraunces, fluid */
+  .display {
     font-family: var(--aw-font-serif);
     font-optical-sizing: auto;
-    font-variation-settings:
-      "SOFT" 30,
-      "opsz" 144;
+    font-variation-settings: "SOFT" 30, "opsz" 144;
     letter-spacing: -0.035em;
-    line-height: 0.95;
+    line-height: 0.9;
   }
-
-  .serif-head {
+  .display-tight {
     font-family: var(--aw-font-serif);
     font-optical-sizing: auto;
     font-variation-settings: "SOFT" 30;
     letter-spacing: -0.02em;
+    line-height: 1.02;
   }
 
-  .rule {
-    border-top: 1px solid var(--aw-color-rule);
-  }
-  .rule-thick {
-    border-top: 2px solid var(--aw-color-rule);
+  /* The ONE monospace use — figure captions */
+  .caption {
+    font-family: var(--aw-font-mono);
+    font-size: 0.75rem;
+    color: var(--aw-color-muted);
+    letter-spacing: 0;
+    line-height: 1.6;
   }
 
-  .underline-accent {
-    text-decoration: underline;
-    text-decoration-color: var(--aw-color-accent);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.2em;
+  .eyebrow {
+    font-size: 0.8125rem;
+    letter-spacing: 0.005em;
+    color: var(--aw-color-muted);
+  }
+
+  .accent-dot::before {
+    content: "";
+    display: inline-block;
+    width: 0.45em;
+    height: 0.45em;
+    background: var(--aw-color-accent);
+    border-radius: 9999px;
+    margin-right: 0.6em;
+    vertical-align: 0.15em;
   }
 }
 
 @layer components {
+  .prose-lead {
+    font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--aw-color-ink-soft);
+  }
+
   .link {
     color: var(--aw-color-ink);
     text-decoration: underline;
     text-decoration-color: var(--aw-color-accent);
     text-decoration-thickness: 1.5px;
-    text-underline-offset: 0.15em;
+    text-underline-offset: 0.2em;
     transition: color 0.15s ease;
   }
   .link:hover {
@@ -82,21 +108,23 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: var(--aw-font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.75rem 1.1rem;
+    font-family: var(--aw-font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 0.8rem 1.25rem;
+    border-radius: 0;
     border: 1px solid var(--aw-color-ink);
     color: var(--aw-color-ink);
     background: transparent;
-    transition: all 0.15s ease;
+    transition:
+      background 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+      color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+      transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .btn:hover {
     background: var(--aw-color-ink);
     color: var(--aw-color-bg-page);
   }
-
   .btn-primary {
     background: var(--aw-color-ink);
     color: var(--aw-color-bg-page);
@@ -104,21 +132,28 @@
   .btn-primary:hover {
     background: var(--aw-color-accent);
     border-color: var(--aw-color-accent);
+    color: var(--aw-color-bg-page);
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .btn:hover .arrow,
+  a:hover > .arrow {
+    transform: translateX(2px) translateY(-2px);
   }
 }
 
-/* Header */
-#header.scroll > div:first-child {
-  background-color: var(--aw-color-bg-page);
-  border-bottom: 1px solid var(--aw-color-rule);
+#header.scroll::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: var(--aw-color-rule);
+  opacity: 0.3;
 }
 
 [data-aw-toggle-menu] path {
   @apply transition;
-}
-[data-aw-toggle-menu].expanded g > path:first-child {
-  @apply -rotate-45 translate-y-[15px] translate-x-[-3px];
-}
-[data-aw-toggle-menu].expanded g > path:last-child {
-  @apply rotate-45 translate-y-[-8px] translate-x-[14px];
 }

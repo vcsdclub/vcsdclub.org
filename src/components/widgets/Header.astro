@@ -37,14 +37,14 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 <header
   class:list={[
     { sticky: isSticky, relative: !isSticky },
-    "top-0 z-40 w-full transition-[background] ease-out",
+    "top-0 z-40 w-full",
   ]}
   {...isSticky ? { "data-aw-sticky-header": true } : {}}
   {...id ? { id } : {}}
 >
-  <div class="bg-paper/90 backdrop-blur-sm">
+  <div class="bg-paper/90 backdrop-blur-md relative">
     <div
-      class="mx-auto w-full max-w-[1400px] px-6 md:px-10 py-4 flex items-center justify-between"
+      class="page-gutter py-5 flex items-center justify-between gap-6"
     >
       <Logo />
 
@@ -91,31 +91,71 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         </div>
       </div>
     </div>
-    <div class="rule mx-6 md:mx-10"></div>
-  </div>
 
-  <nav
-    class="md:hidden hidden flex-col gap-3 bg-paper border-b border-rule px-6 py-6"
-    data-aw-mobile-nav
-    aria-label="Mobile"
-  >
-    {
-      links.map(({ text, href }) => (
-        <a href={href} class="serif-head text-2xl text-ink">
-          {text}
-        </a>
-      ))
-    }
-    {
-      actions.map((a) => (
-        <a
-          href={a.href}
-          target={a.target}
-          class="btn btn-primary mt-2 self-start"
-        >
-          {a.text}
-        </a>
-      ))
-    }
-  </nav>
+    <!-- Mobile drawer -->
+    <div
+      data-mobile-drawer
+      class="md:hidden hidden absolute left-0 right-0 top-full bg-paper border-b border-rule px-6 py-8 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.18)]"
+    >
+      <nav class="flex flex-col gap-4" aria-label="Mobile">
+        {
+          links.map(({ text, href }) => {
+            const active = href === currentPath;
+            return (
+              <a
+                href={href}
+                class:list={[
+                  "serif-head text-3xl leading-none text-ink hover:text-accent transition-colors py-2 border-b border-rule/60",
+                  { "text-accent": active },
+                ]}
+              >
+                {text}
+              </a>
+            );
+          })
+        }
+        {
+          actions.map((a) => (
+            <a
+              href={a.href}
+              target={a.target}
+              rel={a.target === "_blank" ? "noopener noreferrer" : undefined}
+              class="btn btn-primary mt-4 self-start"
+            >
+              {a.text}
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
 </header>
+
+<script>
+  const init = () => {
+    const toggle = document.querySelector("[data-aw-toggle-menu]");
+    const drawer = document.querySelector("[data-mobile-drawer]");
+    if (!toggle || !drawer) return;
+
+    const handler = () => {
+      toggle.classList.toggle("expanded");
+      drawer.classList.toggle("hidden");
+    };
+
+    toggle.addEventListener("click", handler);
+
+    const reset = () => {
+      toggle.classList.remove("expanded");
+      drawer.classList.add("hidden");
+    };
+    window.matchMedia("(min-width: 768px)").addEventListener("change", reset);
+
+    drawer.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", reset)
+    );
+  };
+
+  init();
+  document.addEventListener("astro:after-swap", init);
+</script>

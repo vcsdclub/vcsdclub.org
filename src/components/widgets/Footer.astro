@@ -18,22 +18,21 @@ const { secondaryLinks = [], socialLinks = [] } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-32 border-t border-rule">
-  <div class="mx-auto w-full max-w-[1400px] px-6 md:px-10 py-12 md:py-16">
+<footer class="mt-32 md:mt-44 border-t border-rule">
+  <div class="page-gutter py-14 md:py-20">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
       <div class="md:col-span-6">
-        <p class="label mb-4">Colophon</p>
-        <p class="serif-head text-3xl md:text-4xl text-ink leading-tight">
+        <p class="display-tight text-ink text-2xl md:text-[1.75rem] leading-tight max-w-md">
           VCHS Software<br />Development Club
         </p>
-        <p class="mt-6 text-muted max-w-md leading-relaxed">
-          A student-run club at Valley Christian High School teaching the craft
-          of real software engineering. Free, forever.
+        <p class="mt-5 text-ink-soft max-w-md leading-relaxed">
+          A student-run club teaching the craft of real software engineering.
+          Free, forever.
         </p>
       </div>
 
       <div class="md:col-span-3">
-        <p class="label mb-4">Navigate</p>
+        <p class="eyebrow mb-4">Navigate</p>
         <ul class="space-y-2">
           <li><a href="/" class="link">Home</a></li>
           <li><a href="/about" class="link">About</a></li>
@@ -43,7 +42,7 @@ const year = new Date().getFullYear();
       </div>
 
       <div class="md:col-span-3">
-        <p class="label mb-4">Elsewhere</p>
+        <p class="eyebrow mb-4">Elsewhere</p>
         <ul class="space-y-2">
           {
             socialLinks.map(({ ariaLabel, icon, href }) => (
@@ -64,19 +63,16 @@ const year = new Date().getFullYear();
     </div>
 
     <div
-      class="mt-16 pt-6 border-t border-rule flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+      class="mt-14 pt-6 border-t border-rule flex flex-col md:flex-row md:items-center md:justify-between gap-4"
     >
-      <p class="font-mono text-xs text-muted">
+      <p class="caption">
         © {year} · Valley Christian Software Development Club
       </p>
       <ul class="flex flex-wrap gap-5">
         {
           secondaryLinks.map(({ text, href }) => (
             <li>
-              <a
-                href={href}
-                class="font-mono text-xs text-muted hover:text-ink"
-              >
+              <a href={href} class="caption hover:text-ink transition-colors">
                 {text}
               </a>
             </li>

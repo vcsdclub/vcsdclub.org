@@ -5,8 +5,8 @@ export interface Props {
 }
 
 const {
-  label = 'Toggle Menu',
-  class: className = 'flex flex-col h-12 w-12 rounded justify-center items-center cursor-pointer group',
+  label = "Toggle Menu",
+  class: className = "flex flex-col h-10 w-10 justify-center items-center cursor-pointer group -mr-2",
 } = Astro.props;
 ---
 
@@ -15,15 +15,11 @@ const {
   <slot>
     <span
       aria-hidden="true"
-      class="h-0.5 w-6 my-1 rounded-full bg-black dark:bg-white transition ease transform duration-200 opacity-80 group-[.expanded]:rotate-45 group-[.expanded]:translate-y-2.5"
+      class="h-px w-6 my-[5px] bg-ink transition-all duration-200 group-[.expanded]:rotate-45 group-[.expanded]:translate-y-[6px]"
     ></span>
     <span
       aria-hidden="true"
-      class="h-0.5 w-6 my-1 rounded-full bg-black dark:bg-white transition ease transform duration-200 opacity-80 group-[.expanded]:opacity-0"
-    ></span>
-    <span
-      aria-hidden="true"
-      class="h-0.5 w-6 my-1 rounded-full bg-black dark:bg-white transition ease transform duration-200 opacity-80 group-[.expanded]:-rotate-45 group-[.expanded]:-translate-y-2.5"
+      class="h-px w-6 my-[5px] bg-ink transition-all duration-200 group-[.expanded]:-rotate-45 group-[.expanded]:-translate-y-[6px]"
     ></span>
   </slot>
 </button>

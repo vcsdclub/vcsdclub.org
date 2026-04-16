@@ -1,12 +1,13 @@
 ---
-import "@fontsource-variable/inter";
+import "@fontsource-variable/instrument-sans";
 import "@fontsource-variable/fraunces";
 import "@fontsource-variable/jetbrains-mono";
 ---
 
 <style is:inline>
   :root {
-    --aw-font-sans: "InterVariable", ui-sans-serif, system-ui, sans-serif;
+    --aw-font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui,
+      sans-serif;
     --aw-font-serif: "Fraunces Variable", ui-serif, Georgia, serif;
     --aw-font-heading: "Fraunces Variable", ui-serif, Georgia, serif;
     --aw-font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular,
@@ -18,7 +19,7 @@ import "@fontsource-variable/jetbrains-mono";
     --aw-color-ink: #1a1714;
     --aw-color-ink-soft: #322c25;
     --aw-color-muted: #6b5f52;
-    --aw-color-rule: #1a1714;
+    --aw-color-rule: #d9cfbe;
 
     /* Accent — warm vermilion */
     --aw-color-accent: #c84b2f;
@@ -30,11 +31,6 @@ import "@fontsource-variable/jetbrains-mono";
     --aw-color-text-default: var(--aw-color-ink);
     --aw-color-text-muted: var(--aw-color-muted);
     --aw-color-bg-page-dark: #16120e;
-
-    ::selection {
-      background-color: var(--aw-color-accent);
-      color: var(--aw-color-bg-page);
-    }
   }
 
   .dark {
@@ -43,7 +39,7 @@ import "@fontsource-variable/jetbrains-mono";
     --aw-color-ink: #f1ead9;
     --aw-color-ink-soft: #d9d1bf;
     --aw-color-muted: #9b8f7e;
-    --aw-color-rule: #d9d1bf;
+    --aw-color-rule: #3a3228;
 
     --aw-color-accent: #e56a4d;
     --aw-color-accent-ink: #f4a791;
@@ -59,16 +55,9 @@ import "@fontsource-variable/jetbrains-mono";
     background-color: var(--aw-color-bg-page);
   }
 
-  body {
-    font-feature-settings:
-      "ss01",
-      "cv11";
-  }
-
   .font-serif {
     font-family: var(--aw-font-serif);
     font-optical-sizing: auto;
-    font-variation-settings: "SOFT" 30;
   }
 
   .font-mono {

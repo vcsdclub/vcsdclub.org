@@ -1,28 +1,24 @@
 ---
 import Layout from "~/layouts/PageLayout.astro";
-import { Icon } from "astro-icon/components";
 
 const metadata = { title: "Contact" };
 
 const channels = [
   {
-    icon: "tabler:mail",
     label: "Email",
-    value: "vchs.software@gmail.com",
+    handle: "vchs.software@gmail.com",
     href: "mailto:vchs.software@gmail.com",
     note: "Fastest way to reach the officers. Questions, ideas, collabs — all welcome.",
   },
   {
-    icon: "tabler:brand-discord",
     label: "Discord",
-    value: "Join the server",
+    handle: "discord.gg/hayb3xUZRD",
     href: "https://discord.gg/hayb3xUZRD",
     note: "Where members hang out between meetings. Come ask a question or show off a project.",
   },
   {
-    icon: "tabler:brand-instagram",
     label: "Instagram",
-    value: "@vchs_software",
+    handle: "@vchs_software",
     href: "https://www.instagram.com/vchs_software",
     note: "Announcements and meeting recaps, mostly.",
   },
@@ -30,53 +26,58 @@ const channels = [
 ---
 
 <Layout metadata={metadata}>
-  <section class="px-6 md:px-10 pt-8 md:pt-14">
-    <div class="mx-auto w-full max-w-[1400px]">
-      <div
-        class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-rule"
-      >
-        <p class="label"><span class="text-ink">§ 07</span> — Contact</p>
-        <p class="label hidden sm:block">Pick your channel</p>
-      </div>
-
-      <div class="pt-10 md:pt-16 max-w-4xl">
-        <p class="label mb-5">Get in touch</p>
-        <h1
-          class="serif-display text-[13vw] sm:text-[9vw] lg:text-[7vw] xl:text-[6.5rem] text-ink"
-        >
-          Let's<br />
-          <span class="italic underline-accent">connect</span>.
-        </h1>
-      </div>
-    </div>
+  <section class="page-gutter pt-10 md:pt-20">
+    <p class="eyebrow mb-6">Contact</p>
+    <h1
+      class="display text-ink max-w-[14ch]"
+      style="font-size: clamp(2.5rem, 7vw, 5.5rem);"
+    >
+      Let's <span class="italic">connect</span>.
+    </h1>
+    <p class="prose-lead mt-8 max-w-xl">
+      Pick whichever channel suits you. We read them all.
+    </p>
   </section>
 
-  <section class="px-6 md:px-10 mt-20 md:mt-28">
-    <div class="mx-auto w-full max-w-[1400px] border-t-2 border-rule">
+  <section class="page-gutter mt-24 md:mt-32">
+    <ol>
       {
-        channels.map((c) => (
-          <a
-            href={c.href}
-            target={c.href.startsWith("http") ? "_blank" : undefined}
-            rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-            class="group grid md:grid-cols-12 gap-6 md:gap-10 py-12 md:py-14 border-b border-rule items-center hover:bg-raised/50 transition-colors -mx-6 md:-mx-10 px-6 md:px-10"
+        channels.map((c, i) => (
+          <li
+            class:list={[
+              "border-t border-rule",
+              i === channels.length - 1 && "border-b",
+            ]}
           >
-            <div class="md:col-span-2 flex items-center gap-3">
-              <Icon name={c.icon} class="w-6 h-6 text-accent" />
-              <span class="label-ink">{c.label}</span>
-            </div>
-            <div class="md:col-span-7">
-              <p class="serif-head text-3xl md:text-5xl text-ink leading-tight group-hover:text-accent transition-colors">
-                {c.value}
-              </p>
-              <p class="mt-3 text-muted leading-relaxed max-w-lg">{c.note}</p>
-            </div>
-            <div class="md:col-span-3 md:text-right font-mono text-2xl text-muted group-hover:text-accent group-hover:translate-x-1 transition-all">
-              ↗
-            </div>
-          </a>
+            <a
+              href={c.href}
+              target={c.href.startsWith("http") ? "_blank" : undefined}
+              rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              class="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 py-8 md:py-10 items-baseline transition-colors hover:bg-raised/60"
+            >
+              <p class="eyebrow md:col-span-2">{c.label}</p>
+              <div class="md:col-span-8">
+                <p
+                  class="display-tight text-ink group-hover:text-accent transition-colors"
+                  style="font-size: clamp(1.25rem, 2vw, 1.75rem);"
+                >
+                  {c.handle}
+                </p>
+                <p class="text-ink-soft mt-2 leading-relaxed max-w-lg">
+                  {c.note}
+                </p>
+              </div>
+              <span
+                class="arrow md:col-span-2 md:text-right text-ink-soft group-hover:text-accent"
+                style="font-size: 1.125rem;"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </a>
+          </li>
         ))
       }
-    </div>
+    </ol>
   </section>
 </Layout>
