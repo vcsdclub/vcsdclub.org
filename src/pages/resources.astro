@@ -1,55 +1,83 @@
 ---
 import Layout from "~/layouts/PageLayout.astro";
 
-import Hero2 from "~/components/widgets/Hero2.astro";
-import CallToAction from "~/components/widgets/CallToAction.astro";
+const metadata = { title: "Resources" };
 
-const metadata = {
-  title: "Club resources",
-};
+const resources = [
+  {
+    label: "Google Drive",
+    title: "Club curriculum & slides",
+    body: "Every slide deck, handout, and workshop exercise — public, free, and stays that way.",
+    cta: "Open the Drive",
+    href: "https://drive.google.com/drive/folders/1SE4-s3sQAerCZLDZ7hzcn30Fk67hdHpl?usp=sharing",
+  },
+  {
+    label: "Perk",
+    title: "Free paid-API access",
+    body: "Building during semester 2? Tell us what API you need and we'll cover it. No catch — submit the form.",
+    cta: "Request access",
+    href: "https://forms.gle/JhjsdG8JRtdZTyY88",
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero2 Widget ******************* -->
+  <section class="px-6 md:px-10 pt-8 md:pt-14">
+    <div class="mx-auto w-full max-w-[1400px]">
+      <div
+        class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-rule"
+      >
+        <p class="label"><span class="text-ink">§ 06</span> — Resources</p>
+        <p class="label hidden sm:block">Everything we have, free</p>
+      </div>
 
-  <Hero2
-    tagline="Our Resources"
-    title="Completely free. Always."
-    subtitle="Check out all of our club resources below. We have everything you need to get started."
-    actions={[
-      // {
-      //   variant: "primary",
-      //   text: "Google Drive",
-      //   href: "https://drive.google.com/drive/folders/1_GhPeE93us6rnAU4eXRhZhCAZgp_TMjK?usp=sharing",
-      //   icon: "tabler:brand-google-drive",
-      // },
-      { text: "Contact Us", href: "/contact" },
-    ]}
-  />
-  <div class="flex">
-    <CallToAction
-      title="Free API access"
-      subtitle="We offer Valley Christian club members FREE access to any paid API that they want for semester 2 season. Just request it in the form"
-      actions={[
-        {
-          variant: "primary",
-          text: "Request now",
-          href: "https://forms.gle/JhjsdG8JRtdZTyY88",
-          icon: "tabler:sparkles",
-        },
-      ]}
-    />
-    <CallToAction
-      title="Public Google Drive"
-      subtitle="Here is our public Google Drive containing our club curriculum slides and other resources"
-      actions={[
-        {
-          variant: "primary",
-          text: "Visit",
-          href: "https://drive.google.com/drive/folders/1SE4-s3sQAerCZLDZ7hzcn30Fk67hdHpl?usp=sharing",
-          icon: "tabler:brand-google-drive",
-        },
-      ]}
-    />
-  </div>
+      <div class="pt-10 md:pt-16 max-w-4xl">
+        <p class="label mb-5">Take what you need</p>
+        <h1
+          class="serif-display text-[13vw] sm:text-[9vw] lg:text-[7vw] xl:text-[6.5rem] text-ink"
+        >
+          Completely free.<br />
+          <span class="italic">Always.</span>
+        </h1>
+        <p class="mt-10 text-ink-soft text-lg leading-relaxed max-w-xl">
+          We don't gate anything. Everything below is open — whether you're a
+          Valley Christian student, at another school entirely, or just a
+          curious kid on the internet.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-10 mt-24 md:mt-32">
+    <div class="mx-auto w-full max-w-[1400px] border-t-2 border-rule">
+      {
+        resources.map((r) => (
+          <article
+            class="grid md:grid-cols-12 gap-6 md:gap-12 py-12 md:py-16 border-b border-rule"
+          >
+            <div class="md:col-span-3">
+              <p class="label">{r.label}</p>
+            </div>
+            <div class="md:col-span-6">
+              <h2 class="serif-head text-4xl md:text-5xl text-ink leading-tight">
+                {r.title}
+              </h2>
+              <p class="mt-4 text-muted leading-relaxed max-w-lg">{r.body}</p>
+            </div>
+            <div class="md:col-span-3 flex md:justify-end items-start">
+              <a
+                href={r.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+              >
+                {r.cta}
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
 </Layout>

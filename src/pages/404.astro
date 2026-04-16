@@ -1,23 +1,24 @@
 ---
-import Layout from '~/layouts/Layout.astro';
-import { getHomePermalink } from '~/utils/permalinks';
+import Layout from "~/layouts/PageLayout.astro";
 
-const title = `Error 404`;
+const metadata = { title: "404 — Not Found" };
 ---
 
-<Layout metadata={{ title }}>
-  <section class="flex items-center h-full p-16">
-    <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
-      <div class="max-w-md text-center">
-        <h2 class="mb-8 font-bold text-9xl">
-          <span class="sr-only">Error</span>
-          <span class="text-primary">404</span>
-        </h2>
-        <p class="text-3xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
-        <p class="mt-4 mb-8 text-lg text-muted dark:text-slate-400">
-          But dont worry, you can find plenty of other things on our homepage.
-        </p>
-        <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4">Back to homepage</a>
+<Layout metadata={metadata}>
+  <section class="px-6 md:px-10 pt-16 md:pt-24">
+    <div class="mx-auto w-full max-w-[1400px]">
+      <p class="label mb-8">Error &mdash; 404</p>
+      <h1
+        class="serif-display text-[22vw] md:text-[14rem] leading-[0.9] text-ink"
+      >
+        Page<br /><span class="italic underline-accent">not&nbsp;found</span>.
+      </h1>
+      <p class="mt-10 text-ink-soft text-lg max-w-xl leading-relaxed">
+        We couldn't find what you were looking for. It may have moved, or
+        perhaps it never existed in the first place.
+      </p>
+      <div class="mt-10">
+        <a href="/" class="btn btn-primary">Back to home</a>
       </div>
     </div>
   </section>

@@ -1,7 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { SITE } from 'astrowind:config';
-import { getHomePermalink } from '~/utils/permalinks';
+import { Icon } from "astro-icon/components";
 
 interface Link {
   text?: string;
@@ -10,93 +8,81 @@ interface Link {
   icon?: string;
 }
 
-interface Links {
-  title?: string;
-  links: Array<Link>;
-}
-
 export interface Props {
-  links: Array<Links>;
-  secondaryLinks: Array<Link>;
-  socialLinks: Array<Link>;
+  secondaryLinks?: Array<Link>;
+  socialLinks?: Array<Link>;
   footNote?: string;
-  theme?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+const { secondaryLinks = [], socialLinks = [] } = Astro.props;
+const year = new Date().getFullYear();
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
-  <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300">
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-      <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}>{SITE?.name}</a>
-        </div>
-        <div class="text-sm text-muted flex gap-1">
-          {
-            secondaryLinks.map(({ text, href }, index) => (
-              <>
-                {index !== 0 ? ' · ' : ''}
-                <a
-                  class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
-                  href={href}
-                  set:html={text}
-                />
-              </>
-            ))
-          }
-        </div>
+<footer class="mt-32 border-t border-rule">
+  <div class="mx-auto w-full max-w-[1400px] px-6 md:px-10 py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
+      <div class="md:col-span-6">
+        <p class="label mb-4">Colophon</p>
+        <p class="serif-head text-3xl md:text-4xl text-ink leading-tight">
+          VCHS Software<br />Development Club
+        </p>
+        <p class="mt-6 text-muted max-w-md leading-relaxed">
+          A student-run club at Valley Christian High School teaching the craft
+          of real software engineering. Free, forever.
+        </p>
       </div>
-      {
-        links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <li class="mb-2">
-                    <a
-                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                      href={href}
-                      aria-label={ariaLabel}
-                    >
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
-    </div>
-    <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
-      {
-        socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
+
+      <div class="md:col-span-3">
+        <p class="label mb-4">Navigate</p>
+        <ul class="space-y-2">
+          <li><a href="/" class="link">Home</a></li>
+          <li><a href="/about" class="link">About</a></li>
+          <li><a href="/resources" class="link">Resources</a></li>
+          <li><a href="/contact" class="link">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="label mb-4">Elsewhere</p>
+        <ul class="space-y-2">
+          {
+            socialLinks.map(({ ariaLabel, icon, href }) => (
               <li>
                 <a
-                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                  aria-label={ariaLabel}
                   href={href}
+                  aria-label={ariaLabel}
+                  class="link inline-flex items-center gap-2"
                 >
-                  {icon && <Icon name={icon} class="w-5 h-5" />}
-                  <Fragment set:html={text} />
+                  {icon && <Icon name={icon} class="w-4 h-4" />}
+                  <span>{ariaLabel}</span>
                 </a>
               </li>
-            ))}
-          </ul>
-        ) : (
-          ''
-        )
-      }
-
-      <div class="text-sm mr-4 dark:text-muted">
-        <Fragment set:html={footNote} />
+            ))
+          }
+        </ul>
       </div>
+    </div>
+
+    <div
+      class="mt-16 pt-6 border-t border-rule flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+    >
+      <p class="font-mono text-xs text-muted">
+        © {year} · Valley Christian Software Development Club
+      </p>
+      <ul class="flex flex-wrap gap-5">
+        {
+          secondaryLinks.map(({ text, href }) => (
+            <li>
+              <a
+                href={href}
+                class="font-mono text-xs text-muted hover:text-ink"
+              >
+                {text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </footer>

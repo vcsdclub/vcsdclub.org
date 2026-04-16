@@ -1,9 +1,13 @@
 ---
-import { SITE } from 'astrowind:config';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+<a
+  href="/"
+  class="group inline-flex items-baseline gap-2 whitespace-nowrap"
+  aria-label="VCHS Software Development Club — Home"
 >
-  🚀 {SITE?.name}
-</span>
+  <span class="serif-head text-ink text-xl md:text-[1.35rem] leading-none">
+    Software Dev<span class="text-accent">.</span>
+  </span>
+  <span class="label hidden md:inline">VCHS</span>
+</a>

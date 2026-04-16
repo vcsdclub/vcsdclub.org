@@ -1,296 +1,214 @@
 ---
 import Layout from "~/layouts/PageLayout.astro";
-
-import Hero from "~/components/widgets/Hero.astro";
-import Note from "~/components/widgets/Note.astro";
-import Features from "~/components/widgets/Features.astro";
-import Features2 from "~/components/widgets/Features2.astro";
-import Steps from "~/components/widgets/Steps.astro";
-import Content from "~/components/widgets/Content.astro";
-import BlogLatestPosts from "~/components/widgets/BlogLatestPosts.astro";
-import FAQs from "~/components/widgets/FAQs.astro";
-import Stats from "~/components/widgets/Stats.astro";
-import CallToAction from "~/components/widgets/CallToAction.astro";
-import OurLocations from "~/components/common/OurLocations.astro";
+import Image from "~/components/common/Image.astro";
+import groupPhoto from "~/assets/images/group.webp";
 
 const metadata = {
   title: "Valley Christian Software Development Club",
   ignoreTitleTemplate: true,
 };
+
+const issueDate = new Date().toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+});
+
+const overview = [
+  {
+    n: "01",
+    title: "Adaptive lectures",
+    body: "Lectures calibrated to the room — so whether you've never touched a terminal or you've shipped side projects, you leave with something new.",
+  },
+  {
+    n: "02",
+    title: "Interactive exercises",
+    body: "You don't learn to code by watching. We break lectures with short problems so the ideas land in your hands before they leave the room.",
+  },
+  {
+    n: "03",
+    title: "Workshops",
+    body: "We build things together. Mentors circulate, questions get answered, and everyone walks out with working code.",
+  },
+  {
+    n: "04",
+    title: "Semester 2: build season",
+    body: "The back half of the year, you take what you've learned and make something real — your idea, our mentorship, real software at the end.",
+  },
+  {
+    n: "05",
+    title: "Mentoring, on-demand",
+    body: "Stuck between meetings? Email us. We'd rather answer questions than let you spin your wheels.",
+  },
+  {
+    n: "06",
+    title: "Zero cost. Always.",
+    body: "All of our resources are free — even if you don't go to Valley Christian. We mean it.",
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
-
-  <Hero
-    actions={[
-      {
-        variant: "primary",
-        text: "Join the mailing list",
-        href: "https://forms.gle/pUcXkLxdX5tV6BfX6",
-        target: "_blank",
-        icon: "tabler:mail-check",
-      },
-      { text: "Learn more", href: "#overview" },
-    ]}
-    image={{
-      src: "~/assets/images/hero-image.png",
-      alt: "AstroWind Hero Image",
-    }}
-  >
-    <Fragment slot="title">
-      Welcome to our
-      <span class="text-accent dark:text-white highlight"> Website</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Here in the <abbr title="Valley Christian High School">VCHS</abbr>
-      <b>Software Development Club</b>, we aim to empower students everywhere
-      with the knowledge and skills they need <b
-        >to build real software and what it takes to be an engineer</b
-      >.
-    </Fragment>
-  </Hero>
-
-  <!-- <Stats
-    stats={[
-      { title: "Downloads", amount: "132K" },
-      { title: "Stars", amount: "24.8K" },
-      { title: "Forks", amount: "10.3K" },
-      { title: "Users", amount: "48.4K" },
-    ]}
-  /> -->
-
-  <!-- Note Widget ******************* -->
-
-  <!-- <Note /> -->
-
-  <!-- Features Widget *************** -->
-
-  <Features
-    id="overview"
-    tagline="Overview"
-    title="Here's what we will do in this club"
-    subtitle=""
-    items={[
-      {
-        title: "Adaptive lectures",
-        description:
-          "We provide lectures that are adapted to the general skill level of our members, so that everyone can learn something new.",
-        icon: "tabler:man",
-      },
-      {
-        title: "Interactive exercises",
-        description:
-          "We believe one of the best ways to learn is to learn by doing. We often incorporate exercises into our lectures to help reinforce the concepts.",
-        icon: "tabler:git-merge",
-      },
-      {
-        title: "Interactive workshops",
-        description:
-          "We also host workshops where we work on projects together, so that our members can get hands-on experience while we provide mentoring resources.",
-        icon: "tabler:brand-vite",
-      },
-
-      {
-        title: "Semester 2 project-building season",
-        description:
-          "In the second half of the year, we challenge students to take the skills that they have learned and apply them to a project of their own.",
-        icon: "tabler:bulb",
-      },
-      {
-        title: "Extensive mentoring resources",
-        description:
-          'Besides in-meeting workshops, you can always <a class="link" href="/contact">drop us an email</a> and we would be happy to help',
-        icon: "tabler:arrows-right-left",
-      },
-      // TODO: replace this with a better "feature"
-      // because we will be putting this in the FAQ
-      {
-        title: "Best of all... it's free!",
-        description:
-          "You can access all of our <a class='link' href='/resources'>resources</a> at no cost whatsoever, even if you are not currently attending Valley Christian High School.",
-        icon: "tabler:coin-off",
-      },
-    ]}
-  />
-  <OurLocations />
-  <!-- TODO: This will actually be useful -->
-  <!-- <CallToAction
-    actions={[
-      {
-        variant: "primary",
-        text: "Get template",
-        href: "https://github.com/onwidget/astrowind",
-        target: "_blank",
-        icon: "tabler:download",
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span
-        class="sm:whitespace-nowrap">Tailwind CSS</span
+  <!-- ══════════ HERO ══════════ -->
+  <section class="px-6 md:px-10 pt-8 md:pt-14">
+    <div class="mx-auto w-full max-w-[1400px]">
+      <!-- Masthead metadata -->
+      <div
+        class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-rule"
       >
-    </Fragment>
+        <p class="label">
+          <span class="text-ink">VOL.&nbsp;I</span> · {issueDate} · VCHS
+        </p>
+        <p class="label hidden sm:block">
+          A publication of the Software Development Club
+        </p>
+        <p class="label">№ 001</p>
+      </div>
 
-    <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br
-        class="hidden md:inline"
-      />Don't waste more time! :P
-    </Fragment>
-  </CallToAction> -->
+      <!-- Headline grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-10 md:pt-16">
+        <div class="lg:col-span-7">
+          <p class="label mb-6">§ Issue&nbsp;One — The Manifesto</p>
+          <h1
+            class="serif-display text-[14vw] sm:text-[11vw] lg:text-[8.5vw] xl:text-[7.2rem] text-ink"
+          >
+            Build real<br />
+            <span class="italic">software</span>,<br />
+            <span class="underline-accent">not résumés</span>.
+          </h1>
 
-  <!-- Content Widget **************** -->
+          <p
+            class="mt-10 text-ink-soft text-lg md:text-xl leading-relaxed max-w-xl font-sans"
+          >
+            The <abbr title="Valley Christian High School">VCHS</abbr> Software
+            Development Club exists for one reason: to help you build things that
+            actually work. No grinding contest problems. No résumé-stuffing. Just
+            the craft of engineering, taught by students who love it.
+          </p>
 
-  <!-- Steps Widget ****************** -->
+          <div class="mt-10 flex flex-wrap items-center gap-4">
+            <a
+              href="https://forms.gle/pUcXkLxdX5tV6BfX6"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              Join the mailing list
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a href="#overview" class="btn">Read more</a>
+          </div>
+        </div>
 
-  <!-- <Steps
-    title="Get your dream website up and running in no time with AstroWind."
-    items={[
-      {
-        title: 'Step 1: <span class="font-medium">Download</span>',
-        description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: "tabler:package",
-      },
-      {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
-        description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: "tabler:letter-case",
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
-        description:
-          "Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.",
-        icon: "tabler:paint",
-      },
-      {
-        title: "Ready!",
-        icon: "tabler:check",
-      },
-    ]}
-    image={{
-      src: "https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
-      alt: "Steps image",
-    }}
-  />
+        <!-- Sidebar: photo + cutline -->
+        <aside class="lg:col-span-5 lg:pt-20">
+          <figure>
+            <div class="relative overflow-hidden border border-rule bg-raised">
+              <Image
+                src={groupPhoto}
+                alt="The four club officers"
+                widths={[400, 800, 1200]}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                class="w-full h-auto block"
+              />
+            </div>
+            <figcaption
+              class="mt-3 font-mono text-xs text-muted leading-relaxed"
+            >
+              <span class="text-accent">Fig.&nbsp;1 —</span> The officers, 2024–2025.
+              From left: Bryan Hu, Amaar Chughtai, Ryan Abraham, Maya Rao.
+            </figcaption>
+          </figure>
+        </aside>
+      </div>
+    </div>
+  </section>
 
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
-    items={[
-      {
-        title: "Headers",
-        description:
-          "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: "flat-color-icons:template",
-      },
-      {
-        title: "Heros",
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: "flat-color-icons:gallery",
-      },
-      {
-        title: "Features",
-        description:
-          "Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!",
-        icon: "flat-color-icons:approval",
-      },
-      {
-        title: "Content",
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: "flat-color-icons:document",
-      },
-      {
-        title: "Call-to-Action",
-        description:
-          "That enthusiastic friend who's always urging, \"Do it! Do it!\"? Yeah, that's this button nudging you towards adventure.",
-        icon: "flat-color-icons:advertising",
-      },
-      {
-        title: "Pricing",
-        description:
-          "Behold the dessert menu of the website world. Tempting choices await, can you resist?",
-        icon: "flat-color-icons:currency-exchange",
-      },
-      {
-        title: "Testimonial",
-        description:
-          "Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.",
-        icon: "flat-color-icons:voice-presentation",
-      },
-      {
-        title: "Contact",
-        description:
-          "Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.",
-        icon: "flat-color-icons:business-contact",
-      },
-      {
-        title: "Footers",
-        description:
-          "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: "flat-color-icons:database",
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features2> -->
+  <!-- ══════════ PULL QUOTE ══════════ -->
+  <section class="px-6 md:px-10 mt-24 md:mt-36">
+    <div class="mx-auto w-full max-w-[1100px]">
+      <div class="rule-thick mb-10"></div>
+      <blockquote class="serif-head text-3xl md:text-5xl text-ink leading-[1.1]">
+        <span aria-hidden="true" class="text-accent italic">“</span>Too many kids
+        these days are forced into learning programming — so they learn, because
+        they were forced to. Then they realize their skills are put to waste, because
+        <span class="italic">they never learned how to use them</span>.<span
+          aria-hidden="true"
+          class="text-accent italic">”</span
+        >
+      </blockquote>
+      <p class="mt-8 label">
+        <span class="text-ink">Bryan Hu</span> — Co-President, on why this club exists
+      </p>
+    </div>
+  </section>
 
-  <!-- HighlightedPosts Widget ******* -->
+  <!-- ══════════ OVERVIEW ══════════ -->
+  <section id="overview" class="px-6 md:px-10 mt-32 md:mt-48">
+    <div class="mx-auto w-full max-w-[1400px]">
+      <header
+        class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-8 border-b-2 border-rule"
+      >
+        <div>
+          <p class="label mb-3">§ 02 — What we do</p>
+          <h2 class="serif-head text-5xl md:text-7xl text-ink leading-none">
+            Six things, done well.
+          </h2>
+        </div>
+        <p class="text-muted max-w-sm md:text-right">
+          A weekly meeting. A year of learning. A project you'll actually be
+          proud to put in front of someone.
+        </p>
+      </header>
 
-  <!-- <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `}
-  /> -->
+      <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {
+          overview.map((item, i) => (
+            <li
+              class:list={[
+                "border-b border-rule px-0 py-10 md:p-10 flex flex-col gap-4",
+                i % 3 !== 2 && "lg:border-r",
+                i % 2 !== 1 && "md:max-lg:border-r",
+              ]}
+            >
+              <span class="font-mono text-sm text-accent tracking-widest">
+                {item.n}
+              </span>
+              <h3 class="serif-head text-2xl md:text-3xl text-ink leading-tight">
+                {item.title}
+              </h3>
+              <p class="text-muted leading-relaxed">{item.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
 
-  <!-- FAQs Widget ******************* -->
-
-  <!-- <FAQs
-    title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
-    tagline="FAQs"
-    classes={{ container: "max-w-6xl" }}
-    items={[
-      {
-        title: "Why AstroWind?",
-        description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
-      },
-      {
-        title: "What do I need to start?",
-        description:
-          "Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.",
-      },
-      {
-        title: "How to install the Astro + Tailwind CSS template?",
-        description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
-      },
-      {
-        title: "What's something that you don't understand?",
-        description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
-      },
-      {
-        title: "What is something that you would like to try again?",
-        description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
-      },
-      {
-        title:
-          "If you could only ask one question to each person you meet, what would that question be?",
-        description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
-      },
-    ]}
-  /> -->
+  <!-- ══════════ CTA STRIP ══════════ -->
+  <section class="px-6 md:px-10 mt-32 md:mt-40">
+    <div class="mx-auto w-full max-w-[1400px]">
+      <div
+        class="border border-rule bg-raised px-8 md:px-14 py-14 md:py-20 grid md:grid-cols-12 gap-8 items-center"
+      >
+        <div class="md:col-span-8">
+          <p class="label mb-4">Next issue drops when you sign up</p>
+          <p class="serif-head text-4xl md:text-6xl text-ink leading-[1.05]">
+            Want to build<br />something real?
+          </p>
+        </div>
+        <div class="md:col-span-4 flex flex-wrap gap-3 md:justify-end">
+          <a
+            href="https://forms.gle/pUcXkLxdX5tV6BfX6"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            Join the list
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a href="/about" class="btn">Meet the team</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

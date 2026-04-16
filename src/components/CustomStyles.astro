@@ -1,63 +1,77 @@
 ---
-import '@fontsource-variable/inter';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
+import "@fontsource-variable/inter";
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/jetbrains-mono";
 ---
 
 <style is:inline>
   :root {
-    --aw-font-sans: 'InterVariable';
-    --aw-font-serif: 'InterVariable';
-    --aw-font-heading: 'InterVariable';
+    --aw-font-sans: "InterVariable", ui-sans-serif, system-ui, sans-serif;
+    --aw-font-serif: "Fraunces Variable", ui-serif, Georgia, serif;
+    --aw-font-heading: "Fraunces Variable", ui-serif, Georgia, serif;
+    --aw-font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular,
+      Menlo, monospace;
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    /* Paper & ink */
+    --aw-color-bg-page: #f4efe6;
+    --aw-color-bg-raised: #ebe4d6;
+    --aw-color-ink: #1a1714;
+    --aw-color-ink-soft: #322c25;
+    --aw-color-muted: #6b5f52;
+    --aw-color-rule: #1a1714;
 
-    --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
+    /* Accent — warm vermilion */
+    --aw-color-accent: #c84b2f;
+    --aw-color-accent-ink: #8a2a15;
 
-    --aw-color-bg-page-dark: rgb(3 6 32);
+    --aw-color-primary: var(--aw-color-ink);
+    --aw-color-secondary: var(--aw-color-ink-soft);
+    --aw-color-text-heading: var(--aw-color-ink);
+    --aw-color-text-default: var(--aw-color-ink);
+    --aw-color-text-muted: var(--aw-color-muted);
+    --aw-color-bg-page-dark: #16120e;
 
     ::selection {
-      background-color: lavender;
+      background-color: var(--aw-color-accent);
+      color: var(--aw-color-bg-page);
     }
   }
 
   .dark {
-    --aw-font-sans: 'InterVariable';
-    --aw-font-serif: 'InterVariable';
-    --aw-font-heading: 'InterVariable';
+    --aw-color-bg-page: #16120e;
+    --aw-color-bg-raised: #1f1a15;
+    --aw-color-ink: #f1ead9;
+    --aw-color-ink-soft: #d9d1bf;
+    --aw-color-muted: #9b8f7e;
+    --aw-color-rule: #d9d1bf;
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-accent: #e56a4d;
+    --aw-color-accent-ink: #f4a791;
 
-    --aw-color-text-heading: rgb(247, 248, 248);
-    --aw-color-text-default: rgb(229 236 246);
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: rgb(3 6 32);
+    --aw-color-text-heading: var(--aw-color-ink);
+    --aw-color-text-default: var(--aw-color-ink);
+    --aw-color-text-muted: var(--aw-color-muted);
+  }
 
-    ::selection {
-      background-color: black;
-      color: snow;
-    }
+  html {
+    font-family: var(--aw-font-sans);
+    color: var(--aw-color-ink);
+    background-color: var(--aw-color-bg-page);
+  }
+
+  body {
+    font-feature-settings:
+      "ss01",
+      "cv11";
+  }
+
+  .font-serif {
+    font-family: var(--aw-font-serif);
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 30;
+  }
+
+  .font-mono {
+    font-family: var(--aw-font-mono);
   }
 </style>
