@@ -1,48 +1,51 @@
 ---
-import "@fontsource-variable/instrument-sans";
-import "@fontsource-variable/fraunces";
+import "@fontsource-variable/archivo";
+import "@fontsource-variable/archivo-narrow";
 import "@fontsource-variable/jetbrains-mono";
 ---
 
 <style is:inline>
   :root {
-    --aw-font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui,
-      sans-serif;
-    --aw-font-serif: "Fraunces Variable", ui-serif, Georgia, serif;
-    --aw-font-heading: "Fraunces Variable", ui-serif, Georgia, serif;
+    --aw-font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+    --aw-font-display: "Archivo Narrow Variable", "Archivo Variable",
+      ui-sans-serif, system-ui, sans-serif;
+    --aw-font-heading: "Archivo Narrow Variable", "Archivo Variable",
+      ui-sans-serif, system-ui, sans-serif;
     --aw-font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular,
       Menlo, monospace;
 
-    /* Paper & ink */
-    --aw-color-bg-page: #f4efe6;
-    --aw-color-bg-raised: #ebe4d6;
-    --aw-color-ink: #1a1714;
-    --aw-color-ink-soft: #322c25;
-    --aw-color-muted: #6b5f52;
-    --aw-color-rule: #d9cfbe;
+    /* Paper & ink — cool, clinical, drafting-room */
+    --aw-color-bg-page: #f6f5f1;
+    --aw-color-bg-raised: #edece6;
+    --aw-color-ink: #111418;
+    --aw-color-ink-soft: #2b2f36;
+    --aw-color-muted: #6b7280;
+    --aw-color-rule: #c9ccd1;
+    --aw-color-rule-soft: #dde0e3;
 
-    /* Accent — warm vermilion */
-    --aw-color-accent: #c84b2f;
-    --aw-color-accent-ink: #8a2a15;
+    /* Accent — drafting blueprint blue */
+    --aw-color-accent: #2154c7;
+    --aw-color-accent-ink: #153a8e;
 
     --aw-color-primary: var(--aw-color-ink);
     --aw-color-secondary: var(--aw-color-ink-soft);
     --aw-color-text-heading: var(--aw-color-ink);
     --aw-color-text-default: var(--aw-color-ink);
     --aw-color-text-muted: var(--aw-color-muted);
-    --aw-color-bg-page-dark: #16120e;
+    --aw-color-bg-page-dark: #0c0f14;
   }
 
   .dark {
-    --aw-color-bg-page: #16120e;
-    --aw-color-bg-raised: #1f1a15;
-    --aw-color-ink: #f1ead9;
-    --aw-color-ink-soft: #d9d1bf;
-    --aw-color-muted: #9b8f7e;
-    --aw-color-rule: #3a3228;
+    --aw-color-bg-page: #0c0f14;
+    --aw-color-bg-raised: #141822;
+    --aw-color-ink: #e7eaf0;
+    --aw-color-ink-soft: #c3c8d2;
+    --aw-color-muted: #7a8293;
+    --aw-color-rule: #252b36;
+    --aw-color-rule-soft: #1a1f29;
 
-    --aw-color-accent: #e56a4d;
-    --aw-color-accent-ink: #f4a791;
+    --aw-color-accent: #6b95ff;
+    --aw-color-accent-ink: #a6bfff;
 
     --aw-color-text-heading: var(--aw-color-ink);
     --aw-color-text-default: var(--aw-color-ink);
@@ -55,9 +58,8 @@ import "@fontsource-variable/jetbrains-mono";
     background-color: var(--aw-color-bg-page);
   }
 
-  .font-serif {
-    font-family: var(--aw-font-serif);
-    font-optical-sizing: auto;
+  .font-display {
+    font-family: var(--aw-font-display);
   }
 
   .font-mono {

@@ -11,10 +11,10 @@
     text-rendering: optimizeLegibility;
   }
   body {
-    font-feature-settings: "ss01", "cv11";
+    font-feature-settings: "ss01";
   }
   ::selection {
-    background: var(--aw-color-ink);
+    background: var(--aw-color-accent);
     color: var(--aw-color-bg-page);
   }
 }
@@ -26,14 +26,26 @@
   .bg-raised {
     background-color: var(--aw-color-bg-raised);
   }
+  .text-ink {
+    color: var(--aw-color-ink);
+  }
+  .text-ink-soft {
+    color: var(--aw-color-ink-soft);
+  }
   .text-muted {
     color: var(--aw-color-muted);
+  }
+  .text-accent {
+    color: var(--aw-color-accent);
   }
   .border-rule {
     border-color: var(--aw-color-rule);
   }
+  .border-rule-soft {
+    border-color: var(--aw-color-rule-soft);
+  }
 
-  /* Fluid gutter — one system across all pages */
+  /* Fluid gutter */
   .page-gutter {
     padding-left: clamp(1.5rem, 5vw, 5rem);
     padding-right: clamp(1.5rem, 5vw, 5rem);
@@ -42,84 +54,152 @@
     width: 100%;
   }
 
-  /* Editorial display — Fraunces, fluid */
+  /* Display — condensed grotesque, architect-forward */
   .display {
-    font-family: var(--aw-font-serif);
-    font-optical-sizing: auto;
-    font-variation-settings: "SOFT" 30, "opsz" 144;
-    letter-spacing: -0.035em;
-    line-height: 0.9;
+    font-family: var(--aw-font-display);
+    font-stretch: 75%;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 0.92;
+    text-transform: none;
   }
   .display-tight {
-    font-family: var(--aw-font-serif);
-    font-optical-sizing: auto;
-    font-variation-settings: "SOFT" 30;
-    letter-spacing: -0.02em;
+    font-family: var(--aw-font-display);
+    font-stretch: 75%;
+    font-weight: 600;
+    letter-spacing: -0.005em;
     line-height: 1.02;
   }
 
-  /* The ONE monospace use — figure captions */
-  .caption {
+  /* Terminal/blueprint annotation primitives — mono, ALWAYS functional */
+  .mono {
+    font-family: var(--aw-font-mono);
+    font-feature-settings: "ss01", "ss02", "cv01";
+  }
+
+  /* File-path eyebrow: ~/about, ~/resources — labels the page/section */
+  .path {
     font-family: var(--aw-font-mono);
     font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--aw-color-muted);
+    text-transform: lowercase;
+    line-height: 1.4;
+  }
+
+  /* Line-number marker — use to index items in a list */
+  .lineno {
+    font-family: var(--aw-font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    color: var(--aw-color-muted);
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Image caption — mono, tiny */
+  .caption {
+    font-family: var(--aw-font-mono);
+    font-size: 0.6875rem;
     color: var(--aw-color-muted);
     letter-spacing: 0;
     line-height: 1.6;
+    text-transform: lowercase;
   }
 
-  .eyebrow {
-    font-size: 0.8125rem;
-    letter-spacing: 0.005em;
+  /* Tag — uppercase mono section labels */
+  .tag {
+    font-family: var(--aw-font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     color: var(--aw-color-muted);
+    text-transform: uppercase;
   }
 
-  .accent-dot::before {
-    content: "";
-    display: inline-block;
-    width: 0.45em;
-    height: 0.45em;
-    background: var(--aw-color-accent);
-    border-radius: 9999px;
-    margin-right: 0.6em;
-    vertical-align: 0.15em;
+  /* Blueprint rule — solid top edge */
+  .rule-top {
+    border-top: 1px solid var(--aw-color-rule);
+  }
+  .rule-bottom {
+    border-bottom: 1px solid var(--aw-color-rule);
+  }
+
+  /* Section header numeral — big, condensed, in the margin */
+  .section-numeral {
+    font-family: var(--aw-font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--aw-color-accent);
+    text-transform: uppercase;
   }
 }
 
 @layer components {
   .prose-lead {
-    font-size: clamp(1.0625rem, 1.3vw, 1.25rem);
+    font-size: clamp(1rem, 1.15vw, 1.125rem);
     line-height: 1.55;
     color: var(--aw-color-ink-soft);
   }
 
+  /* Link — underline only, accent-color on hover */
   .link {
     color: var(--aw-color-ink);
     text-decoration: underline;
-    text-decoration-color: var(--aw-color-accent);
-    text-decoration-thickness: 1.5px;
-    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
     transition: color 0.15s ease;
   }
   .link:hover {
     color: var(--aw-color-accent);
+    text-decoration-color: var(--aw-color-accent);
   }
 
+  /* Terminal-style CTA: $ prompt prefix, underline on hover */
+  .prompt {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--aw-font-mono);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--aw-color-ink);
+    letter-spacing: 0;
+    padding-bottom: 0.25em;
+    border-bottom: 1px solid var(--aw-color-ink);
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .prompt::before {
+    content: "$";
+    color: var(--aw-color-accent);
+    font-weight: 500;
+  }
+  .prompt:hover {
+    color: var(--aw-color-accent);
+    border-color: var(--aw-color-accent);
+  }
+
+  /* Block CTA — solid ink box, mono label */
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-family: var(--aw-font-sans);
-    font-size: 0.9375rem;
+    gap: 0.6rem;
+    font-family: var(--aw-font-mono);
+    font-size: 0.8125rem;
     font-weight: 500;
-    padding: 0.8rem 1.25rem;
-    border-radius: 0;
+    letter-spacing: 0;
+    padding: 0.75rem 1.1rem;
     border: 1px solid var(--aw-color-ink);
     color: var(--aw-color-ink);
     background: transparent;
+    border-radius: 0;
     transition:
-      background 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
-      color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
-      transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+      background 0.15s ease,
+      color 0.15s ease;
   }
   .btn:hover {
     background: var(--aw-color-ink);
@@ -137,11 +217,12 @@
 
   .arrow {
     display: inline-block;
-    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 0.15s ease;
   }
   .btn:hover .arrow,
-  a:hover > .arrow {
-    transform: translateX(2px) translateY(-2px);
+  a:hover > .arrow,
+  .prompt:hover .arrow {
+    transform: translateX(2px);
   }
 }
 
@@ -151,7 +232,7 @@
   inset: auto 0 0 0;
   height: 1px;
   background: var(--aw-color-rule);
-  opacity: 0.3;
+  opacity: 0.6;
 }
 
 [data-aw-toggle-menu] path {

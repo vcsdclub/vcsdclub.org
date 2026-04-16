@@ -5,19 +5,19 @@ const metadata = { title: "Contact" };
 
 const channels = [
   {
-    label: "Email",
+    label: "email",
     handle: "vchs.software@gmail.com",
     href: "mailto:vchs.software@gmail.com",
     note: "Fastest way to reach the officers. Questions, ideas, collabs — all welcome.",
   },
   {
-    label: "Discord",
+    label: "discord",
     handle: "discord.gg/hayb3xUZRD",
     href: "https://discord.gg/hayb3xUZRD",
     note: "Where members hang out between meetings. Come ask a question or show off a project.",
   },
   {
-    label: "Instagram",
+    label: "instagram",
     handle: "@vchs_software",
     href: "https://www.instagram.com/vchs_software",
     note: "Announcements and meeting recaps, mostly.",
@@ -26,58 +26,57 @@ const channels = [
 ---
 
 <Layout metadata={metadata}>
-  <section class="page-gutter pt-10 md:pt-20">
-    <p class="eyebrow mb-6">Contact</p>
+  <section class="page-gutter pt-12 md:pt-20">
+    <p class="path mb-10">~/contact</p>
     <h1
       class="display text-ink max-w-[14ch]"
       style="font-size: clamp(2.5rem, 7vw, 5.5rem);"
     >
-      Let's <span class="italic">connect</span>.
+      Let's connect.
     </h1>
-    <p class="prose-lead mt-8 max-w-xl">
+    <p class="prose-lead mt-8 max-w-[52ch]">
       Pick whichever channel suits you. We read them all.
     </p>
   </section>
 
   <section class="page-gutter mt-24 md:mt-32">
-    <ol>
-      {
-        channels.map((c, i) => (
-          <li
-            class:list={[
-              "border-t border-rule",
-              i === channels.length - 1 && "border-b",
-            ]}
-          >
-            <a
-              href={c.href}
-              target={c.href.startsWith("http") ? "_blank" : undefined}
-              rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              class="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 py-8 md:py-10 items-baseline transition-colors hover:bg-raised/60"
-            >
-              <p class="eyebrow md:col-span-2">{c.label}</p>
-              <div class="md:col-span-8">
-                <p
-                  class="display-tight text-ink group-hover:text-accent transition-colors"
-                  style="font-size: clamp(1.25rem, 2vw, 1.75rem);"
-                >
-                  {c.handle}
-                </p>
-                <p class="text-ink-soft mt-2 leading-relaxed max-w-lg">
-                  {c.note}
-                </p>
-              </div>
-              <span
-                class="arrow md:col-span-2 md:text-right text-ink-soft group-hover:text-accent"
-                style="font-size: 1.125rem;"
-                aria-hidden="true"
+    <div class="border-t border-rule">
+      <ol>
+        {
+          channels.map((c, i) => (
+            <li class="border-b border-rule-soft">
+              <a
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                class="group grid grid-cols-12 gap-x-6 gap-y-3 py-8 md:py-10 items-baseline transition-colors"
               >
-                →
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ol>
+                <p class="lineno col-span-12 md:col-span-1">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <p class="tag col-span-6 md:col-span-2">{c.label}</p>
+                <div class="col-span-12 md:col-span-7">
+                  <p
+                    class="mono text-ink group-hover:text-accent transition-colors"
+                    style="font-size: clamp(1.0625rem, 1.5vw, 1.375rem); letter-spacing: -0.01em;"
+                  >
+                    {c.handle}
+                  </p>
+                  <p class="text-ink-soft mt-2 leading-relaxed max-w-[52ch] text-[0.9375rem]">
+                    {c.note}
+                  </p>
+                </div>
+                <span
+                  class="arrow col-span-6 md:col-span-2 md:text-right text-ink-soft group-hover:text-accent mono text-[0.875rem]"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
   </section>
 </Layout>

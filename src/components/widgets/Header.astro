@@ -37,18 +37,18 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 <header
   class:list={[
     { sticky: isSticky, relative: !isSticky },
-    "top-0 z-40 w-full",
+    "top-0 z-40 w-full bg-page/90 backdrop-blur-md",
   ]}
   {...isSticky ? { "data-aw-sticky-header": true } : {}}
   {...id ? { id } : {}}
 >
-  <div class="bg-paper/90 backdrop-blur-md relative">
+  <div class="relative">
     <div
-      class="page-gutter py-5 flex items-center justify-between gap-6"
+      class="page-gutter py-4 flex items-center justify-between gap-6 border-b border-rule-soft"
     >
       <Logo />
 
-      <nav class="hidden md:flex items-center gap-8" aria-label="Main">
+      <nav class="hidden md:flex items-center gap-7" aria-label="Main">
         {
           links.map(({ text, href }) => {
             const active = href === currentPath;
@@ -56,21 +56,21 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               <a
                 href={href}
                 class:list={[
-                  "label-ink hover:text-accent transition-colors",
-                  { "text-accent": active },
+                  "mono text-[0.8125rem] font-medium transition-colors hover:text-accent",
+                  active ? "text-accent" : "text-ink-soft",
                 ]}
               >
-                {text}
+                {text?.toLowerCase()}
               </a>
             );
           })
         }
       </nav>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-4">
         {
           showToggleTheme && (
-            <ToggleTheme iconClass="w-4 h-4 text-ink hover:text-accent transition-colors" />
+            <ToggleTheme iconClass="w-4 h-4 text-ink-soft hover:text-accent transition-colors" />
           )
         }
         {
@@ -79,10 +79,10 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               href={a.href}
               target={a.target}
               rel={a.target === "_blank" ? "noopener noreferrer" : undefined}
-              class="btn btn-primary hidden md:inline-flex"
+              class="prompt hidden md:inline-flex"
             >
-              {a.text}
-              <span aria-hidden="true">↗</span>
+              {a.text.toLowerCase()}
+              <span class="arrow" aria-hidden="true">→</span>
             </a>
           ))
         }
@@ -95,21 +95,22 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     <!-- Mobile drawer -->
     <div
       data-mobile-drawer
-      class="md:hidden hidden absolute left-0 right-0 top-full bg-paper border-b border-rule px-6 py-8 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.18)]"
+      class="md:hidden hidden absolute left-0 right-0 top-full bg-page border-b border-rule px-6 py-8"
     >
-      <nav class="flex flex-col gap-4" aria-label="Mobile">
+      <nav class="flex flex-col gap-1" aria-label="Mobile">
         {
-          links.map(({ text, href }) => {
+          links.map(({ text, href }, i) => {
             const active = href === currentPath;
             return (
               <a
                 href={href}
                 class:list={[
-                  "serif-head text-3xl leading-none text-ink hover:text-accent transition-colors py-2 border-b border-rule/60",
-                  { "text-accent": active },
+                  "mono text-base py-3 border-b border-rule-soft transition-colors hover:text-accent flex items-baseline gap-3",
+                  active ? "text-accent" : "text-ink",
                 ]}
               >
-                {text}
+                <span class="lineno">{String(i + 1).padStart(2, "0")}</span>
+                <span>{text?.toLowerCase()}</span>
               </a>
             );
           })
@@ -120,10 +121,10 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               href={a.href}
               target={a.target}
               rel={a.target === "_blank" ? "noopener noreferrer" : undefined}
-              class="btn btn-primary mt-4 self-start"
+              class="prompt mt-6 self-start"
             >
-              {a.text}
-              <span aria-hidden="true">↗</span>
+              {a.text.toLowerCase()}
+              <span class="arrow" aria-hidden="true">→</span>
             </a>
           ))
         }

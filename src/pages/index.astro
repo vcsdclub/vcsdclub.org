@@ -38,107 +38,139 @@ const overview = [
 
 <Layout metadata={metadata}>
   <!-- HERO -->
-  <section class="page-gutter pt-10 md:pt-20">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-[clamp(2rem,5vw,5rem)] items-end">
-      <div class="lg:col-span-7 xl:col-span-7">
-        <p class="eyebrow mb-8 accent-dot">Software Development Club at VCHS</p>
+  <section class="page-gutter pt-12 md:pt-20">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-10 items-end">
+      <!-- left: path + statement -->
+      <div class="col-span-12 lg:col-span-7">
+        <p class="path mb-10">~/index.astro</p>
+
         <h1
           class="display text-ink"
-          style="font-size: clamp(3rem, 8.5vw, 6rem);"
+          style="font-size: clamp(2.75rem, 8.5vw, 7rem);"
         >
-          Build real<br />
-          <span class="italic">software</span>.
+          Build real<br />software.
         </h1>
-        <p class="prose-lead mt-8 max-w-xl">
-          We're a student-run club that teaches the craft of engineering the way
-          it's actually practiced — messily, collaboratively, one shipped version
-          at a time. No contest grinding. No résumé theatre. Just real software.
+
+        <p class="prose-lead mt-8 max-w-[52ch]">
+          A student-run club at Valley Christian High School. We teach the
+          craft of engineering the way it's actually practiced — messily,
+          collaboratively, one shipped version at a time. No contest grinding.
+          No résumé theatre.
         </p>
-        <div class="mt-10 flex flex-wrap items-center gap-5">
+
+        <div class="mt-10 flex flex-wrap items-center gap-8">
           <a
             href="https://forms.gle/pUcXkLxdX5tV6BfX6"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn btn-primary"
+            class="prompt"
           >
-            Join the mailing list
+            join mailing list
             <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#overview" class="link text-[0.9375rem]">What we do</a>
+          <a href="#overview" class="mono text-[0.8125rem] text-ink-soft hover:text-accent transition-colors">
+            what we do ↓
+          </a>
         </div>
       </div>
 
-      <aside class="lg:col-span-5 xl:col-span-5">
+      <!-- right: photo with mono caption -->
+      <aside class="col-span-12 lg:col-span-5">
         <figure>
           <Image
             src={groupPhoto}
             alt="Members of the Software Development Club"
             widths={[480, 960, 1400]}
             sizes="(max-width: 1024px) 100vw, 40vw"
-            class="w-full h-auto block bg-raised"
+            class="w-full h-auto block"
           />
-          <figcaption class="caption mt-3">The club, fall 2024.</figcaption>
+          <figcaption
+            class="mt-3 flex items-baseline gap-3 border-t border-rule-soft pt-2"
+          >
+            <span class="lineno">fig.01</span>
+            <span class="caption">the club — fall, 2024</span>
+          </figcaption>
         </figure>
       </aside>
     </div>
   </section>
 
   <!-- QUOTE -->
-  <section class="page-gutter mt-28 md:mt-40">
-    <figure class="max-w-[62ch]">
-      <blockquote class="text-ink">
-        <p
-          class="display-tight"
-          style="font-size: clamp(1.875rem, 3.2vw, 2.75rem); line-height: 1.15;"
+  <section class="page-gutter mt-32 md:mt-44">
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 lg:col-span-1 lg:pt-2">
+        <p class="section-numeral">§ 01</p>
+      </div>
+      <figure class="col-span-12 lg:col-span-9 lg:col-start-3 border-t border-rule pt-10">
+        <p class="path mb-10">~/quotes/from-the-president</p>
+        <blockquote class="text-ink">
+          <p
+            class="display-tight"
+            style="font-size: clamp(2rem, 4.5vw, 3.75rem);"
+          >
+            I take this very seriously.
+          </p>
+          <p
+            class="display-tight mt-8 text-ink-soft max-w-[58ch]"
+            style="font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); line-height: 1.55; font-stretch: 100%; font-weight: 400; letter-spacing: 0;"
+          >
+            Too many kids these days are forced into learning programming,
+            especially competitive programming. So they learn, because they
+            were forced to learn. But then afterwards, they realize that their
+            skills are put to waste as they did not know how to put them into
+            practical use.
+          </p>
+          <p
+            class="display-tight mt-8"
+            style="font-size: clamp(1.625rem, 3vw, 2.5rem); color: var(--aw-color-accent);"
+          >
+            I want to change that with this club.
+          </p>
+        </blockquote>
+        <figcaption
+          class="mt-10 flex items-baseline gap-3 border-t border-rule-soft pt-3"
         >
-          I take this very seriously.
-        </p>
-        <p
-          class="display-tight mt-6 text-ink-soft"
-          style="font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.55;"
-        >
-          Too many kids these days are forced into learning programming,
-          especially competitive programming. So they learn, because they were
-          forced to learn. But then afterwards, they realize that their skills
-          are put to waste as they did not know how to put them into practical
-          use.
-        </p>
-        <p
-          class="display-tight italic mt-6"
-          style="font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.2;"
-        >
-          I want to change that with this club.
-        </p>
-      </blockquote>
-      <figcaption class="eyebrow mt-8">
-        <span class="text-ink">Bryan Hu</span>, Co-President
-      </figcaption>
-    </figure>
+          <span class="lineno">—</span>
+          <span class="mono text-[0.8125rem] text-ink">Bryan Hu</span>
+          <span class="caption">co-president</span>
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
   <!-- OVERVIEW -->
-  <section id="overview" class="page-gutter mt-28 md:mt-40">
-    <header class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-baseline mb-12 md:mb-16">
-      <h2
-        class="display-tight text-ink lg:col-span-7"
-        style="font-size: clamp(1.75rem, 2.8vw, 2.5rem);"
-      >
-        A year of learning,<br />built around <span class="italic">making things</span>.
-      </h2>
-      <p class="text-ink-soft leading-relaxed lg:col-span-4 lg:col-start-9">
-        One weekly meeting. A first semester of fundamentals, a second of
-        building. Everything below is what happens in between.
-      </p>
-    </header>
+  <section id="overview" class="page-gutter mt-32 md:mt-44">
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 lg:col-span-1 lg:pt-2">
+        <p class="section-numeral">§ 02</p>
+      </div>
+      <header class="col-span-12 lg:col-span-11 border-t border-rule pt-10 pb-14 md:pb-16">
+        <p class="path mb-6">~/program</p>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-baseline">
+          <h2
+            class="display-tight text-ink lg:col-span-7"
+            style="font-size: clamp(1.75rem, 3.4vw, 2.875rem);"
+          >
+            A year of learning,<br />built around making things.
+          </h2>
+          <p class="text-ink-soft leading-relaxed lg:col-span-4 lg:col-start-9 text-[0.9375rem]">
+            One weekly meeting. A first semester of fundamentals, a second of
+            building. Everything below is what happens in between.
+          </p>
+        </div>
+      </header>
+    </div>
 
-    <ol class="grid grid-cols-1 md:grid-cols-2 gap-x-[clamp(2rem,4vw,4rem)] gap-y-10">
+    <ol class="grid grid-cols-1 md:grid-cols-2 border-t border-rule border-l-0 md:border-l border-rule-soft">
       {
         overview.map((item, i) => (
-          <li class="grid grid-cols-[auto_1fr] gap-5">
-            <span
-              class="font-mono text-ink-soft pt-[0.3rem]"
-              style="font-size: 0.75rem; letter-spacing: 0;"
-            >
+          <li
+            class:list={[
+              "grid grid-cols-[auto_1fr] gap-5 p-6 md:p-8 border-b border-rule-soft",
+              i % 2 === 0 && "md:border-r md:border-rule-soft",
+            ]}
+          >
+            <span class="lineno pt-1">
               {String(i + 1).padStart(2, "0")}
             </span>
             <div>
@@ -148,7 +180,7 @@ const overview = [
               >
                 {item.title}
               </h3>
-              <p class="text-ink-soft leading-relaxed max-w-prose">
+              <p class="text-ink-soft leading-relaxed text-[0.9375rem] max-w-prose">
                 {item.body}
               </p>
             </div>

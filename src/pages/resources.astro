@@ -9,7 +9,7 @@ const resources = [
     kind: "Google Drive",
     title: "Curriculum & slides",
     body: "Every slide deck, handout, and workshop exercise — public, free, and stays that way.",
-    cta: "Open the Drive",
+    cta: "open drive",
     href: "https://drive.google.com/drive/folders/1SE4-s3sQAerCZLDZ7hzcn30Fk67hdHpl?usp=sharing",
   },
   {
@@ -17,23 +17,22 @@ const resources = [
     kind: "Members-only perk",
     title: "Free paid-API access",
     body: "Building during semester 2? Tell us what API you need and we'll cover it. No catch — submit the form.",
-    cta: "Request access",
+    cta: "request access",
     href: "https://forms.gle/JhjsdG8JRtdZTyY88",
   },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <section class="page-gutter pt-10 md:pt-20">
-    <p class="eyebrow mb-6">Resources</p>
+  <section class="page-gutter pt-12 md:pt-20">
+    <p class="path mb-10">~/resources</p>
     <h1
       class="display text-ink max-w-[14ch]"
       style="font-size: clamp(2.5rem, 7vw, 5.5rem);"
     >
-      Completely free.<br />
-      <span class="italic">Always.</span>
+      Completely free.<br />Always.
     </h1>
-    <p class="prose-lead mt-8 max-w-xl">
+    <p class="prose-lead mt-8 max-w-[52ch]">
       We don't gate anything. Everything below is open — whether you're a
       Valley Christian student, at another school entirely, or just a curious
       kid on the internet.
@@ -41,47 +40,47 @@ const resources = [
   </section>
 
   <section class="page-gutter mt-24 md:mt-32">
-    <ol class="flex flex-col">
-      {
-        resources.map((r, i) => (
-          <li
-            class:list={[
-              "grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 py-12 md:py-16 border-t border-rule items-start",
-              i === resources.length - 1 && "border-b",
-            ]}
-          >
-            <span
-              class="font-mono text-ink-soft md:col-span-1 pt-1"
-              style="font-size: 0.75rem;"
+    <div class="border-t border-rule">
+      <ol>
+        {
+          resources.map((r, i) => (
+            <li
+              class:list={[
+                "grid grid-cols-12 gap-x-6 gap-y-6 py-12 md:py-16 border-b border-rule-soft items-start",
+              ]}
             >
-              {r.number}
-            </span>
-            <div class="md:col-span-7">
-              <p class="eyebrow mb-3">{r.kind}</p>
-              <h2
-                class="display-tight text-ink"
-                style="font-size: clamp(1.5rem, 2.4vw, 2.125rem);"
-              >
-                {r.title}
-              </h2>
-              <p class="text-ink-soft mt-4 leading-relaxed max-w-lg">
-                {r.body}
-              </p>
-            </div>
-            <div class="md:col-span-4 md:flex md:justify-end md:pt-1">
-              <a
-                href={r.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary"
-              >
-                {r.cta}
-                <span class="arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-          </li>
-        ))
-      }
-    </ol>
+              <div class="col-span-12 md:col-span-1">
+                <p class="lineno">
+                  {r.number}/{String(resources.length).padStart(2, "0")}
+                </p>
+              </div>
+              <div class="col-span-12 md:col-span-7">
+                <p class="tag mb-4">{r.kind.toLowerCase()}</p>
+                <h2
+                  class="display-tight text-ink"
+                  style="font-size: clamp(1.75rem, 3vw, 2.5rem);"
+                >
+                  {r.title}
+                </h2>
+                <p class="text-ink-soft mt-5 leading-relaxed max-w-[52ch] text-[0.9375rem]">
+                  {r.body}
+                </p>
+              </div>
+              <div class="col-span-12 md:col-span-4 md:flex md:justify-end md:pt-2">
+                <a
+                  href={r.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="prompt"
+                >
+                  {r.cta}
+                  <span class="arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
   </section>
 </Layout>

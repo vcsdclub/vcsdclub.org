@@ -16,44 +16,66 @@ export interface Props {
 
 const { secondaryLinks = [], socialLinks = [] } = Astro.props;
 const year = new Date().getFullYear();
+
+const nav = [
+  { text: "home", href: "/" },
+  { text: "about", href: "/about" },
+  { text: "resources", href: "/resources" },
+  { text: "contact", href: "/contact" },
+];
 ---
 
 <footer class="mt-32 md:mt-44 border-t border-rule">
-  <div class="page-gutter py-14 md:py-20">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
+  <div class="page-gutter pt-14 md:pt-20 pb-10">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-10">
       <div class="md:col-span-6">
-        <p class="display-tight text-ink text-2xl md:text-[1.75rem] leading-tight max-w-md">
-          VCHS Software<br />Development Club
+        <p class="path mb-4">~/sdclub.vchs</p>
+        <p
+          class="display-tight text-ink leading-tight"
+          style="font-size: clamp(1.625rem, 2.6vw, 2.25rem);"
+        >
+          Valley Christian<br />Software Development Club.
         </p>
-        <p class="mt-5 text-ink-soft max-w-md leading-relaxed">
+        <p class="mt-5 text-ink-soft max-w-md leading-relaxed text-[0.9375rem]">
           A student-run club teaching the craft of real software engineering.
           Free, forever.
         </p>
       </div>
 
       <div class="md:col-span-3">
-        <p class="eyebrow mb-4">Navigate</p>
-        <ul class="space-y-2">
-          <li><a href="/" class="link">Home</a></li>
-          <li><a href="/about" class="link">About</a></li>
-          <li><a href="/resources" class="link">Resources</a></li>
-          <li><a href="/contact" class="link">Contact</a></li>
+        <p class="tag mb-5">navigate</p>
+        <ul class="space-y-2.5">
+          {
+            nav.map((n, i) => (
+              <li class="flex items-baseline gap-3">
+                <span class="lineno">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <a href={n.href} class="link mono text-[0.875rem]">
+                  {n.text}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <div class="md:col-span-3">
-        <p class="eyebrow mb-4">Elsewhere</p>
-        <ul class="space-y-2">
+        <p class="tag mb-5">elsewhere</p>
+        <ul class="space-y-2.5">
           {
-            socialLinks.map(({ ariaLabel, icon, href }) => (
-              <li>
+            socialLinks.map(({ ariaLabel, icon, href }, i) => (
+              <li class="flex items-baseline gap-3">
+                <span class="lineno">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <a
                   href={href}
                   aria-label={ariaLabel}
-                  class="link inline-flex items-center gap-2"
+                  class="link mono text-[0.875rem] inline-flex items-center gap-2"
                 >
-                  {icon && <Icon name={icon} class="w-4 h-4" />}
-                  <span>{ariaLabel}</span>
+                  {icon && <Icon name={icon} class="w-3.5 h-3.5" />}
+                  <span>{ariaLabel?.toLowerCase()}</span>
                 </a>
               </li>
             ))
@@ -63,10 +85,10 @@ const year = new Date().getFullYear();
     </div>
 
     <div
-      class="mt-14 pt-6 border-t border-rule flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+      class="mt-16 pt-5 border-t border-rule-soft flex flex-col md:flex-row md:items-center md:justify-between gap-4"
     >
       <p class="caption">
-        © {year} · Valley Christian Software Development Club
+        &copy; {year} — valley christian software development club
       </p>
       <ul class="flex flex-wrap gap-5">
         {

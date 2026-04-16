@@ -6,19 +6,23 @@ const metadata = { title: "404 — Not Found" };
 
 <Layout metadata={metadata}>
   <section class="page-gutter pt-16 md:pt-24">
-    <p class="eyebrow mb-6">Error 404</p>
+    <p class="path mb-10">~/404</p>
+    <p class="tag mb-6" style="color: var(--aw-color-accent);">error 404</p>
     <h1
       class="display text-ink max-w-[14ch]"
       style="font-size: clamp(2.5rem, 8vw, 6rem);"
     >
-      Page<br /><span class="italic">not found</span>.
+      Page not found.
     </h1>
-    <p class="prose-lead mt-8 max-w-xl">
-      We couldn't find what you were looking for. It may have moved — or perhaps
-      it never existed in the first place.
+    <p class="prose-lead mt-8 max-w-[52ch]">
+      We couldn't find what you were looking for. It may have moved — or
+      perhaps it never existed in the first place.
     </p>
-    <div class="mt-8">
-      <a href="/" class="btn btn-primary">Back to home</a>
+    <div class="mt-10">
+      <a href="/" class="prompt">
+        cd ~/
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 </Layout>
