@@ -25,14 +25,15 @@ const resources = [
 
 <Layout metadata={metadata}>
   <section class="page-gutter pt-12 md:pt-20">
-    <p class="path mb-10">~/resources</p>
+    <p class="path mb-8">~/resources $ <span data-anim="typeline">ls -la</span></p>
     <h1
       class="display text-ink max-w-[14ch]"
-      style="font-size: clamp(2.5rem, 7vw, 5.5rem);"
+      data-anim="rise"
+      style="font-size: clamp(2.5rem, 8vw, 6.5rem);"
     >
-      Completely free.<br />Always.
+      Completely free.<br /><span style="color: var(--aw-color-accent);">Always.</span>
     </h1>
-    <p class="prose-lead mt-8 max-w-[52ch]">
+    <p class="prose-lead mt-8 max-w-[52ch]" data-anim="reveal">
       We don't gate anything. Everything below is open — whether you're a
       Valley Christian student, at another school entirely, or just a curious
       kid on the internet.
@@ -40,47 +41,46 @@ const resources = [
   </section>
 
   <section class="page-gutter mt-24 md:mt-32">
-    <div class="border-t border-rule">
-      <ol>
-        {
-          resources.map((r, i) => (
-            <li
-              class:list={[
-                "grid grid-cols-12 gap-x-6 gap-y-6 py-12 md:py-16 border-b border-rule-soft items-start",
-              ]}
-            >
-              <div class="col-span-12 md:col-span-1">
-                <p class="lineno">
-                  {r.number}/{String(resources.length).padStart(2, "0")}
-                </p>
-              </div>
-              <div class="col-span-12 md:col-span-7">
-                <p class="tag mb-4">{r.kind.toLowerCase()}</p>
-                <h2
-                  class="display-tight text-ink"
-                  style="font-size: clamp(1.75rem, 3vw, 2.5rem);"
-                >
-                  {r.title}
-                </h2>
-                <p class="text-ink-soft mt-5 leading-relaxed max-w-[52ch] text-[0.9375rem]">
-                  {r.body}
-                </p>
-              </div>
-              <div class="col-span-12 md:col-span-4 md:flex md:justify-end md:pt-2">
-                <a
-                  href={r.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="prompt"
-                >
-                  {r.cta}
-                  <span class="arrow" aria-hidden="true">→</span>
-                </a>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
+    <div class="h-px bg-rule" data-anim="draw"></div>
+    <ol data-anim="stagger">
+      {
+        resources.map((r) => (
+          <li
+            class:list={[
+              "grid grid-cols-12 gap-x-6 gap-y-6 py-12 md:py-16 border-b border-rule-soft items-start",
+            ]}
+          >
+            <div class="col-span-12 md:col-span-1">
+              <p class="lineno">
+                {r.number}/{String(resources.length).padStart(2, "0")}
+              </p>
+            </div>
+            <div class="col-span-12 md:col-span-7">
+              <p class="tag mb-4">{r.kind.toLowerCase()}</p>
+              <h2
+                class="display-tight text-ink"
+                style="font-size: clamp(1.75rem, 3vw, 2.5rem);"
+              >
+                {r.title}
+              </h2>
+              <p class="text-ink-soft mt-5 leading-relaxed max-w-[52ch] text-[0.9375rem]">
+                {r.body}
+              </p>
+            </div>
+            <div class="col-span-12 md:col-span-4 md:flex md:justify-end md:pt-2">
+              <a
+                href={r.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="prompt"
+              >
+                {r.cta}
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
   </section>
 </Layout>
