@@ -6,81 +6,120 @@ const metadata = { title: "Resources" };
 const resources = [
   {
     number: "01",
-    kind: "Google Drive",
+    kind: "google drive",
     title: "Curriculum & slides",
     body: "Every slide deck, handout, and workshop exercise — public, free, and stays that way.",
-    cta: "open drive",
+    cta: "OPEN DRIVE",
     href: "https://drive.google.com/drive/folders/1SE4-s3sQAerCZLDZ7hzcn30Fk67hdHpl?usp=sharing",
   },
   {
     number: "02",
-    kind: "Members-only perk",
+    kind: "members only perk",
     title: "Free paid-API access",
     body: "Building during semester 2? Tell us what API you need and we'll cover it. No catch — submit the form.",
-    cta: "request access",
+    cta: "REQUEST ACCESS",
     href: "https://forms.gle/JhjsdG8JRtdZTyY88",
   },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <section class="page-gutter pt-12 md:pt-20">
-    <p class="path mb-10">~/resources</p>
+  <section class="page-gutter pt-8 md:pt-16 pb-12">
+    <div class="flex items-center justify-between mb-8">
+      <span class="tag">issue №01 · section 03</span>
+      <span class="hand" style="font-size: 1.5rem; transform: rotate(-3deg); display: inline-block;">take what you need.</span>
+    </div>
+
     <h1
-      class="display text-ink max-w-[14ch]"
-      style="font-size: clamp(2.5rem, 7vw, 5.5rem);"
+      class="display text-ink offset-riso-lg"
+      style="font-size: clamp(3rem, 11vw, 9rem); line-height: 0.85;"
+      data-resources-headline
     >
-      Completely free.<br />Always.
+      <span class="block">COMPLETELY</span>
+      <span class="block">FREE.</span>
+      <span class="block" style="font-family: var(--aw-font-serif); font-style: italic; font-weight: 400;">always.</span>
     </h1>
-    <p class="prose-lead mt-8 max-w-[52ch]">
+
+    <p class="prose-lead mt-10 max-w-[52ch]">
       We don't gate anything. Everything below is open — whether you're a
       Valley Christian student, at another school entirely, or just a curious
       kid on the internet.
     </p>
   </section>
 
-  <section class="page-gutter mt-24 md:mt-32">
-    <div class="border-t border-rule">
-      <ol>
-        {
-          resources.map((r, i) => (
-            <li
-              class:list={[
-                "grid grid-cols-12 gap-x-6 gap-y-6 py-12 md:py-16 border-b border-rule-soft items-start",
-              ]}
-            >
-              <div class="col-span-12 md:col-span-1">
-                <p class="lineno">
-                  {r.number}/{String(resources.length).padStart(2, "0")}
-                </p>
-              </div>
-              <div class="col-span-12 md:col-span-7">
-                <p class="tag mb-4">{r.kind.toLowerCase()}</p>
-                <h2
-                  class="display-tight text-ink"
-                  style="font-size: clamp(1.75rem, 3vw, 2.5rem);"
-                >
-                  {r.title}
-                </h2>
-                <p class="text-ink-soft mt-5 leading-relaxed max-w-[52ch] text-[0.9375rem]">
-                  {r.body}
-                </p>
-              </div>
-              <div class="col-span-12 md:col-span-4 md:flex md:justify-end md:pt-2">
-                <a
-                  href={r.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="prompt"
-                >
-                  {r.cta}
-                  <span class="arrow" aria-hidden="true">→</span>
-                </a>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
+  <section class="page-gutter mt-16 md:mt-20">
+    <ol class="border-t-2 border-ink">
+      {
+        resources.map((r, i) => (
+          <li
+            class="grid grid-cols-12 gap-x-6 gap-y-6 py-12 md:py-16 border-b-2 border-ink items-start"
+            data-resource
+          >
+            <div class="col-span-12 md:col-span-1">
+              <p class="display text-ink" style="font-size: 2.5rem; line-height: 1;">
+                {r.number}
+              </p>
+              <p class="tag mt-1">/{String(resources.length).padStart(2, "0")}</p>
+            </div>
+            <div class="col-span-12 md:col-span-7">
+              <span class="ribbon mb-4">{r.kind}</span>
+              <h2
+                class="display text-ink mt-4"
+                style="font-size: clamp(2rem, 4.5vw, 3.5rem); letter-spacing: -0.03em;"
+              >
+                {r.title}
+              </h2>
+              <p class="text-ink mt-5 leading-relaxed max-w-[52ch] text-[0.9375rem]">
+                {r.body}
+              </p>
+            </div>
+            <div class="col-span-12 md:col-span-4 md:flex md:justify-end md:pt-4">
+              <a
+                href={r.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="sticker"
+              >
+                {r.cta}
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
   </section>
 </Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const run = () => {
+    const headline = document.querySelector("[data-resources-headline]");
+    if (headline) {
+      const lines = headline.querySelectorAll("span");
+      gsap.from(lines, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+    }
+
+    document.querySelectorAll("[data-resource]").forEach((r, i) => {
+      gsap.from(r, {
+        opacity: 0,
+        y: 24,
+        duration: 0.6,
+        ease: "power3.out",
+        scrollTrigger: { trigger: r, start: "top 85%" },
+      });
+    });
+  };
+
+  run();
+  document.addEventListener("astro:after-swap", run);
+</script>

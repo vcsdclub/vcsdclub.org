@@ -26,57 +26,101 @@ const channels = [
 ---
 
 <Layout metadata={metadata}>
-  <section class="page-gutter pt-12 md:pt-20">
-    <p class="path mb-10">~/contact</p>
+  <section class="page-gutter pt-8 md:pt-16 pb-12">
+    <div class="flex items-center justify-between mb-8">
+      <span class="tag">issue №01 · section 04</span>
+      <span class="hand" style="font-size: 1.5rem; transform: rotate(-3deg); display: inline-block;">we read them all.</span>
+    </div>
+
     <h1
-      class="display text-ink max-w-[14ch]"
-      style="font-size: clamp(2.5rem, 7vw, 5.5rem);"
+      class="display text-ink offset-riso-lg"
+      style="font-size: clamp(3rem, 11vw, 9rem); line-height: 0.85;"
+      data-contact-headline
     >
-      Let's connect.
+      <span class="block">LET'S</span>
+      <span class="block" style="font-family: var(--aw-font-serif); font-style: italic; font-weight: 400;">connect.</span>
     </h1>
-    <p class="prose-lead mt-8 max-w-[52ch]">
-      Pick whichever channel suits you. We read them all.
+
+    <p class="prose-lead mt-10 max-w-[52ch]">
+      Pick whichever channel suits you.
     </p>
   </section>
 
-  <section class="page-gutter mt-24 md:mt-32">
-    <div class="border-t border-rule">
-      <ol>
-        {
-          channels.map((c, i) => (
-            <li class="border-b border-rule-soft">
-              <a
-                href={c.href}
-                target={c.href.startsWith("http") ? "_blank" : undefined}
-                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                class="group grid grid-cols-12 gap-x-6 gap-y-3 py-8 md:py-10 items-baseline transition-colors"
+  <section class="page-gutter mt-16 md:mt-20">
+    <ol class="border-t-2 border-ink">
+      {
+        channels.map((c, i) => (
+          <li
+            class="border-b-2 border-ink group hover:border-riso transition-colors duration-150"
+            data-channel
+          >
+            <a
+              href={c.href}
+              target={c.href.startsWith("http") ? "_blank" : undefined}
+              rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              class="grid grid-cols-12 gap-x-6 gap-y-3 py-8 md:py-10 items-baseline px-1"
+            >
+              <p
+                class="display text-ink col-span-12 md:col-span-1"
+                style="font-size: 2rem; line-height: 1;"
               >
-                <p class="lineno col-span-12 md:col-span-1">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <p class="tag col-span-6 md:col-span-2">{c.label}</p>
-                <div class="col-span-12 md:col-span-7">
-                  <p
-                    class="mono text-ink group-hover:text-accent transition-colors"
-                    style="font-size: clamp(1.0625rem, 1.5vw, 1.375rem); letter-spacing: -0.01em;"
-                  >
-                    {c.handle}
-                  </p>
-                  <p class="text-ink-soft mt-2 leading-relaxed max-w-[52ch] text-[0.9375rem]">
-                    {c.note}
-                  </p>
-                </div>
-                <span
-                  class="arrow col-span-6 md:col-span-2 md:text-right text-ink-soft group-hover:text-accent mono text-[0.875rem]"
-                  aria-hidden="true"
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <p class="tag col-span-6 md:col-span-2 md:pt-4">{c.label}</p>
+              <div class="col-span-12 md:col-span-7">
+                <p
+                  class="display text-ink"
+                  style="font-size: clamp(1.5rem, 3vw, 2.5rem); letter-spacing: -0.03em;"
                 >
-                  →
-                </span>
-              </a>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
+                  {c.handle}
+                </p>
+                <p class="text-ink mt-2 leading-relaxed max-w-[52ch] text-[0.9375rem]">
+                  {c.note}
+                </p>
+              </div>
+              <span
+                class="arrow col-span-6 md:col-span-2 md:text-right text-ink font-display text-2xl md:pt-4"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
   </section>
 </Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const run = () => {
+    const headline = document.querySelector("[data-contact-headline]");
+    if (headline) {
+      const lines = headline.querySelectorAll("span");
+      gsap.from(lines, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+    }
+
+    document.querySelectorAll("[data-channel]").forEach((r) => {
+      gsap.from(r, {
+        opacity: 0,
+        y: 24,
+        duration: 0.55,
+        ease: "power3.out",
+        scrollTrigger: { trigger: r, start: "top 88%" },
+      });
+    });
+  };
+
+  run();
+  document.addEventListener("astro:after-swap", run);
+</script>

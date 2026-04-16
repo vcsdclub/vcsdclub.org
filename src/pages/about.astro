@@ -100,39 +100,56 @@ const vision = [
     body: "I don't want this club to just die out when I graduate but instead, I want it to be a club that lasts for a long time. A long enough time that it can create a real impact on the next generation of software engineers",
   },
 ];
+
+const tiltSeq = ["-1.5deg", "2deg", "-2.5deg", "1deg"];
 ---
 
 <Layout metadata={metadata}>
   <!-- HERO -->
-  <section class="page-gutter pt-12 md:pt-20">
-    <p class="path mb-10">~/about</p>
+  <section class="page-gutter pt-8 md:pt-16 pb-12">
+    <div class="flex items-center justify-between mb-8">
+      <span class="tag">issue №01 · section 02</span>
+      <span class="hand" style="font-size: 1.5rem; transform: rotate(-3deg); display: inline-block;">who we are →</span>
+    </div>
+
     <h1
-      class="display text-ink max-w-[16ch]"
-      style="font-size: clamp(2.5rem, 7vw, 5.5rem);"
+      class="display text-ink offset-riso-lg"
+      style="font-size: clamp(3rem, 11vw, 9rem); line-height: 0.85;"
+      data-about-headline
     >
-      Built by high schoolers.<br />For high schoolers.
+      <span class="block">BUILT BY KIDS.</span>
+      <span class="block" style="font-family: var(--aw-font-serif); font-style: italic; font-weight: 400;">for kids.</span>
     </h1>
-    <p class="prose-lead mt-8 max-w-[52ch]">
+
+    <p class="prose-lead mt-10 max-w-[52ch]">
       We are just a group of high school students who are passionate about
       software development — teaching the course we wish we'd had.
     </p>
   </section>
 
-  <!-- OFFICERS -->
-  <section class="page-gutter mt-32 md:mt-40">
-    <div class="grid grid-cols-12 gap-6">
-      <div class="col-span-12 lg:col-span-1">
-        <p class="section-numeral">§ 01</p>
-      </div>
-      <header class="col-span-12 lg:col-span-11 border-t border-rule pt-8 pb-10 flex items-baseline justify-between">
-        <h2
-          class="display-tight text-ink"
-          style="font-size: clamp(1.5rem, 2.4vw, 2rem);"
-        >
-          Meet the team.
-        </h2>
-        <p class="tag hidden md:block">[n = 4]</p>
-      </header>
+  <!-- OFFICERS MARQUEE BAND -->
+  <section class="border-y border-rule-soft py-3 overflow-hidden">
+    <div class="flex gap-10 whitespace-nowrap" data-officers-marquee>
+      {
+        [...Array(4)].map(() =>
+          officers.map((o) => (
+            <span
+              class="mono text-ink-soft"
+              style="font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;"
+            >
+              {o.name.toUpperCase()} <span class="text-riso">✦</span>
+            </span>
+          ))
+        )
+      }
+    </div>
+  </section>
+
+  <!-- OFFICER SPREADS -->
+  <section class="page-gutter mt-16 md:mt-24">
+    <div class="flex items-end justify-between mb-8 border-b-2 border-ink pb-4">
+      <span class="tag tag-riso">the roster · n = 4</span>
+      <span class="hand" style="font-size: 1.75rem; transform: rotate(-2deg);">say hi.</span>
     </div>
 
     <div class="flex flex-col">
@@ -140,34 +157,41 @@ const vision = [
         officers.map((o, i) => (
           <article
             class:list={[
-              "grid grid-cols-12 gap-x-6 gap-y-8 border-t border-rule-soft py-14 md:py-20",
-              i === officers.length - 1 && "border-b border-rule-soft",
+              "grid grid-cols-12 gap-x-6 gap-y-8 py-16 md:py-24 border-b-2 border-ink",
+              i === 0 && "border-t-2",
             ]}
+            data-officer
           >
-            <!-- index marker -->
+            <!-- counter -->
             <div class="col-span-12 md:col-span-1">
-              <p class="lineno">
-                {String(i + 1).padStart(2, "0")}/{String(officers.length).padStart(2, "0")}
+              <p
+                class="display text-ink"
+                style="font-size: clamp(2rem, 4vw, 3rem); line-height: 1;"
+              >
+                {String(i + 1).padStart(2, "0")}
               </p>
+              <p class="tag mt-1">/{String(officers.length).padStart(2, "0")}</p>
             </div>
 
-            <!-- photo -->
+            <!-- photo, duotone, tilted -->
             <figure
               class:list={[
-                "col-span-12 md:col-span-5",
-                i % 2 === 1 && "md:order-2 md:col-start-7",
+                "col-span-12 md:col-span-5 relative",
+                i % 2 === 1 && "md:order-2 md:col-start-8",
               ]}
+              style={`transform: rotate(${tiltSeq[i % tiltSeq.length]});`}
+              data-officer-photo
             >
-              <Image
-                src={o.image}
-                alt={o.alt}
-                widths={[400, 800]}
-                sizes="(max-width: 768px) 100vw, 40vw"
-                class="w-full h-auto block"
-              />
-              <figcaption class="mt-3 flex items-baseline gap-3 border-t border-rule-soft pt-2">
-                <span class="lineno">fig.{String(i + 1).padStart(2, "0")}</span>
-                <span class="caption">{o.name.toLowerCase()}</span>
+              <div class="duotone" style="box-shadow: 8px 8px 0 0 var(--aw-color-ink);">
+                <Image
+                  src={o.image}
+                  alt={o.alt}
+                  widths={[400, 800]}
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
+              </div>
+              <figcaption class="caption mt-3">
+                fig.{String(i + 2).padStart(2, "0")} — {o.name.toLowerCase()}
               </figcaption>
             </figure>
 
@@ -175,35 +199,37 @@ const vision = [
             <div
               class:list={[
                 "col-span-12 md:col-span-6",
-                i % 2 === 1 ? "md:order-1 md:col-start-2" : "md:col-start-8",
+                i % 2 === 1 ? "md:order-1 md:col-start-2" : "md:col-start-7",
               ]}
             >
-              <p class="tag mb-3">{o.role.toLowerCase()}</p>
+              <span class="ribbon mb-4">{o.role.toLowerCase()}</span>
               <h3
-                class="display text-ink"
-                style="font-size: clamp(2rem, 4vw, 3rem);"
+                class="display text-ink mt-4"
+                style="font-size: clamp(2.25rem, 5vw, 3.75rem); line-height: 0.95;"
               >
                 {o.name}
               </h3>
               {o.bio && (
-                <p class="prose-lead mt-5 max-w-[48ch] italic">{o.bio}</p>
+                <p class="hand mt-4" style="font-size: 1.75rem; transform: rotate(-1.5deg); display: inline-block; color: var(--aw-color-ink);">
+                  "{o.bio}"
+                </p>
               )}
 
               {o.stats.length > 0 && (
-                <dl class="mt-8 border-t border-rule">
+                <dl class="mt-8 border-t-2 border-ink">
                   {o.stats.map((s, si) => (
                     <div class="py-5 border-b border-rule-soft grid grid-cols-[auto_1fr] gap-5">
-                      <span class="lineno pt-1">
+                      <span class="lineno text-riso pt-1">
                         {String(si + 1).padStart(2, "0")}
                       </span>
                       <div>
                         <dt
-                          class="display-tight text-ink mb-2"
-                          style="font-size: 1.0625rem;"
+                          class="display text-ink mb-2"
+                          style="font-size: 1.125rem; letter-spacing: -0.02em;"
                         >
                           {s.title}
                         </dt>
-                        <dd class="text-ink-soft leading-relaxed text-[0.9375rem]">
+                        <dd class="text-ink leading-relaxed text-[0.9375rem]">
                           {s.description}
                         </dd>
                       </div>
@@ -219,69 +245,128 @@ const vision = [
   </section>
 
   <!-- VISION -->
-  <section class="page-gutter mt-32 md:mt-40">
-    <div class="grid grid-cols-12 gap-6">
-      <div class="col-span-12 lg:col-span-1 lg:pt-2">
-        <p class="section-numeral">§ 02</p>
+  <section class="page-gutter mt-20 md:mt-28">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-8">
+      <div class="col-span-12 lg:col-span-2">
+        <span class="ribbon">vision</span>
       </div>
-      <div class="col-span-12 lg:col-span-9 lg:col-start-3 border-t border-rule pt-10">
-        <figure class="max-w-[62ch]">
-          <p class="path mb-10">~/about/vision</p>
-          <blockquote class="text-ink">
-            <p
-              class="display-tight"
-              style="font-size: clamp(2rem, 4vw, 3.25rem);"
-            >
-              I take this very seriously.
-            </p>
-            <p
-              class="display-tight mt-8 text-ink-soft max-w-[58ch]"
-              style="font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); line-height: 1.55; font-stretch: 100%; font-weight: 400; letter-spacing: 0;"
-            >
-              Too many kids these days are forced into learning programming,
-              especially competitive programming. So they learn, because they
-              were forced to learn. But then afterwards, they realize that
-              their skills are put to waste as they did not know how to put
-              them into practical use.
-            </p>
-            <p
-              class="display-tight mt-8"
-              style="font-size: clamp(1.5rem, 2.6vw, 2.25rem); color: var(--aw-color-accent);"
-            >
-              I want to change that with this club.
-            </p>
-          </blockquote>
-          <figcaption class="mt-10 flex items-baseline gap-3 border-t border-rule-soft pt-3">
-            <span class="lineno">—</span>
-            <span class="mono text-[0.8125rem] text-ink">Bryan Hu</span>
-            <span class="caption">co-president</span>
-          </figcaption>
-        </figure>
-      </div>
+      <figure class="col-span-12 lg:col-span-10">
+        <blockquote class="text-ink">
+          <p
+            class="display-serif"
+            style="font-size: clamp(2.5rem, 6.5vw, 5.5rem);"
+          >
+            <span class="offset-riso-sm">I take this very</span><br />
+            <span class="offset-riso-sm">seriously.</span>
+          </p>
+          <p
+            class="mt-10 text-ink max-w-[58ch] leading-relaxed"
+            style="font-size: clamp(1.0625rem, 1.25vw, 1.1875rem);"
+          >
+            Too many kids these days are forced into learning programming,
+            especially competitive programming. So they learn, because they
+            were forced to learn. But then afterwards, they realize that
+            their skills are put to waste as they did not know how to put
+            them into practical use.
+          </p>
+          <p
+            class="display-serif italic mt-10 text-riso"
+            style="font-size: clamp(1.75rem, 3.5vw, 3rem);"
+          >
+            I want to change that with this club.
+          </p>
+        </blockquote>
+        <figcaption class="mt-10 flex items-baseline gap-4 border-t-2 border-ink pt-4">
+          <span class="tag">—</span>
+          <span class="display text-ink text-[1rem]">Bryan Hu</span>
+          <span class="tag">co-president</span>
+        </figcaption>
+      </figure>
     </div>
 
-    <ol class="mt-20 grid grid-cols-12 gap-6 border-t border-rule">
+    <ol class="mt-16 grid grid-cols-1 md:grid-cols-3 border-t-2 border-l-2 border-ink">
       {
         vision.map((v, i) => (
           <li
-            class:list={[
-              "col-span-12 md:col-span-4 p-6 md:p-8 border-b border-rule-soft",
-              i < vision.length - 1 && "md:border-r md:border-rule-soft",
-            ]}
+            class="relative p-6 md:p-8 border-r-2 border-b-2 border-ink group hover:border-riso transition-colors duration-150"
+            data-vision-item
           >
-            <p class="lineno mb-4">
-              0{i + 1} / 03
-            </p>
-            <h3
-              class="display-tight text-ink mb-3"
-              style="font-size: 1.375rem;"
+            <span
+              class="absolute top-4 right-4 hand"
+              style="font-size: 1.75rem; transform: rotate(3deg);"
             >
-              To <span style="color: var(--aw-color-accent);">{v.title}</span>
+              0{i + 1}
+            </span>
+            <p class="tag mb-2">to—</p>
+            <h3
+              class="display text-ink mb-3"
+              style="font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.03em;"
+            >
+              {v.title}.
             </h3>
-            <p class="text-ink-soft leading-relaxed text-[0.9375rem]">{v.body}</p>
+            <p class="text-ink leading-relaxed text-[0.9375rem]">{v.body}</p>
           </li>
         ))
       }
     </ol>
   </section>
 </Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const run = () => {
+    const headline = document.querySelector("[data-about-headline]");
+    if (headline) {
+      const lines = headline.querySelectorAll("span");
+      gsap.from(lines, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+    }
+
+    const mTrack = document.querySelector("[data-officers-marquee]");
+    if (mTrack) {
+      const width = mTrack.scrollWidth / 2;
+      gsap.to(mTrack, {
+        x: -width,
+        duration: 50,
+        ease: "none",
+        repeat: -1,
+      });
+    }
+
+    document.querySelectorAll("[data-officer]").forEach((art) => {
+      const photo = art.querySelector("[data-officer-photo]");
+      const text = art.querySelector("dl, h3");
+      if (photo) {
+        gsap.from(photo, {
+          opacity: 0,
+          y: 30,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: { trigger: art, start: "top 82%" },
+        });
+      }
+    });
+
+    document.querySelectorAll("[data-vision-item]").forEach((cell, i) => {
+      gsap.from(cell, {
+        opacity: 0,
+        y: 24,
+        duration: 0.5,
+        delay: i * 0.07,
+        ease: "power2.out",
+        scrollTrigger: { trigger: cell, start: "top 88%" },
+      });
+    });
+  };
+
+  run();
+  document.addEventListener("astro:after-swap", run);
+</script>

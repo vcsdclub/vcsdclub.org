@@ -8,7 +8,7 @@ const metadata = {
   ignoreTitleTemplate: true,
 };
 
-const overview = [
+const bulletin = [
   {
     title: "Adaptive lectures",
     body: "Calibrated to the room. Whether you've never opened a terminal or you've shipped side projects, you leave with something new.",
@@ -34,85 +34,120 @@ const overview = [
     body: "All our resources are free — even if you don't go to Valley Christian. We mean it.",
   },
 ];
+
+const marquee = [
+  "WEEKLY MEETINGS",
+  "FREE FOREVER",
+  "NO GATEKEEPING",
+  "SHIP REAL CODE",
+  "BUILD SEASON SPRING",
+  "ISSUE №01",
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- HERO -->
-  <section class="page-gutter pt-12 md:pt-20">
-    <div class="grid grid-cols-12 gap-x-6 gap-y-10 items-end">
-      <!-- left: path + statement -->
-      <div class="col-span-12 lg:col-span-7">
-        <p class="path mb-10">~/index.astro</p>
+  <!-- HERO — stacked, huge, pink-offset -->
+  <section class="page-gutter pt-8 md:pt-16 pb-16">
+    <div class="flex items-center justify-between mb-8">
+      <span class="tag">issue №01 · 2025–26</span>
+      <span class="hand" style="font-size: 1.5rem; transform: rotate(-3deg); display: inline-block;">printed weekly*</span>
+    </div>
 
-        <h1
-          class="display text-ink"
-          style="font-size: clamp(2.75rem, 8.5vw, 7rem);"
-        >
-          Build real<br />software.
-        </h1>
+    <h1
+      class="display text-ink offset-riso-lg"
+      style="font-size: clamp(3.5rem, 13vw, 11rem); line-height: 0.84;"
+      data-hero-headline
+    >
+      <span class="block">BUILD</span>
+      <span class="block">REAL</span>
+      <span class="block" style="font-family: var(--aw-font-serif); font-style: italic; font-weight: 400;">software.</span>
+    </h1>
 
-        <p class="prose-lead mt-8 max-w-[52ch]">
+    <div class="mt-12 grid grid-cols-12 gap-x-6 gap-y-10 items-end">
+      <div class="col-span-12 lg:col-span-6">
+        <p class="prose-lead max-w-[52ch]">
           A student-run club at Valley Christian High School. We teach the
           craft of engineering the way it's actually practiced — messily,
-          collaboratively, one shipped version at a time. No contest grinding.
-          No résumé theatre.
+          collaboratively, one shipped version at a time.
+          <span class="hand inline-block" style="font-size: 1.5rem; transform: rotate(-2deg);"> no résumé theatre.</span>
         </p>
 
-        <div class="mt-10 flex flex-wrap items-center gap-8">
+        <div class="mt-8 flex flex-wrap items-center gap-6">
           <a
             href="https://forms.gle/pUcXkLxdX5tV6BfX6"
             target="_blank"
             rel="noopener noreferrer"
-            class="prompt"
+            class="sticker"
           >
-            join mailing list
+            JOIN THE LIST
             <span class="arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#overview" class="mono text-[0.8125rem] text-ink-soft hover:text-accent transition-colors">
-            what we do ↓
+          <a
+            href="#bulletin"
+            class="tag hover:text-riso transition-colors underline decoration-ink decoration-2 underline-offset-[6px]"
+          >
+            scroll ↓ what we do
           </a>
         </div>
       </div>
 
-      <!-- right: photo with mono caption -->
-      <aside class="col-span-12 lg:col-span-5">
-        <figure>
+      <figure class="col-span-12 lg:col-span-6 relative" data-hero-photo>
+        <div class="duotone">
           <Image
             src={groupPhoto}
             alt="Members of the Software Development Club"
             widths={[480, 960, 1400]}
-            sizes="(max-width: 1024px) 100vw, 40vw"
-            class="w-full h-auto block"
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
-          <figcaption
-            class="mt-3 flex items-baseline gap-3 border-t border-rule-soft pt-2"
-          >
-            <span class="lineno">fig.01</span>
-            <span class="caption">the club — fall, 2024</span>
-          </figcaption>
-        </figure>
-      </aside>
+        </div>
+        <!-- scrawled annotation, absolute -->
+        <span
+          class="hand absolute"
+          style="font-size: 2.25rem; top: -0.5rem; right: -0.25rem; transform: rotate(6deg);"
+        >
+          ← that's us!
+        </span>
+        <figcaption class="caption mt-3">fig.01 — the club, fall 2024</figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- QUOTE -->
-  <section class="page-gutter mt-32 md:mt-44">
-    <div class="grid grid-cols-12 gap-6">
-      <div class="col-span-12 lg:col-span-1 lg:pt-2">
-        <p class="section-numeral">§ 01</p>
+  <!-- MARQUEE RIBBON -->
+  <section class="border-y border-rule-soft py-3 overflow-hidden" data-marquee>
+    <div class="flex gap-10 whitespace-nowrap" data-marquee-track>
+      {
+        [...Array(4)].map(() =>
+          marquee.map((item) => (
+            <span
+              class="mono text-ink-soft"
+              style="font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;"
+            >
+              {item} <span class="text-riso">✦</span>
+            </span>
+          ))
+        )
+      }
+    </div>
+  </section>
+
+  <!-- QUOTE — big editorial spread -->
+  <section class="page-gutter mt-24 md:mt-32">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-8">
+      <div class="col-span-12 lg:col-span-2">
+        <span class="ribbon">manifesto</span>
       </div>
-      <figure class="col-span-12 lg:col-span-9 lg:col-start-3 border-t border-rule pt-10">
-        <p class="path mb-10">~/quotes/from-the-president</p>
+      <figure class="col-span-12 lg:col-span-10">
         <blockquote class="text-ink">
           <p
-            class="display-tight"
-            style="font-size: clamp(2rem, 4.5vw, 3.75rem);"
+            class="display-serif"
+            style="font-size: clamp(2.75rem, 7vw, 6rem);"
           >
-            I take this very seriously.
+            <span class="offset-riso-sm">I take this very</span><br />
+            <span class="offset-riso-sm">seriously.</span>
           </p>
           <p
-            class="display-tight mt-8 text-ink-soft max-w-[58ch]"
-            style="font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); line-height: 1.55; font-stretch: 100%; font-weight: 400; letter-spacing: 0;"
+            class="mt-10 text-ink max-w-[58ch] leading-relaxed"
+            style="font-size: clamp(1.0625rem, 1.25vw, 1.1875rem);"
           >
             Too many kids these days are forced into learning programming,
             especially competitive programming. So they learn, because they
@@ -121,72 +156,164 @@ const overview = [
             practical use.
           </p>
           <p
-            class="display-tight mt-8"
-            style="font-size: clamp(1.625rem, 3vw, 2.5rem); color: var(--aw-color-accent);"
+            class="display-serif italic mt-10 text-riso"
+            style="font-size: clamp(1.875rem, 4vw, 3.25rem);"
           >
             I want to change that with this club.
           </p>
         </blockquote>
-        <figcaption
-          class="mt-10 flex items-baseline gap-3 border-t border-rule-soft pt-3"
-        >
-          <span class="lineno">—</span>
-          <span class="mono text-[0.8125rem] text-ink">Bryan Hu</span>
-          <span class="caption">co-president</span>
+        <figcaption class="mt-10 flex items-baseline gap-4 border-t-2 border-ink pt-4">
+          <span class="tag">—</span>
+          <span class="display text-ink text-[1rem]">Bryan Hu</span>
+          <span class="tag">co-president</span>
         </figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- OVERVIEW -->
-  <section id="overview" class="page-gutter mt-32 md:mt-44">
-    <div class="grid grid-cols-12 gap-6">
-      <div class="col-span-12 lg:col-span-1 lg:pt-2">
-        <p class="section-numeral">§ 02</p>
+  <!-- BULLETIN GRID -->
+  <section id="bulletin" class="page-gutter mt-24 md:mt-36">
+    <div class="flex items-end justify-between mb-10 border-b-2 border-ink pb-4">
+      <div>
+        <span class="tag tag-riso mb-3 block">bulletin</span>
+        <h2
+          class="display text-ink"
+          style="font-size: clamp(2rem, 5vw, 4rem);"
+        >
+          A YEAR OF LEARNING.
+        </h2>
       </div>
-      <header class="col-span-12 lg:col-span-11 border-t border-rule pt-10 pb-14 md:pb-16">
-        <p class="path mb-6">~/program</p>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-baseline">
-          <h2
-            class="display-tight text-ink lg:col-span-7"
-            style="font-size: clamp(1.75rem, 3.4vw, 2.875rem);"
-          >
-            A year of learning,<br />built around making things.
-          </h2>
-          <p class="text-ink-soft leading-relaxed lg:col-span-4 lg:col-start-9 text-[0.9375rem]">
-            One weekly meeting. A first semester of fundamentals, a second of
-            building. Everything below is what happens in between.
-          </p>
-        </div>
-      </header>
+      <p class="hand hidden md:block" style="font-size: 1.875rem; transform: rotate(-2deg);">
+        (no grinding.)
+      </p>
     </div>
+    <p class="text-ink max-w-[52ch] leading-relaxed mb-12 text-[0.9375rem]">
+      One weekly meeting. A first semester of fundamentals, a second of
+      building. Everything below is what happens in between.
+    </p>
 
-    <ol class="grid grid-cols-1 md:grid-cols-2 border-t border-rule border-l-0 md:border-l border-rule-soft">
+    <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t-2 border-l-2 border-ink" data-bulletin>
       {
-        overview.map((item, i) => (
+        bulletin.map((item, i) => (
           <li
-            class:list={[
-              "grid grid-cols-[auto_1fr] gap-5 p-6 md:p-8 border-b border-rule-soft",
-              i % 2 === 0 && "md:border-r md:border-rule-soft",
-            ]}
+            class="relative p-6 md:p-8 border-r-2 border-b-2 border-ink bg-page group hover:border-riso transition-colors duration-150"
+            data-bulletin-item
           >
-            <span class="lineno pt-1">
+            <span
+              class="absolute top-4 right-4 hand opacity-80"
+              style="font-size: 1.75rem; transform: rotate(3deg);"
+            >
               {String(i + 1).padStart(2, "0")}
             </span>
-            <div>
-              <h3
-                class="display-tight text-ink mb-2"
-                style="font-size: 1.25rem;"
-              >
-                {item.title}
-              </h3>
-              <p class="text-ink-soft leading-relaxed text-[0.9375rem] max-w-prose">
-                {item.body}
-              </p>
-            </div>
+            <h3
+              class="display text-ink mb-3 pr-10"
+              style="font-size: 1.5rem; letter-spacing: -0.02em;"
+            >
+              {item.title}
+            </h3>
+            <p class="text-ink leading-relaxed text-[0.9375rem]">
+              {item.body}
+            </p>
           </li>
         ))
       }
     </ol>
   </section>
+
+  <!-- CLOSING SIGN-OFF -->
+  <section class="page-gutter mt-24 md:mt-32">
+    <div class="border-t-2 border-ink pt-10 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+      <p
+        class="display text-ink"
+        style="font-size: clamp(1.75rem, 4vw, 3rem); letter-spacing: -0.03em;"
+      >
+        come build something.
+      </p>
+      <a
+        href="/contact"
+        class="sticker"
+        style="transform: rotate(2deg);"
+      >
+        SAY HI
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const run = () => {
+    // HERO: staggered reveal with pink offset riding in
+    const headline = document.querySelector("[data-hero-headline]");
+    if (headline) {
+      const lines = headline.querySelectorAll("span");
+      gsap.from(lines, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+    }
+
+    const photo = document.querySelector("[data-hero-photo]");
+    if (photo) {
+      gsap.from(photo, {
+        opacity: 0,
+        y: 24,
+        rotate: -2,
+        duration: 0.9,
+        delay: 0.3,
+        ease: "power3.out",
+      });
+    }
+
+    // MARQUEE: infinite scroll
+    const track = document.querySelector("[data-marquee-track]");
+    if (track) {
+      const width = track.scrollWidth / 2;
+      gsap.to(track, {
+        x: -width,
+        duration: 40,
+        ease: "none",
+        repeat: -1,
+      });
+    }
+
+    // BULLETIN: reveal each cell as you scroll
+    const cells = document.querySelectorAll("[data-bulletin-item]");
+    cells.forEach((cell, i) => {
+      gsap.from(cell, {
+        opacity: 0,
+        y: 24,
+        rotate: i % 2 === 0 ? -0.6 : 0.6,
+        duration: 0.55,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: cell,
+          start: "top 88%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    // HAND annotations wiggle on hover of their parent card
+    document.querySelectorAll("[data-bulletin-item] .hand").forEach((h) => {
+      const parent = h.closest("[data-bulletin-item]");
+      if (!parent) return;
+      parent.addEventListener("mouseenter", () => {
+        gsap.to(h, { rotate: -6, scale: 1.1, duration: 0.2, ease: "power2.out" });
+      });
+      parent.addEventListener("mouseleave", () => {
+        gsap.to(h, { rotate: 3, scale: 1, duration: 0.2, ease: "power2.out" });
+      });
+    });
+  };
+
+  run();
+  document.addEventListener("astro:after-swap", run);
+</script>

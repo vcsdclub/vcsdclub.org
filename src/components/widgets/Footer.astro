@@ -25,33 +25,37 @@ const nav = [
 ];
 ---
 
-<footer class="mt-32 md:mt-44 border-t border-rule">
-  <div class="page-gutter pt-14 md:pt-20 pb-10">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-10">
-      <div class="md:col-span-6">
-        <p class="path mb-4">~/sdclub.vchs</p>
+<footer class="mt-32 md:mt-44 border-t-2 border-ink">
+  <!-- giant wordmark bleed -->
+  <div class="page-gutter pt-16 md:pt-24 pb-10">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+      <div class="col-span-12 md:col-span-7">
+        <span class="ribbon mb-6">colophon</span>
         <p
-          class="display-tight text-ink leading-tight"
-          style="font-size: clamp(1.625rem, 2.6vw, 2.25rem);"
+          class="display text-ink leading-none mt-6"
+          style="font-size: clamp(3rem, 9vw, 7.5rem);"
         >
-          Valley Christian<br />Software Development Club.
+          <span>SD</span><span class="text-riso">.</span><span>CLUB</span>
         </p>
-        <p class="mt-5 text-ink-soft max-w-md leading-relaxed text-[0.9375rem]">
-          A student-run club teaching the craft of real software engineering.
-          Free, forever.
+        <p
+          class="hand mt-4"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); transform: rotate(-2deg); display: inline-block;"
+        >
+          free, forever.
+        </p>
+        <p class="mt-6 text-ink max-w-md leading-relaxed text-[0.9375rem]">
+          A student-run club teaching the craft of real software engineering —
+          at Valley Christian High School, in San Jose, on earth.
         </p>
       </div>
 
-      <div class="md:col-span-3">
-        <p class="tag mb-5">navigate</p>
+      <div class="col-span-6 md:col-span-2 md:col-start-9">
+        <p class="tag mb-5">nav</p>
         <ul class="space-y-2.5">
           {
-            nav.map((n, i) => (
-              <li class="flex items-baseline gap-3">
-                <span class="lineno">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <a href={n.href} class="link mono text-[0.875rem]">
+            nav.map((n) => (
+              <li>
+                <a href={n.href} class="link font-mono text-[0.875rem] uppercase tracking-wide">
                   {n.text}
                 </a>
               </li>
@@ -60,22 +64,19 @@ const nav = [
         </ul>
       </div>
 
-      <div class="md:col-span-3">
+      <div class="col-span-6 md:col-span-3">
         <p class="tag mb-5">elsewhere</p>
         <ul class="space-y-2.5">
           {
-            socialLinks.map(({ ariaLabel, icon, href }, i) => (
-              <li class="flex items-baseline gap-3">
-                <span class="lineno">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+            socialLinks.map(({ ariaLabel, icon, href }) => (
+              <li>
                 <a
                   href={href}
                   aria-label={ariaLabel}
-                  class="link mono text-[0.875rem] inline-flex items-center gap-2"
+                  class="link font-mono text-[0.875rem] uppercase tracking-wide inline-flex items-center gap-2"
                 >
                   {icon && <Icon name={icon} class="w-3.5 h-3.5" />}
-                  <span>{ariaLabel?.toLowerCase()}</span>
+                  <span>{ariaLabel}</span>
                 </a>
               </li>
             ))
@@ -85,16 +86,16 @@ const nav = [
     </div>
 
     <div
-      class="mt-16 pt-5 border-t border-rule-soft flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+      class="mt-20 pt-5 border-t border-rule-soft flex flex-col md:flex-row md:items-center md:justify-between gap-4"
     >
       <p class="caption">
-        &copy; {year} — valley christian software development club
+        &copy; {year} — printed in ink &amp; pink
       </p>
       <ul class="flex flex-wrap gap-5">
         {
           secondaryLinks.map(({ text, href }) => (
             <li>
-              <a href={href} class="caption hover:text-ink transition-colors">
+              <a href={href} class="caption hover:text-riso transition-colors">
                 {text}
               </a>
             </li>

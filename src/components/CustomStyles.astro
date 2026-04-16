@@ -1,52 +1,61 @@
 ---
 import "@fontsource-variable/archivo";
-import "@fontsource-variable/archivo-narrow";
+import "@fontsource-variable/space-grotesk";
+import "@fontsource/gloock";
+import "@fontsource/caveat";
 import "@fontsource-variable/jetbrains-mono";
 ---
 
 <style is:inline>
   :root {
     --aw-font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
-    --aw-font-display: "Archivo Narrow Variable", "Archivo Variable",
-      ui-sans-serif, system-ui, sans-serif;
-    --aw-font-heading: "Archivo Narrow Variable", "Archivo Variable",
-      ui-sans-serif, system-ui, sans-serif;
+    --aw-font-display: "Space Grotesk Variable", "Archivo Variable",
+      ui-sans-serif, sans-serif;
+    --aw-font-serif: "Gloock", ui-serif, Georgia, serif;
+    --aw-font-hand: "Caveat", "Space Grotesk Variable", cursive;
+    --aw-font-heading: "Space Grotesk Variable", ui-sans-serif, sans-serif;
     --aw-font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular,
       Menlo, monospace;
 
-    /* Paper & ink — cool, clinical, drafting-room */
-    --aw-color-bg-page: #f6f5f1;
-    --aw-color-bg-raised: #edece6;
-    --aw-color-ink: #111418;
-    --aw-color-ink-soft: #2b2f36;
-    --aw-color-muted: #6b7280;
-    --aw-color-rule: #c9ccd1;
-    --aw-color-rule-soft: #dde0e3;
+    /* Paper & ink — inverted: black paper, bone-white ink */
+    --aw-color-bg-page: #0a0a08;
+    --aw-color-bg-raised: #15151080;
+    --aw-color-ink: #f3eee1;
+    --aw-color-ink-soft: #c7bfae;
+    --aw-color-muted: #7e7668;
+    --aw-color-rule: #f3eee1;
+    --aw-color-rule-soft: #2a2620;
 
-    /* Accent — drafting blueprint blue */
-    --aw-color-accent: #2154c7;
-    --aw-color-accent-ink: #153a8e;
+    /* Riso — phosphor green, bright but not day-glo */
+    --aw-color-riso: #6bed3a;
+    --aw-color-riso-ink: #8af257;
 
+    /* Legacy aliases */
+    --aw-color-accent: var(--aw-color-riso);
+    --aw-color-accent-ink: var(--aw-color-riso-ink);
     --aw-color-primary: var(--aw-color-ink);
     --aw-color-secondary: var(--aw-color-ink-soft);
     --aw-color-text-heading: var(--aw-color-ink);
     --aw-color-text-default: var(--aw-color-ink);
     --aw-color-text-muted: var(--aw-color-muted);
-    --aw-color-bg-page-dark: #0c0f14;
+    --aw-color-bg-page-dark: #120f0a;
   }
 
+  /* Dark is the default here — light mode inverts to paper */
   .dark {
-    --aw-color-bg-page: #0c0f14;
-    --aw-color-bg-raised: #141822;
-    --aw-color-ink: #e7eaf0;
-    --aw-color-ink-soft: #c3c8d2;
-    --aw-color-muted: #7a8293;
-    --aw-color-rule: #252b36;
-    --aw-color-rule-soft: #1a1f29;
+    --aw-color-bg-page: #f3eee1;
+    --aw-color-bg-raised: #e8e1cf;
+    --aw-color-ink: #0a0a08;
+    --aw-color-ink-soft: #2a2620;
+    --aw-color-muted: #6e6150;
+    --aw-color-rule: #0a0a08;
+    --aw-color-rule-soft: #c2b9a5;
 
-    --aw-color-accent: #6b95ff;
-    --aw-color-accent-ink: #a6bfff;
+    --aw-color-riso: #1f8a00;
+    --aw-color-riso-ink: #2aa300;
 
+    --aw-color-accent: var(--aw-color-riso);
+    --aw-color-accent-ink: var(--aw-color-riso-ink);
     --aw-color-text-heading: var(--aw-color-ink);
     --aw-color-text-default: var(--aw-color-ink);
     --aw-color-text-muted: var(--aw-color-muted);
@@ -58,10 +67,48 @@ import "@fontsource-variable/jetbrains-mono";
     background-color: var(--aw-color-bg-page);
   }
 
+  /* Photocopy grain — lightens black subtly, fixed viewport */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.22;
+    mix-blend-mode: screen;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95  0 0 0 0 0.93  0 0 0 0 0.88  0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 160px 160px;
+  }
+  /* Horizontal scanline overlay — very subtle */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.08;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      rgba(0, 0, 0, 0.9) 2px,
+      rgba(0, 0, 0, 0.9) 3px
+    );
+  }
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
+
   .font-display {
     font-family: var(--aw-font-display);
   }
-
+  .font-serif {
+    font-family: var(--aw-font-serif);
+  }
+  .font-hand {
+    font-family: var(--aw-font-hand);
+  }
   .font-mono {
     font-family: var(--aw-font-mono);
   }
