@@ -1,0 +1,220 @@
+---
+// Global GSAP motion runtime. Include once per layout.
+// Binds behavior to data-* attributes so page authors don't touch JS.
+//   data-anim="reveal"         fade + rise on scroll
+//   data-anim="rise"           rise only (CSS owns opacity)
+//   data-anim="draw"           line scaleX 0→1 on scroll
+//   data-anim="typeline"       type out text char-by-char once visible
+//   data-anim="stagger"        stagger direct children
+//   data-anim="pin-horizontal" pin outer; translate .track horizontally
+//   data-anim="count"          count up to data-to
+//   data-cursor                blinking terminal caret after element
+---
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const REDUCE =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const init = () => {
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+
+    if (REDUCE) {
+      document
+        .querySelectorAll<HTMLElement>("[data-anim]")
+        .forEach((el) => {
+          el.style.opacity = "1";
+          el.style.transform = "none";
+        });
+      return;
+    }
+
+    gsap.utils.toArray<HTMLElement>('[data-anim="reveal"]').forEach((el) => {
+      gsap.fromTo(
+        el,
+        { autoAlpha: 0, y: 28 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    });
+
+    gsap.utils.toArray<HTMLElement>('[data-anim="rise"]').forEach((el) => {
+      gsap.fromTo(
+        el,
+        { y: 40 },
+        {
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 85%" },
+        },
+      );
+    });
+
+    gsap.utils.toArray<HTMLElement>('[data-anim="stagger"]').forEach((el) => {
+      const kids = Array.from(el.children) as HTMLElement[];
+      gsap.set(kids, { autoAlpha: 0, y: 24 });
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          gsap.to(kids, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.08,
+          });
+        },
+      });
+    });
+
+    gsap.utils.toArray<HTMLElement>('[data-anim="draw"]').forEach((el) => {
+      gsap.fromTo(
+        el,
+        { scaleX: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          duration: 1.1,
+          ease: "power4.out",
+          scrollTrigger: { trigger: el, start: "top 90%" },
+        },
+      );
+    });
+
+    gsap.utils
+      .toArray<HTMLElement>('[data-anim="typeline"]')
+      .forEach((el) => {
+        const full = el.textContent ?? "";
+        el.textContent = "";
+        const state = { i: 0 };
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top 85%",
+          once: true,
+          onEnter: () => {
+            gsap.to(state, {
+              i: full.length,
+              duration: Math.min(2.2, full.length * 0.035),
+              ease: "none",
+              onUpdate: () => {
+                el.textContent = full.slice(0, Math.round(state.i));
+              },
+            });
+          },
+        });
+      });
+
+    gsap.utils.toArray<HTMLElement>('[data-anim="count"]').forEach((el) => {
+      const to = Number(el.dataset.to ?? el.textContent ?? 0);
+      const state = { n: 0 };
+      el.textContent = "0";
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          gsap.to(state, {
+            n: to,
+            duration: 1.4,
+            ease: "power2.out",
+            onUpdate: () => {
+              el.textContent = String(Math.round(state.n));
+            },
+          });
+        },
+      });
+    });
+
+    gsap.utils
+      .toArray<HTMLElement>('[data-anim="pin-horizontal"]')
+      .forEach((el) => {
+        const track = el.querySelector<HTMLElement>(".track");
+        if (!track) return;
+        const distance = () => track.scrollWidth - window.innerWidth;
+        gsap.to(track, {
+          x: () => -distance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top top",
+            end: () => `+=${distance()}`,
+            pin: true,
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        });
+      });
+
+    ScrollTrigger.refresh();
+  };
+
+  init();
+  document.addEventListener("astro:after-swap", init);
+</script>
+
+<style is:global>
+  html:not([data-anim-ready]) [data-anim="reveal"],
+  html:not([data-anim-ready]) [data-anim="stagger"] > * {
+    opacity: 0;
+  }
+
+  [data-cursor]::after {
+    content: "";
+    display: inline-block;
+    width: 0.58ch;
+    height: 0.95em;
+    margin-left: 0.08em;
+    background: var(--aw-color-accent);
+    transform: translateY(0.08em);
+    animation: blink 1.05s steps(1, end) infinite;
+  }
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  .bp-grid {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    background-image:
+      linear-gradient(var(--aw-color-accent) 1px, transparent 1px),
+      linear-gradient(90deg, var(--aw-color-accent) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mix-blend-mode: multiply;
+    transition: opacity 0.6s ease;
+  }
+  .dark .bp-grid {
+    mix-blend-mode: screen;
+  }
+  body[data-grid="on"] .bp-grid {
+    opacity: 0.06;
+  }
+</style>
+
+<script is:inline>
+  requestAnimationFrame(() =>
+    document.documentElement.setAttribute("data-anim-ready", "")
+  );
+</script>
+
+<div class="bp-grid" aria-hidden="true"></div>
+<slot />

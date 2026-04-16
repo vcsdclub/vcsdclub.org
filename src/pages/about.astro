@@ -105,108 +105,140 @@ const vision = [
 <Layout metadata={metadata}>
   <!-- HERO -->
   <section class="page-gutter pt-12 md:pt-20">
-    <p class="path mb-10">~/about</p>
+    <p class="path mb-8">~/about $ <span data-anim="typeline">cat team.md</span></p>
     <h1
       class="display text-ink max-w-[16ch]"
-      style="font-size: clamp(2.5rem, 7vw, 5.5rem);"
+      data-anim="rise"
+      style="font-size: clamp(2.5rem, 8vw, 6.5rem);"
     >
-      Built by high schoolers.<br />For high schoolers.
+      Built by high schoolers.<br />
+      <span style="color: var(--aw-color-accent);">For</span> high schoolers.
     </h1>
-    <p class="prose-lead mt-8 max-w-[52ch]">
-      We are just a group of high school students who are passionate about
-      software development — teaching the course we wish we'd had.
+    <p class="prose-lead mt-8 max-w-[52ch]" data-anim="reveal">
+      A group of high school students who are passionate about software
+      development — teaching the course we wish we'd had.
     </p>
   </section>
 
-  <!-- OFFICERS -->
-  <section class="page-gutter mt-32 md:mt-40">
-    <div class="grid grid-cols-12 gap-6">
-      <div class="col-span-12 lg:col-span-1">
-        <p class="section-numeral">§ 01</p>
+  <!-- HORIZONTAL OFFICER GALLERY (desktop) / stacked (mobile) -->
+  <section class="mt-24 md:mt-36">
+    <div class="page-gutter">
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 lg:col-span-1">
+          <p class="section-numeral">§ 01 — the team</p>
+        </div>
+        <header class="col-span-12 lg:col-span-11 border-t border-rule pt-8 pb-10 flex items-baseline justify-between">
+          <h2
+            class="display-tight text-ink"
+            data-anim="reveal"
+            style="font-size: clamp(1.5rem, 2.4vw, 2rem);"
+          >
+            Meet the officers.
+          </h2>
+          <p class="tag hidden md:block">scroll →  n = {officers.length}</p>
+        </header>
       </div>
-      <header class="col-span-12 lg:col-span-11 border-t border-rule pt-8 pb-10 flex items-baseline justify-between">
-        <h2
-          class="display-tight text-ink"
-          style="font-size: clamp(1.5rem, 2.4vw, 2rem);"
-        >
-          Meet the team.
-        </h2>
-        <p class="tag hidden md:block">[n = 4]</p>
-      </header>
     </div>
 
-    <div class="flex flex-col">
+    <!-- Desktop: pinned horizontal scroll -->
+    <div class="hidden md:block relative overflow-hidden" data-anim="pin-horizontal">
+      <div class="track flex items-stretch" style="width: max-content;">
+        {
+          officers.map((o, i) => (
+            <article
+              class="grid grid-cols-[1fr_1fr] gap-10 border-r border-rule-soft px-10 lg:px-16 py-12"
+              style="width: min(95vw, 1100px);"
+            >
+              <figure class="self-start">
+                <p class="lineno mb-3">
+                  {String(i + 1).padStart(2, "0")}/{String(officers.length).padStart(2, "0")}
+                </p>
+                <Image
+                  src={o.image}
+                  alt={o.alt}
+                  widths={[400, 800]}
+                  sizes="40vw"
+                  class="w-full h-auto block"
+                />
+                <figcaption class="mt-3 flex items-baseline gap-3 border-t border-rule-soft pt-2">
+                  <span class="lineno">fig.{String(i + 1).padStart(2, "0")}</span>
+                  <span class="caption">{o.name.toLowerCase()}</span>
+                </figcaption>
+              </figure>
+              <div class="self-center overflow-y-auto max-h-[70vh] pr-2">
+                <p class="tag mb-3">{o.role.toLowerCase()}</p>
+                <h3
+                  class="display text-ink"
+                  style="font-size: clamp(2rem, 3.5vw, 3rem);"
+                >
+                  {o.name}
+                </h3>
+                {o.bio && (
+                  <p class="prose-lead mt-5 max-w-[44ch] italic">{o.bio}</p>
+                )}
+                {o.stats.length > 0 && (
+                  <dl class="mt-6 border-t border-rule">
+                    {o.stats.map((s, si) => (
+                      <div class="py-4 border-b border-rule-soft grid grid-cols-[auto_1fr] gap-4">
+                        <span class="lineno pt-1">
+                          {String(si + 1).padStart(2, "0")}
+                        </span>
+                        <div>
+                          <dt
+                            class="display-tight text-ink mb-1"
+                            style="font-size: 1rem;"
+                          >
+                            {s.title}
+                          </dt>
+                          <dd class="text-ink-soft leading-relaxed text-[0.875rem]">
+                            {s.description}
+                          </dd>
+                        </div>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Mobile: stacked -->
+    <div class="md:hidden page-gutter">
       {
         officers.map((o, i) => (
-          <article
-            class:list={[
-              "grid grid-cols-12 gap-x-6 gap-y-8 border-t border-rule-soft py-14 md:py-20",
-              i === officers.length - 1 && "border-b border-rule-soft",
-            ]}
-          >
-            <!-- index marker -->
-            <div class="col-span-12 md:col-span-1">
-              <p class="lineno">
-                {String(i + 1).padStart(2, "0")}/{String(officers.length).padStart(2, "0")}
-              </p>
-            </div>
-
-            <!-- photo -->
-            <figure
-              class:list={[
-                "col-span-12 md:col-span-5",
-                i % 2 === 1 && "md:order-2 md:col-start-7",
-              ]}
-            >
-              <Image
-                src={o.image}
-                alt={o.alt}
-                widths={[400, 800]}
-                sizes="(max-width: 768px) 100vw, 40vw"
-                class="w-full h-auto block"
-              />
-              <figcaption class="mt-3 flex items-baseline gap-3 border-t border-rule-soft pt-2">
-                <span class="lineno">fig.{String(i + 1).padStart(2, "0")}</span>
-                <span class="caption">{o.name.toLowerCase()}</span>
-              </figcaption>
-            </figure>
-
-            <!-- bio + stats -->
-            <div
-              class:list={[
-                "col-span-12 md:col-span-6",
-                i % 2 === 1 ? "md:order-1 md:col-start-2" : "md:col-start-8",
-              ]}
-            >
-              <p class="tag mb-3">{o.role.toLowerCase()}</p>
-              <h3
-                class="display text-ink"
-                style="font-size: clamp(2rem, 4vw, 3rem);"
-              >
+          <article class="py-10 border-t border-rule-soft" data-anim="reveal">
+            <p class="lineno mb-4">
+              {String(i + 1).padStart(2, "0")}/{String(officers.length).padStart(2, "0")}
+            </p>
+            <Image
+              src={o.image}
+              alt={o.alt}
+              widths={[400, 800]}
+              sizes="100vw"
+              class="w-full h-auto block"
+            />
+            <div class="mt-5">
+              <p class="tag mb-2">{o.role.toLowerCase()}</p>
+              <h3 class="display text-ink" style="font-size: 2rem;">
                 {o.name}
               </h3>
-              {o.bio && (
-                <p class="prose-lead mt-5 max-w-[48ch] italic">{o.bio}</p>
-              )}
-
+              {o.bio && <p class="prose-lead mt-4 italic">{o.bio}</p>}
               {o.stats.length > 0 && (
-                <dl class="mt-8 border-t border-rule">
-                  {o.stats.map((s, si) => (
-                    <div class="py-5 border-b border-rule-soft grid grid-cols-[auto_1fr] gap-5">
-                      <span class="lineno pt-1">
-                        {String(si + 1).padStart(2, "0")}
-                      </span>
-                      <div>
-                        <dt
-                          class="display-tight text-ink mb-2"
-                          style="font-size: 1.0625rem;"
-                        >
-                          {s.title}
-                        </dt>
-                        <dd class="text-ink-soft leading-relaxed text-[0.9375rem]">
-                          {s.description}
-                        </dd>
-                      </div>
+                <dl class="mt-5 border-t border-rule">
+                  {o.stats.map((s) => (
+                    <div class="py-4 border-b border-rule-soft">
+                      <dt
+                        class="display-tight text-ink mb-1"
+                        style="font-size: 1rem;"
+                      >
+                        {s.title}
+                      </dt>
+                      <dd class="text-ink-soft leading-relaxed text-[0.875rem]">
+                        {s.description}
+                      </dd>
                     </div>
                   ))}
                 </dl>
@@ -219,23 +251,26 @@ const vision = [
   </section>
 
   <!-- VISION -->
-  <section class="page-gutter mt-32 md:mt-40">
+  <section class="page-gutter mt-32 md:mt-44">
     <div class="grid grid-cols-12 gap-6">
       <div class="col-span-12 lg:col-span-1 lg:pt-2">
-        <p class="section-numeral">§ 02</p>
+        <p class="section-numeral">§ 02 — vision</p>
       </div>
-      <div class="col-span-12 lg:col-span-9 lg:col-start-3 border-t border-rule pt-10">
-        <figure class="max-w-[62ch]">
-          <p class="path mb-10">~/about/vision</p>
+      <div class="col-span-12 lg:col-span-10 lg:col-start-3">
+        <div class="h-px bg-rule" data-anim="draw"></div>
+        <figure class="max-w-[64ch] mt-8">
+          <p class="path mb-8">~/about/vision</p>
           <blockquote class="text-ink">
             <p
               class="display-tight"
-              style="font-size: clamp(2rem, 4vw, 3.25rem);"
+              data-anim="reveal"
+              style="font-size: clamp(2rem, 5vw, 4rem);"
             >
               I take this very seriously.
             </p>
             <p
               class="display-tight mt-8 text-ink-soft max-w-[58ch]"
+              data-anim="reveal"
               style="font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); line-height: 1.55; font-stretch: 100%; font-weight: 400; letter-spacing: 0;"
             >
               Too many kids these days are forced into learning programming,
@@ -246,7 +281,8 @@ const vision = [
             </p>
             <p
               class="display-tight mt-8"
-              style="font-size: clamp(1.5rem, 2.6vw, 2.25rem); color: var(--aw-color-accent);"
+              data-anim="reveal"
+              style="font-size: clamp(1.5rem, 3vw, 2.75rem); color: var(--aw-color-accent);"
             >
               I want to change that with this club.
             </p>
@@ -260,7 +296,7 @@ const vision = [
       </div>
     </div>
 
-    <ol class="mt-20 grid grid-cols-12 gap-6 border-t border-rule">
+    <ol class="mt-20 grid grid-cols-12 gap-6 border-t border-rule" data-anim="stagger">
       {
         vision.map((v, i) => (
           <li
@@ -274,7 +310,7 @@ const vision = [
             </p>
             <h3
               class="display-tight text-ink mb-3"
-              style="font-size: 1.375rem;"
+              style="font-size: 1.5rem;"
             >
               To <span style="color: var(--aw-color-accent);">{v.title}</span>
             </h3>
