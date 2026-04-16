@@ -1,24 +1,28 @@
 ---
-import Layout from '~/layouts/Layout.astro';
-import { getHomePermalink } from '~/utils/permalinks';
+import Layout from "~/layouts/PageLayout.astro";
 
-const title = `Error 404`;
+const metadata = { title: "404 — Not Found" };
 ---
 
-<Layout metadata={{ title }}>
-  <section class="flex items-center h-full p-16">
-    <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
-      <div class="max-w-md text-center">
-        <h2 class="mb-8 font-bold text-9xl">
-          <span class="sr-only">Error</span>
-          <span class="text-primary">404</span>
-        </h2>
-        <p class="text-3xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
-        <p class="mt-4 mb-8 text-lg text-muted dark:text-slate-400">
-          But dont worry, you can find plenty of other things on our homepage.
-        </p>
-        <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4">Back to homepage</a>
-      </div>
+<Layout metadata={metadata}>
+  <section class="page-gutter pt-16 md:pt-24">
+    <p class="path mb-10">~/404</p>
+    <p class="tag mb-6" style="color: var(--aw-color-accent);">error 404</p>
+    <h1
+      class="display text-ink max-w-[14ch]"
+      style="font-size: clamp(2.5rem, 8vw, 6rem);"
+    >
+      Page not found.
+    </h1>
+    <p class="prose-lead mt-8 max-w-[52ch]">
+      We couldn't find what you were looking for. It may have moved — or
+      perhaps it never existed in the first place.
+    </p>
+    <div class="mt-10">
+      <a href="/" class="prompt">
+        cd ~/
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 </Layout>

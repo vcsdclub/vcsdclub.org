@@ -1,101 +1,82 @@
 ---
 import Layout from "~/layouts/PageLayout.astro";
-import HeroText from "~/components/widgets/HeroText.astro";
-import ContactUs from "~/components/widgets/Contact.astro";
-import Features2 from "~/components/widgets/Features2.astro";
-import CallToAction from "~/components/widgets/CallToAction.astro";
 
-const metadata = {
-  title: "Contact",
-};
+const metadata = { title: "Contact" };
+
+const channels = [
+  {
+    label: "email",
+    handle: "vchs.software@gmail.com",
+    href: "mailto:vchs.software@gmail.com",
+    note: "Fastest way to reach the officers. Questions, ideas, collabs — all welcome.",
+  },
+  {
+    label: "discord",
+    handle: "discord.gg/hayb3xUZRD",
+    href: "https://discord.gg/hayb3xUZRD",
+    note: "Where members hang out between meetings. Come ask a question or show off a project.",
+  },
+  {
+    label: "instagram",
+    handle: "@vchs_software",
+    href: "https://www.instagram.com/vchs_software",
+    note: "Announcements and meeting recaps, mostly.",
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- HeroText Widget ******************* -->
+  <section class="page-gutter pt-12 md:pt-20">
+    <p class="path mb-8">~/contact $ <span data-anim="typeline">echo "say hi"</span></p>
+    <h1
+      class="display text-ink max-w-[14ch]"
+      data-anim="rise"
+      style="font-size: clamp(2.5rem, 8vw, 6.5rem);"
+    >
+      Let's <span style="color: var(--aw-color-accent);">connect</span><span data-cursor></span>
+    </h1>
+    <p class="prose-lead mt-8 max-w-[52ch]" data-anim="reveal">
+      Pick whichever channel suits you. We read them all.
+    </p>
+  </section>
 
-  <HeroText tagline="Contact" title="Let's Connect!">
-    <Features2
-      slot="content"
-      columns={2}
-      classes={{ container: "text-left" }}
-      items={[
-        {
-          title: "Email Us!",
-          description: `We're always open to emails at <a class="link" href="mailto:vchs.software@gmail.com">vchs.software@gmail.com</a>`,
-          icon: "flat-color-icons:feedback",
-        },
-        {
-          title: "Join our Discord server",
-          description:
-            'We have an official Discord server <a class="link" href="https://discord.gg/hayb3xUZRD">here</a> where you can chat with us and other club members, ask questions, and get help.',
-          icon: "logos:discord-icon",
-        },
-        // {
-        //   title: "Technical Support",
-        //   description:
-        //     "Providing customer support for any technical issues related to the templates or their implementation.",
-        //   icon: "flat-color-icons:voice-presentation",
-        // },
-      ]}
-    /></HeroText
-  >
-
-  <!-- <ContactUs
-    id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
-    inputs={[
+  <section class="page-gutter mt-24 md:mt-32">
+    <div class="h-px bg-rule" data-anim="draw"></div>
+    <ol data-anim="stagger">
       {
-        type: "text",
-        name: "name",
-        label: "Name",
-      },
-      {
-        type: "email",
-        name: "email",
-        label: "Email",
-      },
-    ]}
-    textarea={{
-      label: "Message",
-    }}
-    description="Our support team typically responds within 24 business hours."
-  /> -->
-
-  <!-- Features2 Widget ************** -->
-
-  <!-- <Features2
-    title="We are here to help!"
-    items={[
-      {
-        title: "General support",
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
-      },
-      {
-        title: "Contact sales",
-        description:
-          "Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.",
-      },
-      {
-        title: "Technical support",
-        description:
-          "Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.",
-      },
-      {
-        title: "Phone",
-        description: "+1 (234) 567-890",
-        icon: "tabler:headset",
-      },
-      {
-        title: "Email",
-        description: "contact@support.com",
-        icon: "tabler:mail",
-      },
-      {
-        title: "Location",
-        description: "1234 Lorem Ipsum St, 12345, Miami, EEUU",
-        icon: "tabler:map-pin",
-      },
-    ]}
-  /> -->
+        channels.map((c, i) => (
+          <li class="border-b border-rule-soft">
+            <a
+              href={c.href}
+              target={c.href.startsWith("http") ? "_blank" : undefined}
+              rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              class="group grid grid-cols-12 gap-x-6 gap-y-3 py-8 md:py-10 items-baseline transition-colors"
+            >
+              <p class="lineno col-span-12 md:col-span-1">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <p class="tag col-span-6 md:col-span-2">{c.label}</p>
+              <div class="col-span-12 md:col-span-7">
+                <p
+                  class="mono text-ink group-hover:text-accent transition-colors"
+                  style="font-size: clamp(1.0625rem, 1.5vw, 1.375rem); letter-spacing: -0.01em;"
+                >
+                  {c.handle}
+                </p>
+                <p class="text-ink-soft mt-2 leading-relaxed max-w-[52ch] text-[0.9375rem]">
+                  {c.note}
+                </p>
+              </div>
+              <span
+                class="arrow col-span-6 md:col-span-2 md:text-right text-ink-soft group-hover:text-accent mono text-[0.875rem]"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 </Layout>

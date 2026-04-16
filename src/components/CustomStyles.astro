@@ -1,63 +1,68 @@
 ---
-import '@fontsource-variable/inter';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
+import "@fontsource-variable/archivo";
+import "@fontsource-variable/archivo-narrow";
+import "@fontsource-variable/jetbrains-mono";
 ---
 
 <style is:inline>
   :root {
-    --aw-font-sans: 'InterVariable';
-    --aw-font-serif: 'InterVariable';
-    --aw-font-heading: 'InterVariable';
+    --aw-font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+    --aw-font-display: "Archivo Narrow Variable", "Archivo Variable",
+      ui-sans-serif, system-ui, sans-serif;
+    --aw-font-heading: "Archivo Narrow Variable", "Archivo Variable",
+      ui-sans-serif, system-ui, sans-serif;
+    --aw-font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular,
+      Menlo, monospace;
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    /* Paper & ink — cool, clinical, drafting-room */
+    --aw-color-bg-page: #f6f5f1;
+    --aw-color-bg-raised: #edece6;
+    --aw-color-ink: #111418;
+    --aw-color-ink-soft: #2b2f36;
+    --aw-color-muted: #6b7280;
+    --aw-color-rule: #c9ccd1;
+    --aw-color-rule-soft: #dde0e3;
 
-    --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
+    /* Accent — drafting blueprint blue */
+    --aw-color-accent: #2154c7;
+    --aw-color-accent-ink: #153a8e;
 
-    --aw-color-bg-page-dark: rgb(3 6 32);
-
-    ::selection {
-      background-color: lavender;
-    }
+    --aw-color-primary: var(--aw-color-ink);
+    --aw-color-secondary: var(--aw-color-ink-soft);
+    --aw-color-text-heading: var(--aw-color-ink);
+    --aw-color-text-default: var(--aw-color-ink);
+    --aw-color-text-muted: var(--aw-color-muted);
+    --aw-color-bg-page-dark: #0c0f14;
   }
 
   .dark {
-    --aw-font-sans: 'InterVariable';
-    --aw-font-serif: 'InterVariable';
-    --aw-font-heading: 'InterVariable';
+    --aw-color-bg-page: #0c0f14;
+    --aw-color-bg-raised: #141822;
+    --aw-color-ink: #e7eaf0;
+    --aw-color-ink-soft: #c3c8d2;
+    --aw-color-muted: #7a8293;
+    --aw-color-rule: #252b36;
+    --aw-color-rule-soft: #1a1f29;
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    --aw-color-accent: #6b95ff;
+    --aw-color-accent-ink: #a6bfff;
 
-    --aw-color-text-heading: rgb(247, 248, 248);
-    --aw-color-text-default: rgb(229 236 246);
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: rgb(3 6 32);
+    --aw-color-text-heading: var(--aw-color-ink);
+    --aw-color-text-default: var(--aw-color-ink);
+    --aw-color-text-muted: var(--aw-color-muted);
+  }
 
-    ::selection {
-      background-color: black;
-      color: snow;
-    }
+  html {
+    font-family: var(--aw-font-sans);
+    color: var(--aw-color-ink);
+    background-color: var(--aw-color-bg-page);
+  }
+
+  .font-display {
+    font-family: var(--aw-font-display);
+  }
+
+  .font-mono {
+    font-family: var(--aw-font-mono);
   }
 </style>

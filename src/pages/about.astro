@@ -1,53 +1,21 @@
 ---
-import Content from "~/components/widgets/Content.astro";
-import Features2 from "~/components/widgets/Features2.astro";
-import Features3 from "~/components/widgets/Features3.astro";
-import Hero from "~/components/widgets/Hero.astro";
-import Stats from "~/components/widgets/Stats.astro";
-import Steps2 from "~/components/widgets/Steps2.astro";
 import Layout from "~/layouts/PageLayout.astro";
-import OurLocations from "~/components/common/OurLocations.astro";
-const metadata = {
-  title: "About us",
-};
----
+import Image from "~/components/common/Image.astro";
+import bryan from "~/assets/images/bryan.webp";
+import amaar from "~/assets/images/amaar.jpg";
+import ryan from "~/assets/images/ryan.JPG";
+import maya from "~/assets/images/maya.jpg";
 
-<Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+const metadata = { title: "About" };
 
-  <Hero
-    tagline="About us"
-    image={{
-      src: "~/assets/images/group.webp",
-      alt: "All 4 officers",
-    }}
-  >
-    <Fragment slot="title">
-      To help others build
-      <span class="text-accent dark:text-white highlight"> real software</span>
-    </Fragment>
-
-    <Fragment slot="subtitle"
-      >The Software Development club aims to educate students, from the basics
-      of <b>programming and software engineering</b> (semester 1) to <b
-        >developing real applications and collaborating with others</b
-      > (semester 2).
-    </Fragment>
-  </Hero>
-
-  <!-- Stats Widget ****************** -->
-
-  <Content
-    isReversed
-    tagline="About Us"
-    title="Meet our team"
-    subtitle="We too are just a group of high school students who are passionate about software development."
-    items={[
-      {
-        icon: null,
-        // title: "",
-        description: "I'm a very passionate software developer.",
-      },
+const officers = [
+  {
+    name: "Bryan Hu",
+    role: "Co-President",
+    image: bryan,
+    alt: "Bryan Hu",
+    bio: "I'm a very passionate software developer.",
+    stats: [
       {
         title: "5+ years of programming experience",
         description:
@@ -56,7 +24,6 @@ const metadata = {
       {
         title: "USACO Silver",
         description:
-          // "I have competed in the USA Computing Olympiad (USACO) and have passed the bronze division.",
           "The USA Computing Olympiad (USACO) is a programming competition for U.S. middle and high school students, featuring online contests with algorithmic problems with levels ranging from bronze to platnium.",
       },
       {
@@ -64,37 +31,15 @@ const metadata = {
         description:
           "I've contributed to many open source projects and have made several of my own. I have experience with Git, GitHub, and all the various tooling everyone uses.",
       },
-    ]}
-    image={{
-      src: "~/assets/images/bryan.webp",
-      alt: "Bryan Hu",
-    }}
-  >
-    <Fragment slot="content">
-      <h3
-        class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2"
-      >
-        Bryan Hu
-      </h3>
-      Co-President
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
-      {
-        icon: null,
-        // title: "",
-        description:
-          "My name is Amaar. I am a 15 year old software engineer in the Bay Area.",
-      },
+    ],
+  },
+  {
+    name: "Amaar Chughtai",
+    role: "Co-President",
+    image: amaar,
+    alt: "Amaar Chughtai",
+    bio: "My name is Amaar. I am a 15 year old software engineer in the Bay Area.",
+    stats: [
       {
         title: "5+ Years of Programming Experience",
         description:
@@ -110,177 +55,269 @@ const metadata = {
         description:
           "I am a machine learning engineer with experience in DL, CV, and NLP. I have studied the mathematics behind DL and have experience with PyTorch, TensorFlow, Keras, +more.",
       },
-    ]}
-    image={{
-      src: "~/assets/images/amaar.jpg",
-      alt: "Amaar Chughtai",
-    }}
-  >
-    <Fragment slot="content">
-      <h3
-        class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2"
-      >
-        Amaar Chughtai
-      </h3>
-      Co-President
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        icon: null,
-        description: "I'm a high school student interested in programming.",
-      },
+    ],
+  },
+  {
+    name: "Ryan Abraham",
+    role: "Vice President",
+    image: ryan,
+    alt: "Ryan Abraham",
+    bio: "I'm a high school student interested in programming.",
+    stats: [
       {
         title: "FTC Team Captain",
         description:
-          "I'm a former team captain of FTC team 21463, Delta Robotics. Additionally, I've had the privilege of mentoring two FLL Explore teams, sharing my knowledge and fostering a love for robotics among younger students. ",
+          "I'm a former team captain of FTC team 21463, Delta Robotics. Additionally, I've had the privilege of mentoring two FLL Explore teams, sharing my knowledge and fostering a love for robotics among younger students.",
       },
       {
         title: "5+ years of programming experience",
         description:
           "My technical skills span a variety of languages and frameworks including Java, Python, C++, HTML, CSS, Svelte, React, PostgreSQL, and Kotlin.",
       },
-    ]}
-    image={{
-      src: "~/assets/images/ryan.JPG",
-      alt: "Ryan Abraham",
-    }}
-  >
-    <Fragment slot="content">
-      <h3
-        class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2"
-      >
-        Ryan Abraham
-      </h3>
-      Vice President
-    </Fragment>
+    ],
+  },
+  {
+    name: "Maya Rao",
+    role: "Head of Business",
+    image: maya,
+    alt: "Maya Rao",
+    bio: null,
+    stats: [],
+  },
+];
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+const vision = [
+  {
+    title: "empower",
+    body: "I want our club to bring the very best out of people, allowing them to build great things without anything to slow them down.",
+  },
+  {
+    title: "impact",
+    body: "I want to be able to create a tangible impact on the world what we do (in a positive way), which includes reaching out to the local community",
+  },
+  {
+    title: "last",
+    body: "I don't want this club to just die out when I graduate but instead, I want it to be a club that lasts for a long time. A long enough time that it can create a real impact on the next generation of software engineers",
+  },
+];
+---
 
-  <Content
-    isAfterContent
-    items={[
-      // {
-      //   icon: null,
-      //   // title: "",
-      //   description:
-      //     '"i\'m going to be completely honest, i have no clue about the bio"',
-      // },
-      // {
-      //   title: "This is a nice checkmark",
-      //   description:
-      //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla.",
-      // },
-    ]}
-    image={{
-      src: "~/assets/images/maya.jpg",
-      alt: "Maya Rao",
-    }}
-  >
-    <Fragment slot="content">
-      <h3
-        class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2"
-      >
-        Maya Rao
-      </h3>
-      Head of Business
-    </Fragment>
+<Layout metadata={metadata}>
+  <!-- HERO -->
+  <section class="page-gutter pt-12 md:pt-20">
+    <p class="path mb-8">~/about $ <span data-anim="typeline">cat team.md</span></p>
+    <h1
+      class="display text-ink max-w-[16ch]"
+      data-anim="rise"
+      style="font-size: clamp(2.5rem, 8vw, 6.5rem);"
+    >
+      Built by high schoolers.<br />
+      <span style="color: var(--aw-color-accent);">For</span> high schoolers.
+    </h1>
+    <p class="prose-lead mt-8 max-w-[52ch]" data-anim="reveal">
+      A group of high school students who are passionate about software
+      development — teaching the course we wish we'd had.
+    </p>
+  </section>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-  <!-- Steps2 Widget ****************** -->
+  <!-- HORIZONTAL OFFICER GALLERY (desktop) / stacked (mobile) -->
+  <section class="mt-24 md:mt-36">
+    <div class="page-gutter">
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 lg:col-span-1">
+          <p class="section-numeral">§ 01 — the team</p>
+        </div>
+        <header class="col-span-12 lg:col-span-11 border-t border-rule pt-8 pb-10 flex items-baseline justify-between">
+          <h2
+            class="display-tight text-ink"
+            data-anim="reveal"
+            style="font-size: clamp(1.5rem, 2.4vw, 2rem);"
+          >
+            Meet the officers.
+          </h2>
+          <p class="tag hidden md:block">scroll →  n = {officers.length}</p>
+        </header>
+      </div>
+    </div>
 
-  <Steps2
-    title="Our vision"
-    subtitle=`"I take this very seriously. Too many kids these days are forced into learning programming, especially competitive programming. So they learn, because they were forced to learn. But then afterwards, they realize that their skills are put to waste as they did not know how to put them into practical use. I want to change that with this club."<br/><br/> - Bryan Hu, Co-President`
-    items={[
+    <!-- Desktop: pinned horizontal scroll -->
+    <div class="hidden md:block relative overflow-hidden" data-anim="pin-horizontal">
+      <div class="track flex items-stretch" style="width: max-content;">
+        {
+          officers.map((o, i) => (
+            <article
+              class="grid grid-cols-[1fr_1fr] gap-10 border-r border-rule-soft px-10 lg:px-16 py-12"
+              style="width: min(95vw, 1100px);"
+            >
+              <figure class="self-start">
+                <p class="lineno mb-3">
+                  {String(i + 1).padStart(2, "0")}/{String(officers.length).padStart(2, "0")}
+                </p>
+                <Image
+                  src={o.image}
+                  alt={o.alt}
+                  widths={[400, 800]}
+                  sizes="40vw"
+                  class="w-full h-auto block"
+                />
+                <figcaption class="mt-3 flex items-baseline gap-3 border-t border-rule-soft pt-2">
+                  <span class="lineno">fig.{String(i + 1).padStart(2, "0")}</span>
+                  <span class="caption">{o.name.toLowerCase()}</span>
+                </figcaption>
+              </figure>
+              <div class="self-center overflow-y-auto max-h-[70vh] pr-2">
+                <p class="tag mb-3">{o.role.toLowerCase()}</p>
+                <h3
+                  class="display text-ink"
+                  style="font-size: clamp(2rem, 3.5vw, 3rem);"
+                >
+                  {o.name}
+                </h3>
+                {o.bio && (
+                  <p class="prose-lead mt-5 max-w-[44ch] italic">{o.bio}</p>
+                )}
+                {o.stats.length > 0 && (
+                  <dl class="mt-6 border-t border-rule">
+                    {o.stats.map((s, si) => (
+                      <div class="py-4 border-b border-rule-soft grid grid-cols-[auto_1fr] gap-4">
+                        <span class="lineno pt-1">
+                          {String(si + 1).padStart(2, "0")}
+                        </span>
+                        <div>
+                          <dt
+                            class="display-tight text-ink mb-1"
+                            style="font-size: 1rem;"
+                          >
+                            {s.title}
+                          </dt>
+                          <dd class="text-ink-soft leading-relaxed text-[0.875rem]">
+                            {s.description}
+                          </dd>
+                        </div>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Mobile: stacked -->
+    <div class="md:hidden page-gutter">
       {
-        title: "To <b>empower</b> students",
-        description:
-          "I want our club to bring the very best out of people, allowing them to build great things without anything to slow them down.",
-      },
-      {
-        title: "To <b>impact</b> others",
-        description:
-          "I want to be able to create a tangible impact on the world what we do (in a positive way), which includes reaching out to the local community",
-      },
-      {
-        title: "To be <b>sustainable</b>",
-        description:
-          "I don't want this club to just die out when I graduate but instead, I want it to be a club that lasts for a long time. A long enough time that it can create a real impact on the next generation of software engineers",
-      },
-    ]}
-  />
+        officers.map((o, i) => (
+          <article class="py-10 border-t border-rule-soft" data-anim="reveal">
+            <p class="lineno mb-4">
+              {String(i + 1).padStart(2, "0")}/{String(officers.length).padStart(2, "0")}
+            </p>
+            <Image
+              src={o.image}
+              alt={o.alt}
+              widths={[400, 800]}
+              sizes="100vw"
+              class="w-full h-auto block"
+            />
+            <div class="mt-5">
+              <p class="tag mb-2">{o.role.toLowerCase()}</p>
+              <h3 class="display text-ink" style="font-size: 2rem;">
+                {o.name}
+              </h3>
+              {o.bio && <p class="prose-lead mt-4 italic">{o.bio}</p>}
+              {o.stats.length > 0 && (
+                <dl class="mt-5 border-t border-rule">
+                  {o.stats.map((s) => (
+                    <div class="py-4 border-b border-rule-soft">
+                      <dt
+                        class="display-tight text-ink mb-1"
+                        style="font-size: 1rem;"
+                      >
+                        {s.title}
+                      </dt>
+                      <dd class="text-ink-soft leading-relaxed text-[0.875rem]">
+                        {s.description}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
 
-  <!-- Steps2 Widget ****************** -->
+  <!-- VISION -->
+  <section class="page-gutter mt-32 md:mt-44">
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 lg:col-span-1 lg:pt-2">
+        <p class="section-numeral">§ 02 — vision</p>
+      </div>
+      <div class="col-span-12 lg:col-span-10 lg:col-start-3">
+        <div class="h-px bg-rule" data-anim="draw"></div>
+        <figure class="max-w-[64ch] mt-8">
+          <p class="path mb-8">~/about/vision</p>
+          <blockquote class="text-ink">
+            <p
+              class="display-tight"
+              data-anim="reveal"
+              style="font-size: clamp(2rem, 5vw, 4rem);"
+            >
+              I take this very seriously.
+            </p>
+            <p
+              class="display-tight mt-8 text-ink-soft max-w-[58ch]"
+              data-anim="reveal"
+              style="font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); line-height: 1.55; font-stretch: 100%; font-weight: 400; letter-spacing: 0;"
+            >
+              Too many kids these days are forced into learning programming,
+              especially competitive programming. So they learn, because they
+              were forced to learn. But then afterwards, they realize that
+              their skills are put to waste as they did not know how to put
+              them into practical use.
+            </p>
+            <p
+              class="display-tight mt-8"
+              data-anim="reveal"
+              style="font-size: clamp(1.5rem, 3vw, 2.75rem); color: var(--aw-color-accent);"
+            >
+              I want to change that with this club.
+            </p>
+          </blockquote>
+          <figcaption class="mt-10 flex items-baseline gap-3 border-t border-rule-soft pt-3">
+            <span class="lineno">—</span>
+            <span class="mono text-[0.8125rem] text-ink">Bryan Hu</span>
+            <span class="caption">co-president</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
 
-  <!-- <Steps2
-    title="Achievements"
-    subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla."
-    isReversed={true}
-    callToAction={{
-      text: "See more",
-      href: "/",
-    }}
-    items={[
+    <ol class="mt-20 grid grid-cols-12 gap-6 border-t border-rule" data-anim="stagger">
       {
-        title: "Global reach",
-        description:
-          "Nam malesuada urna in enim imperdiet tincidunt. Phasellus non tincidunt nisi, at elementum mi.",
-        icon: "tabler:globe",
-      },
-      {
-        title: "Positive customer feedback and reviews",
-        description:
-          "Cras semper nulla leo, eget laoreet erat cursus sed. Praesent faucibus massa in purus iaculis dictum.",
-        icon: "tabler:message-star",
-      },
-      {
-        title: "Awards and recognition as industry experts",
-        description:
-          "Phasellus lacinia cursus velit, eu malesuada magna pretium eu. Etiam aliquet tellus purus, blandit lobortis ex rhoncus vitae.",
-        icon: "tabler:award",
-      },
-    ]}
-  /> -->
-
-  <!-- Features2 Widget ************** -->
-  <OurLocations />
-
-  <!-- Features2 Widget ************** -->
-
-  <!-- <Features2
-    title="Technical Support"
-    tagline="Contact us"
-    columns={2}
-    items={[
-      {
-        title: "Chat with us",
-        description:
-          "Integer luctus laoreet libero, auctor varius purus rutrum sit amet. Ut nec molestie nisi, quis eleifend mi.",
-        icon: "tabler:messages",
-      },
-      {
-        title: "Call us",
-        description:
-          "Mauris faucibus finibus orci, in posuere elit viverra non. In hac habitasse platea dictumst. Cras lobortis metus a hendrerit congue.",
-        icon: "tabler:headset",
-      },
-    ]}
-  /> -->
+        vision.map((v, i) => (
+          <li
+            class:list={[
+              "col-span-12 md:col-span-4 p-6 md:p-8 border-b border-rule-soft",
+              i < vision.length - 1 && "md:border-r md:border-rule-soft",
+            ]}
+          >
+            <p class="lineno mb-4">
+              0{i + 1} / 03
+            </p>
+            <h3
+              class="display-tight text-ink mb-3"
+              style="font-size: 1.5rem;"
+            >
+              To <span style="color: var(--aw-color-accent);">{v.title}</span>
+            </h3>
+            <p class="text-ink-soft leading-relaxed text-[0.9375rem]">{v.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 </Layout>

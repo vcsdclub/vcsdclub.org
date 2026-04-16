@@ -1,296 +1,322 @@
 ---
 import Layout from "~/layouts/PageLayout.astro";
-
-import Hero from "~/components/widgets/Hero.astro";
-import Note from "~/components/widgets/Note.astro";
-import Features from "~/components/widgets/Features.astro";
-import Features2 from "~/components/widgets/Features2.astro";
-import Steps from "~/components/widgets/Steps.astro";
-import Content from "~/components/widgets/Content.astro";
-import BlogLatestPosts from "~/components/widgets/BlogLatestPosts.astro";
-import FAQs from "~/components/widgets/FAQs.astro";
-import Stats from "~/components/widgets/Stats.astro";
-import CallToAction from "~/components/widgets/CallToAction.astro";
-import OurLocations from "~/components/common/OurLocations.astro";
+import Image from "~/components/common/Image.astro";
+import groupPhoto from "~/assets/images/group.webp";
 
 const metadata = {
   title: "Valley Christian Software Development Club",
   ignoreTitleTemplate: true,
 };
+
+const overview = [
+  {
+    title: "Adaptive lectures",
+    body: "Calibrated to the room. Whether you've never opened a terminal or you've shipped side projects, you leave with something new.",
+  },
+  {
+    title: "Interactive exercises",
+    body: "You don't learn to code by watching. We break lectures with short problems so the ideas land in your hands before they leave the room.",
+  },
+  {
+    title: "Workshops",
+    body: "We build things together. Mentors circulate, questions get answered, and everyone walks out with working code.",
+  },
+  {
+    title: "Build season",
+    body: "Second semester, you take what you've learned and make something real. Your idea, our mentorship, real software at the end.",
+  },
+  {
+    title: "On-demand mentoring",
+    body: "Stuck between meetings? Email us. We'd rather answer questions than let anyone spin their wheels.",
+  },
+  {
+    title: "Zero cost. Always.",
+    body: "All our resources are free — even if you don't go to Valley Christian. We mean it.",
+  },
+];
+
+const timeline = [
+  {
+    phase: "Sep",
+    title: "Welcome & fundamentals",
+    body: "We meet you where you are. Terminal, Git, the shape of a program.",
+  },
+  {
+    phase: "Oct–Dec",
+    title: "Building blocks",
+    body: "Data, control flow, structure. Short problems, hands on keys, mentors beside you.",
+  },
+  {
+    phase: "Jan",
+    title: "Pitch your project",
+    body: "You decide what to build. Solo, pair, or small team. We help you scope it.",
+  },
+  {
+    phase: "Feb–May",
+    title: "Build season",
+    body: "One weekly standup, open help hours, a shipped project at the end.",
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+  <!-- 01 — TERMINAL HERO -->
+  <section class="page-gutter pt-10 md:pt-20 min-h-[92vh] flex flex-col justify-between">
+    <div>
+      <p class="path mb-8">~/vcsdclub $ <span data-anim="typeline">whoami</span></p>
 
-  <Hero
-    actions={[
-      {
-        variant: "primary",
-        text: "Join the mailing list",
-        href: "https://forms.gle/pUcXkLxdX5tV6BfX6",
-        target: "_blank",
-        icon: "tabler:mail-check",
-      },
-      { text: "Learn more", href: "#overview" },
-    ]}
-    image={{
-      src: "~/assets/images/hero-image.png",
-      alt: "AstroWind Hero Image",
-    }}
-  >
-    <Fragment slot="title">
-      Welcome to our
-      <span class="text-accent dark:text-white highlight"> Website</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Here in the <abbr title="Valley Christian High School">VCHS</abbr>
-      <b>Software Development Club</b>, we aim to empower students everywhere
-      with the knowledge and skills they need <b
-        >to build real software and what it takes to be an engineer</b
-      >.
-    </Fragment>
-  </Hero>
-
-  <!-- <Stats
-    stats={[
-      { title: "Downloads", amount: "132K" },
-      { title: "Stars", amount: "24.8K" },
-      { title: "Forks", amount: "10.3K" },
-      { title: "Users", amount: "48.4K" },
-    ]}
-  /> -->
-
-  <!-- Note Widget ******************* -->
-
-  <!-- <Note /> -->
-
-  <!-- Features Widget *************** -->
-
-  <Features
-    id="overview"
-    tagline="Overview"
-    title="Here's what we will do in this club"
-    subtitle=""
-    items={[
-      {
-        title: "Adaptive lectures",
-        description:
-          "We provide lectures that are adapted to the general skill level of our members, so that everyone can learn something new.",
-        icon: "tabler:man",
-      },
-      {
-        title: "Interactive exercises",
-        description:
-          "We believe one of the best ways to learn is to learn by doing. We often incorporate exercises into our lectures to help reinforce the concepts.",
-        icon: "tabler:git-merge",
-      },
-      {
-        title: "Interactive workshops",
-        description:
-          "We also host workshops where we work on projects together, so that our members can get hands-on experience while we provide mentoring resources.",
-        icon: "tabler:brand-vite",
-      },
-
-      {
-        title: "Semester 2 project-building season",
-        description:
-          "In the second half of the year, we challenge students to take the skills that they have learned and apply them to a project of their own.",
-        icon: "tabler:bulb",
-      },
-      {
-        title: "Extensive mentoring resources",
-        description:
-          'Besides in-meeting workshops, you can always <a class="link" href="/contact">drop us an email</a> and we would be happy to help',
-        icon: "tabler:arrows-right-left",
-      },
-      // TODO: replace this with a better "feature"
-      // because we will be putting this in the FAQ
-      {
-        title: "Best of all... it's free!",
-        description:
-          "You can access all of our <a class='link' href='/resources'>resources</a> at no cost whatsoever, even if you are not currently attending Valley Christian High School.",
-        icon: "tabler:coin-off",
-      },
-    ]}
-  />
-  <OurLocations />
-  <!-- TODO: This will actually be useful -->
-  <!-- <CallToAction
-    actions={[
-      {
-        variant: "primary",
-        text: "Get template",
-        href: "https://github.com/onwidget/astrowind",
-        target: "_blank",
-        icon: "tabler:download",
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span
-        class="sm:whitespace-nowrap">Tailwind CSS</span
+      <h1
+        class="display text-ink"
+        style="font-size: clamp(2.75rem, 10vw, 9rem);"
       >
-    </Fragment>
+        <span class="block" data-anim="rise">Build real</span>
+        <span class="block" data-anim="rise" style="color: var(--aw-color-accent);">software<span data-cursor></span></span>
+      </h1>
 
-    <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br
-        class="hidden md:inline"
-      />Don't waste more time! :P
-    </Fragment>
-  </CallToAction> -->
+      <div class="mt-10 grid grid-cols-12 gap-x-6 gap-y-8 items-start">
+        <p class="prose-lead col-span-12 lg:col-span-6 max-w-[52ch]" data-anim="reveal">
+          A student-run club at Valley Christian High School. We teach the
+          craft of engineering the way it's actually practiced — messily,
+          collaboratively, one shipped version at a time. No contest grinding.
+          No résumé theatre.
+        </p>
 
-  <!-- Content Widget **************** -->
+        <div class="col-span-12 lg:col-span-5 lg:col-start-8" data-anim="reveal">
+          <figure>
+            <Image
+              src={groupPhoto}
+              alt="Members of the Software Development Club"
+              widths={[480, 960, 1400]}
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              class="w-full h-auto block"
+            />
+            <figcaption
+              class="mt-3 flex items-baseline gap-3 border-t border-rule-soft pt-2"
+            >
+              <span class="lineno">fig.01</span>
+              <span class="caption">the club — fall, 2024</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
 
-  <!-- Steps Widget ****************** -->
+    <div class="mt-14 flex flex-wrap items-center gap-8 border-t border-rule-soft pt-6">
+      <a
+        href="https://forms.gle/pUcXkLxdX5tV6BfX6"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="prompt"
+      >
+        join mailing list
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="#manifesto" class="mono text-[0.8125rem] text-ink-soft hover:text-accent transition-colors">
+        read the manifesto ↓
+      </a>
+    </div>
+  </section>
 
-  <!-- <Steps
-    title="Get your dream website up and running in no time with AstroWind."
-    items={[
-      {
-        title: 'Step 1: <span class="font-medium">Download</span>',
-        description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: "tabler:package",
-      },
-      {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
-        description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: "tabler:letter-case",
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
-        description:
-          "Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.",
-        icon: "tabler:paint",
-      },
-      {
-        title: "Ready!",
-        icon: "tabler:check",
-      },
-    ]}
-    image={{
-      src: "https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
-      alt: "Steps image",
-    }}
-  />
+  <!-- 02 — STATS STRIP -->
+  <section class="page-gutter mt-24 md:mt-32">
+    <div class="border-y border-rule py-10 md:py-14 grid grid-cols-2 md:grid-cols-4 gap-y-8" data-anim="stagger">
+      <div>
+        <p class="tag mb-3">members</p>
+        <p class="display text-ink" style="font-size: clamp(2rem, 4vw, 3.25rem);"><span data-anim="count" data-to="60">0</span>+</p>
+      </div>
+      <div>
+        <p class="tag mb-3">weekly meetings</p>
+        <p class="display text-ink" style="font-size: clamp(2rem, 4vw, 3.25rem);"><span data-anim="count" data-to="1">0</span></p>
+      </div>
+      <div>
+        <p class="tag mb-3">cost to join</p>
+        <p class="display text-ink" style="font-size: clamp(2rem, 4vw, 3.25rem);">$0</p>
+      </div>
+      <div>
+        <p class="tag mb-3">build season, months</p>
+        <p class="display text-ink" style="font-size: clamp(2rem, 4vw, 3.25rem);"><span data-anim="count" data-to="4">0</span></p>
+      </div>
+    </div>
+  </section>
 
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
-    items={[
-      {
-        title: "Headers",
-        description:
-          "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: "flat-color-icons:template",
-      },
-      {
-        title: "Heros",
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: "flat-color-icons:gallery",
-      },
-      {
-        title: "Features",
-        description:
-          "Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!",
-        icon: "flat-color-icons:approval",
-      },
-      {
-        title: "Content",
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: "flat-color-icons:document",
-      },
-      {
-        title: "Call-to-Action",
-        description:
-          "That enthusiastic friend who's always urging, \"Do it! Do it!\"? Yeah, that's this button nudging you towards adventure.",
-        icon: "flat-color-icons:advertising",
-      },
-      {
-        title: "Pricing",
-        description:
-          "Behold the dessert menu of the website world. Tempting choices await, can you resist?",
-        icon: "flat-color-icons:currency-exchange",
-      },
-      {
-        title: "Testimonial",
-        description:
-          "Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.",
-        icon: "flat-color-icons:voice-presentation",
-      },
-      {
-        title: "Contact",
-        description:
-          "Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.",
-        icon: "flat-color-icons:business-contact",
-      },
-      {
-        title: "Footers",
-        description:
-          "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: "flat-color-icons:database",
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features2> -->
+  <!-- 03 — MANIFESTO (full-bleed) -->
+  <section id="manifesto" class="page-gutter mt-32 md:mt-48">
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 lg:col-span-1 lg:pt-2">
+        <p class="section-numeral">§ 01 — manifesto</p>
+      </div>
+      <figure class="col-span-12 lg:col-span-10 lg:col-start-3">
+        <div class="h-px bg-rule" data-anim="draw"></div>
+        <p class="path mt-8 mb-10">~/quotes/from-the-president</p>
+        <blockquote class="text-ink">
+          <p
+            class="display-tight"
+            data-anim="reveal"
+            style="font-size: clamp(2.25rem, 6vw, 5.25rem);"
+          >
+            I take this very seriously.
+          </p>
+          <p
+            class="display-tight mt-10 text-ink-soft max-w-[62ch]"
+            data-anim="reveal"
+            style="font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); line-height: 1.6; font-stretch: 100%; font-weight: 400; letter-spacing: 0;"
+          >
+            Too many kids these days are forced into learning programming,
+            especially competitive programming. So they learn, because they
+            were forced to learn. But then afterwards, they realize that their
+            skills are put to waste as they did not know how to put them into
+            practical use.
+          </p>
+          <p
+            class="display-tight mt-10"
+            data-anim="reveal"
+            style="font-size: clamp(1.75rem, 4vw, 3.25rem); color: var(--aw-color-accent);"
+          >
+            I want to change that with this club.
+          </p>
+        </blockquote>
+        <figcaption
+          class="mt-12 flex items-baseline gap-3 border-t border-rule-soft pt-3"
+        >
+          <span class="lineno">—</span>
+          <span class="mono text-[0.8125rem] text-ink">Bryan Hu</span>
+          <span class="caption">co-president</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
 
-  <!-- HighlightedPosts Widget ******* -->
+  <!-- 04 — PROGRAM OVERVIEW -->
+  <section class="page-gutter mt-32 md:mt-44">
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 lg:col-span-1 lg:pt-2">
+        <p class="section-numeral">§ 02 — program</p>
+      </div>
+      <header class="col-span-12 lg:col-span-11 border-t border-rule pt-10 pb-14 md:pb-16">
+        <p class="path mb-6">~/program</p>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-baseline">
+          <h2
+            class="display-tight text-ink lg:col-span-7"
+            data-anim="reveal"
+            style="font-size: clamp(1.75rem, 3.4vw, 2.875rem);"
+          >
+            A year of learning,<br />built around making things.
+          </h2>
+          <p class="text-ink-soft leading-relaxed lg:col-span-4 lg:col-start-9 text-[0.9375rem]" data-anim="reveal">
+            One weekly meeting. A first semester of fundamentals, a second of
+            building. Everything below is what happens in between.
+          </p>
+        </div>
+      </header>
+    </div>
 
-  <!-- <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `}
-  /> -->
+    <ol class="grid grid-cols-1 md:grid-cols-2 border-t border-rule border-l-0 md:border-l border-rule-soft" data-anim="stagger">
+      {
+        overview.map((item, i) => (
+          <li
+            class:list={[
+              "grid grid-cols-[auto_1fr] gap-5 p-6 md:p-8 border-b border-rule-soft",
+              i % 2 === 0 && "md:border-r md:border-rule-soft",
+            ]}
+          >
+            <span class="lineno pt-1">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div>
+              <h3
+                class="display-tight text-ink mb-2"
+                style="font-size: 1.25rem;"
+              >
+                {item.title}
+              </h3>
+              <p class="text-ink-soft leading-relaxed text-[0.9375rem] max-w-prose">
+                {item.body}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 
-  <!-- FAQs Widget ******************* -->
+  <!-- 05 — THE YEAR (horizontal timeline) -->
+  <section class="mt-32 md:mt-44">
+    <div class="page-gutter">
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 lg:col-span-1 lg:pt-2">
+          <p class="section-numeral">§ 03 — the year</p>
+        </div>
+        <header class="col-span-12 lg:col-span-11 border-t border-rule pt-10 pb-10">
+          <p class="path mb-6">~/program/timeline</p>
+          <h2
+            class="display-tight text-ink"
+            data-anim="reveal"
+            style="font-size: clamp(1.75rem, 3.4vw, 2.875rem);"
+          >
+            How the year moves.
+          </h2>
+        </header>
+      </div>
+    </div>
 
-  <!-- <FAQs
-    title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
-    tagline="FAQs"
-    classes={{ container: "max-w-6xl" }}
-    items={[
-      {
-        title: "Why AstroWind?",
-        description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
-      },
-      {
-        title: "What do I need to start?",
-        description:
-          "Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.",
-      },
-      {
-        title: "How to install the Astro + Tailwind CSS template?",
-        description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
-      },
-      {
-        title: "What's something that you don't understand?",
-        description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
-      },
-      {
-        title: "What is something that you would like to try again?",
-        description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
-      },
-      {
-        title:
-          "If you could only ask one question to each person you meet, what would that question be?",
-        description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
-      },
-    ]}
-  /> -->
+    <div class="page-gutter">
+      <div class="h-px bg-rule" data-anim="draw"></div>
+      <ol class="grid grid-cols-1 md:grid-cols-4" data-anim="stagger">
+        {
+          timeline.map((t, i) => (
+            <li
+              class:list={[
+                "py-10 md:py-14 pr-6 border-b md:border-b-0 border-rule-soft",
+                i < timeline.length - 1 && "md:border-r md:border-rule-soft md:pl-6",
+                i === 0 && "md:pl-0",
+              ]}
+            >
+              <p class="tag mb-4">{t.phase}</p>
+              <h3
+                class="display-tight text-ink mb-3"
+                style="font-size: clamp(1.125rem, 1.6vw, 1.375rem);"
+              >
+                {t.title}
+              </h3>
+              <p class="text-ink-soft leading-relaxed text-[0.9375rem]">
+                {t.body}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- 06 — CLOSING CTA -->
+  <section class="page-gutter mt-32 md:mt-48">
+    <div class="border-t border-rule pt-14 md:pt-20">
+      <p class="path mb-6">~/join</p>
+      <h2
+        class="display text-ink max-w-[18ch]"
+        data-anim="reveal"
+        style="font-size: clamp(2.5rem, 7vw, 6rem);"
+      >
+        Come build something.
+      </h2>
+      <p class="prose-lead mt-8 max-w-[52ch]" data-anim="reveal">
+        Meetings are open. The curriculum is free. The mentors are already
+        here. The only thing missing is you.
+      </p>
+      <div class="mt-12 flex flex-wrap items-center gap-8">
+        <a
+          href="https://forms.gle/pUcXkLxdX5tV6BfX6"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="prompt"
+        >
+          join mailing list
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/about" class="mono text-[0.8125rem] text-ink-soft hover:text-accent transition-colors">
+          meet the team →
+        </a>
+      </div>
+    </div>
+  </section>
 </Layout>
