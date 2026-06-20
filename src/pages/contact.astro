@@ -1,101 +1,126 @@
 ---
 import Layout from "~/layouts/PageLayout.astro";
-import HeroText from "~/components/widgets/HeroText.astro";
-import ContactUs from "~/components/widgets/Contact.astro";
-import Features2 from "~/components/widgets/Features2.astro";
-import CallToAction from "~/components/widgets/CallToAction.astro";
 
-const metadata = {
-  title: "Contact",
-};
+const metadata = { title: "Contact" };
+
+const channels = [
+  {
+    label: "email",
+    handle: "vchs.software@gmail.com",
+    href: "mailto:vchs.software@gmail.com",
+    note: "Fastest way to reach the officers. Questions, ideas, collabs, all welcome.",
+  },
+  {
+    label: "discord",
+    handle: "discord.gg/hayb3xUZRD",
+    href: "https://discord.gg/hayb3xUZRD",
+    note: "Where members hang out between meetings. Come ask a question or show off a project.",
+  },
+  {
+    label: "instagram",
+    handle: "@vchs_software",
+    href: "https://www.instagram.com/vchs_software",
+    note: "Announcements and meeting recaps, mostly.",
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- HeroText Widget ******************* -->
+  <section class="page-gutter pt-8 md:pt-16 pb-12">
+    <div class="flex items-center justify-between mb-8">
+      <span class="tag">issue №01 · section 04</span>
+      <span class="hand" style="font-size: 1.5rem; transform: rotate(-3deg); display: inline-block;">we read them all.</span>
+    </div>
 
-  <HeroText tagline="Contact" title="Let's Connect!">
-    <Features2
-      slot="content"
-      columns={2}
-      classes={{ container: "text-left" }}
-      items={[
-        {
-          title: "Email Us!",
-          description: `We're always open to emails at <a class="link" href="mailto:vchs.software@gmail.com">vchs.software@gmail.com</a>`,
-          icon: "flat-color-icons:feedback",
-        },
-        {
-          title: "Join our Discord server",
-          description:
-            'We have an official Discord server <a class="link" href="https://discord.gg/hayb3xUZRD">here</a> where you can chat with us and other club members, ask questions, and get help.',
-          icon: "logos:discord-icon",
-        },
-        // {
-        //   title: "Technical Support",
-        //   description:
-        //     "Providing customer support for any technical issues related to the templates or their implementation.",
-        //   icon: "flat-color-icons:voice-presentation",
-        // },
-      ]}
-    /></HeroText
-  >
+    <h1
+      class="display text-ink offset-riso-lg"
+      style="font-size: clamp(3rem, 11vw, 9rem); line-height: 0.85;"
+      data-contact-headline
+    >
+      <span class="block">LET'S</span>
+      <span class="block" style="font-family: var(--aw-font-serif); font-style: italic; font-weight: 400;">connect.</span>
+    </h1>
 
-  <!-- <ContactUs
-    id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
-    inputs={[
-      {
-        type: "text",
-        name: "name",
-        label: "Name",
-      },
-      {
-        type: "email",
-        name: "email",
-        label: "Email",
-      },
-    ]}
-    textarea={{
-      label: "Message",
-    }}
-    description="Our support team typically responds within 24 business hours."
-  /> -->
+    <p class="prose-lead mt-10 max-w-[52ch]">
+      Pick whichever channel suits you.
+    </p>
+  </section>
 
-  <!-- Features2 Widget ************** -->
-
-  <!-- <Features2
-    title="We are here to help!"
-    items={[
+  <section class="page-gutter mt-16 md:mt-20">
+    <ol class="border-t-2 border-ink">
       {
-        title: "General support",
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
-      },
-      {
-        title: "Contact sales",
-        description:
-          "Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.",
-      },
-      {
-        title: "Technical support",
-        description:
-          "Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.",
-      },
-      {
-        title: "Phone",
-        description: "+1 (234) 567-890",
-        icon: "tabler:headset",
-      },
-      {
-        title: "Email",
-        description: "contact@support.com",
-        icon: "tabler:mail",
-      },
-      {
-        title: "Location",
-        description: "1234 Lorem Ipsum St, 12345, Miami, EEUU",
-        icon: "tabler:map-pin",
-      },
-    ]}
-  /> -->
+        channels.map((c, i) => (
+          <li
+            class="border-b-2 border-ink group hover:border-riso transition-colors duration-150"
+            data-channel
+          >
+            <a
+              href={c.href}
+              target={c.href.startsWith("http") ? "_blank" : undefined}
+              rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              class="grid grid-cols-12 gap-x-6 gap-y-3 py-8 md:py-10 items-baseline px-1"
+            >
+              <p
+                class="display text-ink col-span-12 md:col-span-1"
+                style="font-size: 2rem; line-height: 1;"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <p class="tag col-span-6 md:col-span-2 md:pt-4">{c.label}</p>
+              <div class="col-span-12 md:col-span-7">
+                <p
+                  class="display text-ink"
+                  style="font-size: clamp(1.5rem, 3vw, 2.5rem); letter-spacing: -0.03em;"
+                >
+                  {c.handle}
+                </p>
+                <p class="text-ink mt-2 leading-relaxed max-w-[52ch] text-[0.9375rem]">
+                  {c.note}
+                </p>
+              </div>
+              <span
+                class="arrow col-span-6 md:col-span-2 md:text-right text-ink font-display text-2xl md:pt-4"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 </Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const run = () => {
+    const headline = document.querySelector("[data-contact-headline]");
+    if (headline) {
+      const lines = headline.querySelectorAll("span");
+      gsap.from(lines, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+    }
+
+    document.querySelectorAll("[data-channel]").forEach((r) => {
+      gsap.from(r, {
+        opacity: 0,
+        y: 24,
+        duration: 0.55,
+        ease: "power3.out",
+        scrollTrigger: { trigger: r, start: "top 88%" },
+      });
+    });
+  };
+
+  run();
+  document.addEventListener("astro:after-swap", run);
+</script>

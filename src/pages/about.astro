@@ -1,53 +1,20 @@
 ---
-import Content from "~/components/widgets/Content.astro";
-import Features2 from "~/components/widgets/Features2.astro";
-import Features3 from "~/components/widgets/Features3.astro";
-import Hero from "~/components/widgets/Hero.astro";
-import Stats from "~/components/widgets/Stats.astro";
-import Steps2 from "~/components/widgets/Steps2.astro";
 import Layout from "~/layouts/PageLayout.astro";
-import OurLocations from "~/components/common/OurLocations.astro";
-const metadata = {
-  title: "About us",
-};
----
+import Image from "~/components/common/Image.astro";
+import bryan from "~/assets/images/bryan.webp";
+import amaar from "~/assets/images/amaar.png";
+import ryan from "~/assets/images/ryan.JPG";
 
-<Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+const metadata = { title: "About" };
 
-  <Hero
-    tagline="About us"
-    image={{
-      src: "~/assets/images/group.webp",
-      alt: "All 4 officers",
-    }}
-  >
-    <Fragment slot="title">
-      To help others build
-      <span class="text-accent dark:text-white highlight"> real software</span>
-    </Fragment>
-
-    <Fragment slot="subtitle"
-      >The Software Development club aims to educate students, from the basics
-      of <b>programming and software engineering</b> (semester 1) to <b
-        >developing real applications and collaborating with others</b
-      > (semester 2).
-    </Fragment>
-  </Hero>
-
-  <!-- Stats Widget ****************** -->
-
-  <Content
-    isReversed
-    tagline="About Us"
-    title="Meet our team"
-    subtitle="We too are just a group of high school students who are passionate about software development."
-    items={[
-      {
-        icon: null,
-        // title: "",
-        description: "I'm a very passionate software developer.",
-      },
+const officers = [
+  {
+    name: "Bryan Hu",
+    role: "Co-President",
+    image: bryan,
+    alt: "Bryan Hu",
+    bio: "I'm a very passionate software developer.",
+    stats: [
       {
         title: "5+ years of programming experience",
         description:
@@ -56,7 +23,6 @@ const metadata = {
       {
         title: "USACO Silver",
         description:
-          // "I have competed in the USA Computing Olympiad (USACO) and have passed the bronze division.",
           "The USA Computing Olympiad (USACO) is a programming competition for U.S. middle and high school students, featuring online contests with algorithmic problems with levels ranging from bronze to platnium.",
       },
       {
@@ -64,223 +30,334 @@ const metadata = {
         description:
           "I've contributed to many open source projects and have made several of my own. I have experience with Git, GitHub, and all the various tooling everyone uses.",
       },
-    ]}
-    image={{
-      src: "~/assets/images/bryan.webp",
-      alt: "Bryan Hu",
-    }}
-  >
-    <Fragment slot="content">
-      <h3
-        class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2"
-      >
-        Bryan Hu
-      </h3>
-      Co-President
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
+    ],
+  },
+  {
+    name: "Amaar Chughtai",
+    role: "Co-President",
+    image: amaar,
+    alt: "Amaar Chughtai",
+    bio: "My name is Amaar. I am a 17 year old software engineer in the Bay Area.",
+    stats: [
       {
-        icon: null,
-        // title: "",
+        title: "6+ Years of Programming Experience",
         description:
-          "My name is Amaar. I am a 15 year old software engineer in the Bay Area.",
+          "Proficient in C++, Python, Java, JavaScript, SQL, and more, across frameworks like NextJS, Svelte, and Astro. I've shipped many projects and business technologies.",
       },
       {
-        title: "5+ Years of Programming Experience",
+        title: "ML Engineer @ Princeton",
         description:
-          "Proficient in programming languages such as C++, Python, Java, JavaScript, SQL, +more. I use a wide variety of frameworks including NextJS, Svelte (sadly), Astro, +more. I have worked on many projects & business technologies.",
+          "Machine learning engineer with experience in DL, CV, and NLP. I know the math behind DL and work in PyTorch, TensorFlow, and Keras.",
       },
       {
-        title: "USACO Silver",
+        title: "Researcher",
         description:
-          "The USA Computing Olympiad (USACO) is a programming competition for U.S. middle and high school students, featuring online contests with algorithmic problems with levels ranging from bronze to platnium.",
+          "I research Alzheimer's using computation and neuromorphic computing, and have advanced to multiple research competitions.",
       },
-      {
-        title: "Machine Learning Engineer",
-        description:
-          "I am a machine learning engineer with experience in DL, CV, and NLP. I have studied the mathematics behind DL and have experience with PyTorch, TensorFlow, Keras, +more.",
-      },
-    ]}
-    image={{
-      src: "~/assets/images/amaar.jpg",
-      alt: "Amaar Chughtai",
-    }}
-  >
-    <Fragment slot="content">
-      <h3
-        class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2"
-      >
-        Amaar Chughtai
-      </h3>
-      Co-President
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        icon: null,
-        description: "I'm a high school student interested in programming.",
-      },
+    ],
+  },
+  {
+    name: "Ryan Abraham",
+    role: "Vice President",
+    image: ryan,
+    alt: "Ryan Abraham",
+    bio: "I'm a high school student interested in programming.",
+    stats: [
       {
         title: "FTC Team Captain",
         description:
-          "I'm a former team captain of FTC team 21463, Delta Robotics. Additionally, I've had the privilege of mentoring two FLL Explore teams, sharing my knowledge and fostering a love for robotics among younger students. ",
+          "I'm a former team captain of FTC team 21463, Delta Robotics. Additionally, I've had the privilege of mentoring two FLL Explore teams, sharing my knowledge and fostering a love for robotics among younger students.",
       },
       {
         title: "5+ years of programming experience",
         description:
           "My technical skills span a variety of languages and frameworks including Java, Python, C++, HTML, CSS, Svelte, React, PostgreSQL, and Kotlin.",
       },
-    ]}
-    image={{
-      src: "~/assets/images/ryan.JPG",
-      alt: "Ryan Abraham",
-    }}
-  >
-    <Fragment slot="content">
-      <h3
-        class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2"
-      >
-        Ryan Abraham
-      </h3>
-      Vice President
-    </Fragment>
+    ],
+  },
+];
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+const vision = [
+  {
+    title: "empower",
+    body: "I want our club to bring the very best out of people, allowing them to build great things without anything to slow them down.",
+  },
+  {
+    title: "impact",
+    body: "I want to be able to create a tangible impact on the world what we do (in a positive way), which includes reaching out to the local community",
+  },
+  {
+    title: "last",
+    body: "I don't want this club to just die out when I graduate but instead, I want it to be a club that lasts for a long time. A long enough time that it can create a real impact on the next generation of software engineers",
+  },
+];
 
-  <Content
-    isAfterContent
-    items={[
-      // {
-      //   icon: null,
-      //   // title: "",
-      //   description:
-      //     '"i\'m going to be completely honest, i have no clue about the bio"',
-      // },
-      // {
-      //   title: "This is a nice checkmark",
-      //   description:
-      //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla.",
-      // },
-    ]}
-    image={{
-      src: "~/assets/images/maya.jpg",
-      alt: "Maya Rao",
-    }}
-  >
-    <Fragment slot="content">
-      <h3
-        class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2"
-      >
-        Maya Rao
-      </h3>
-      Head of Business
-    </Fragment>
+const tiltSeq = ["-1.5deg", "2deg", "-2.5deg", "1deg"];
+---
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-  <!-- Steps2 Widget ****************** -->
+<Layout metadata={metadata}>
+  <!-- HERO -->
+  <section class="page-gutter pt-8 md:pt-16 pb-12">
+    <div class="flex items-center justify-between mb-8">
+      <span class="tag">issue №01 · section 02</span>
+      <span class="hand" style="font-size: 1.5rem; transform: rotate(-3deg); display: inline-block;">who we are →</span>
+    </div>
 
-  <Steps2
-    title="Our vision"
-    subtitle=`"I take this very seriously. Too many kids these days are forced into learning programming, especially competitive programming. So they learn, because they were forced to learn. But then afterwards, they realize that their skills are put to waste as they did not know how to put them into practical use. I want to change that with this club."<br/><br/> - Bryan Hu, Co-President`
-    items={[
+    <h1
+      class="display text-ink offset-riso-lg"
+      style="font-size: clamp(3rem, 11vw, 9rem); line-height: 0.85;"
+      data-about-headline
+    >
+      <span class="block">BUILT BY KIDS.</span>
+      <span class="block" style="font-family: var(--aw-font-serif); font-style: italic; font-weight: 400;">for kids.</span>
+    </h1>
+
+    <p class="prose-lead mt-10 max-w-[52ch]">
+      We are just a group of high school students who are passionate about
+      software development. We teach the course we wish we'd had.
+    </p>
+  </section>
+
+  <!-- OFFICERS MARQUEE BAND -->
+  <section class="border-y border-rule-soft py-3 overflow-hidden">
+    <div class="flex gap-10 whitespace-nowrap" data-officers-marquee>
       {
-        title: "To <b>empower</b> students",
-        description:
-          "I want our club to bring the very best out of people, allowing them to build great things without anything to slow them down.",
-      },
-      {
-        title: "To <b>impact</b> others",
-        description:
-          "I want to be able to create a tangible impact on the world what we do (in a positive way), which includes reaching out to the local community",
-      },
-      {
-        title: "To be <b>sustainable</b>",
-        description:
-          "I don't want this club to just die out when I graduate but instead, I want it to be a club that lasts for a long time. A long enough time that it can create a real impact on the next generation of software engineers",
-      },
-    ]}
-  />
+        [...Array(4)].map(() =>
+          officers.map((o) => (
+            <span
+              class="mono text-ink-soft"
+              style="font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;"
+            >
+              {o.name.toUpperCase()} <span class="text-riso">✦</span>
+            </span>
+          ))
+        )
+      }
+    </div>
+  </section>
 
-  <!-- Steps2 Widget ****************** -->
+  <!-- OFFICER SPREADS -->
+  <section class="page-gutter mt-16 md:mt-24">
+    <div class="flex items-end justify-between mb-8 border-b-2 border-ink pb-4">
+      <span class="tag tag-riso">the roster · n = 3</span>
+      <span class="hand" style="font-size: 1.75rem; transform: rotate(-2deg);">say hi.</span>
+    </div>
 
-  <!-- <Steps2
-    title="Achievements"
-    subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla."
-    isReversed={true}
-    callToAction={{
-      text: "See more",
-      href: "/",
-    }}
-    items={[
+    <div class="flex flex-col">
       {
-        title: "Global reach",
-        description:
-          "Nam malesuada urna in enim imperdiet tincidunt. Phasellus non tincidunt nisi, at elementum mi.",
-        icon: "tabler:globe",
-      },
-      {
-        title: "Positive customer feedback and reviews",
-        description:
-          "Cras semper nulla leo, eget laoreet erat cursus sed. Praesent faucibus massa in purus iaculis dictum.",
-        icon: "tabler:message-star",
-      },
-      {
-        title: "Awards and recognition as industry experts",
-        description:
-          "Phasellus lacinia cursus velit, eu malesuada magna pretium eu. Etiam aliquet tellus purus, blandit lobortis ex rhoncus vitae.",
-        icon: "tabler:award",
-      },
-    ]}
-  /> -->
+        officers.map((o, i) => (
+          <article
+            class:list={[
+              "grid grid-cols-12 gap-x-6 gap-y-8 py-16 md:py-24 border-b-2 border-ink",
+              i === 0 && "border-t-2",
+            ]}
+            data-officer
+          >
+            <!-- counter -->
+            <div class="col-span-12 md:col-span-1">
+              <p
+                class="display text-ink"
+                style="font-size: clamp(2rem, 4vw, 3rem); line-height: 1;"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <p class="tag mt-1">/{String(officers.length).padStart(2, "0")}</p>
+            </div>
 
-  <!-- Features2 Widget ************** -->
-  <OurLocations />
+            <!-- photo, duotone, tilted -->
+            <figure
+              class:list={[
+                "col-span-12 md:col-span-5 relative",
+                i % 2 === 1 && "md:order-2 md:col-start-8",
+              ]}
+              style={`transform: rotate(${tiltSeq[i % tiltSeq.length]});`}
+              data-officer-photo
+            >
+              <div class="duotone" style="box-shadow: 8px 8px 0 0 var(--aw-color-ink);">
+                <Image
+                  src={o.image}
+                  alt={o.alt}
+                  widths={[400, 800]}
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
+              </div>
+              <figcaption class="caption mt-3">
+                fig.{String(i + 2).padStart(2, "0")} — {o.name.toLowerCase()}
+              </figcaption>
+            </figure>
 
-  <!-- Features2 Widget ************** -->
+            <!-- bio + stats -->
+            <div
+              class:list={[
+                "col-span-12 md:col-span-6",
+                i % 2 === 1 ? "md:order-1 md:col-start-2" : "md:col-start-7",
+              ]}
+            >
+              <span class="ribbon mb-4">{o.role.toLowerCase()}</span>
+              <h3
+                class="display text-ink mt-4"
+                style="font-size: clamp(2.25rem, 5vw, 3.75rem); line-height: 0.95;"
+              >
+                {o.name}
+              </h3>
+              {o.bio && (
+                <p class="hand mt-4" style="font-size: 1.75rem; transform: rotate(-1.5deg); display: inline-block; color: var(--aw-color-ink);">
+                  "{o.bio}"
+                </p>
+              )}
 
-  <!-- <Features2
-    title="Technical Support"
-    tagline="Contact us"
-    columns={2}
-    items={[
+              {o.stats.length > 0 && (
+                <dl class="mt-8 border-t-2 border-ink">
+                  {o.stats.map((s, si) => (
+                    <div class="py-5 border-b border-rule-soft grid grid-cols-[auto_1fr] gap-5">
+                      <span class="lineno text-riso pt-1">
+                        {String(si + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <dt
+                          class="display text-ink mb-2"
+                          style="font-size: 1.125rem; letter-spacing: -0.02em;"
+                        >
+                          {s.title}
+                        </dt>
+                        <dd class="text-ink-soft leading-relaxed text-[0.875rem]">
+                          {s.description}
+                        </dd>
+                      </div>
+                    </div>
+                  ))}
+                </dl>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="page-gutter mt-20 md:mt-28">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-8">
+      <div class="col-span-12 lg:col-span-2">
+        <span class="ribbon">vision</span>
+      </div>
+      <figure class="col-span-12 lg:col-span-10">
+        <blockquote class="text-ink">
+          <p
+            class="display-serif"
+            style="font-size: clamp(2.5rem, 6.5vw, 5.5rem);"
+          >
+            <span class="offset-riso-sm">I take this very</span><br />
+            <span class="offset-riso-sm">seriously.</span>
+          </p>
+          <p
+            class="mt-10 text-ink max-w-[58ch] leading-relaxed"
+            style="font-size: clamp(1.0625rem, 1.25vw, 1.1875rem);"
+          >
+            Too many kids these days are forced into learning programming,
+            especially competitive programming. So they learn, because they
+            were forced to learn. But then afterwards, they realize that
+            their skills are put to waste as they did not know how to put
+            them into practical use.
+          </p>
+          <p
+            class="display-serif italic mt-10 text-riso"
+            style="font-size: clamp(1.75rem, 3.5vw, 3rem);"
+          >
+            I want to change that with this club.
+          </p>
+        </blockquote>
+        <figcaption class="mt-10 flex items-baseline gap-4 border-t-2 border-ink pt-4">
+          <span class="tag">—</span>
+          <span class="display text-ink text-[1rem]">Bryan Hu</span>
+          <span class="tag">co-president</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <ol class="mt-16 grid grid-cols-1 md:grid-cols-3 border-t-2 border-l-2 border-ink">
       {
-        title: "Chat with us",
-        description:
-          "Integer luctus laoreet libero, auctor varius purus rutrum sit amet. Ut nec molestie nisi, quis eleifend mi.",
-        icon: "tabler:messages",
-      },
-      {
-        title: "Call us",
-        description:
-          "Mauris faucibus finibus orci, in posuere elit viverra non. In hac habitasse platea dictumst. Cras lobortis metus a hendrerit congue.",
-        icon: "tabler:headset",
-      },
-    ]}
-  /> -->
+        vision.map((v, i) => (
+          <li
+            class="relative p-6 md:p-8 border-r-2 border-b-2 border-ink group hover:border-riso transition-colors duration-150"
+            data-vision-item
+          >
+            <span
+              class="absolute top-4 right-4 hand"
+              style="font-size: 1.75rem; transform: rotate(3deg);"
+            >
+              0{i + 1}
+            </span>
+            <p class="tag mb-2">to—</p>
+            <h3
+              class="display text-ink mb-3"
+              style="font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -0.03em;"
+            >
+              {v.title}.
+            </h3>
+            <p class="text-ink leading-relaxed text-[0.9375rem]">{v.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 </Layout>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const run = () => {
+    const headline = document.querySelector("[data-about-headline]");
+    if (headline) {
+      const lines = headline.querySelectorAll("span");
+      gsap.from(lines, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+    }
+
+    const mTrack = document.querySelector("[data-officers-marquee]");
+    if (mTrack) {
+      const width = mTrack.scrollWidth / 2;
+      gsap.to(mTrack, {
+        x: -width,
+        duration: 50,
+        ease: "none",
+        repeat: -1,
+      });
+    }
+
+    document.querySelectorAll("[data-officer]").forEach((art) => {
+      const photo = art.querySelector("[data-officer-photo]");
+      const text = art.querySelector("dl, h3");
+      if (photo) {
+        gsap.from(photo, {
+          opacity: 0,
+          y: 30,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: { trigger: art, start: "top 82%" },
+        });
+      }
+    });
+
+    document.querySelectorAll("[data-vision-item]").forEach((cell, i) => {
+      gsap.from(cell, {
+        opacity: 0,
+        y: 24,
+        duration: 0.5,
+        delay: i * 0.07,
+        ease: "power2.out",
+        scrollTrigger: { trigger: cell, start: "top 88%" },
+      });
+    });
+  };
+
+  run();
+  document.addEventListener("astro:after-swap", run);
+</script>

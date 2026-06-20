@@ -2,95 +2,328 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: var(--aw-font-sans);
+    color: var(--aw-color-ink);
+    background: var(--aw-color-bg-page);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-feature-settings: "ss01";
+  }
+  ::selection {
+    background: var(--aw-color-riso);
+    color: var(--aw-color-bg-page);
+  }
+}
+
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);
   }
-  .bg-dark {
-    background-color: var(--aw-color-bg-page-dark);
+  .bg-raised {
+    background-color: var(--aw-color-bg-raised);
   }
-  .bg-light {
-    background-color: var(--aw-color-bg-page);
+  .bg-riso {
+    background-color: var(--aw-color-riso);
   }
-  .text-page {
-    color: var(--aw-color-text-page);
+  .bg-ink {
+    background-color: var(--aw-color-ink);
+  }
+  .text-ink {
+    color: var(--aw-color-ink);
+  }
+  .text-ink-soft {
+    color: var(--aw-color-ink-soft);
   }
   .text-muted {
-    color: var(--aw-color-text-muted);
+    color: var(--aw-color-muted);
+  }
+  .text-riso {
+    color: var(--aw-color-riso);
+  }
+  .border-rule {
+    border-color: var(--aw-color-rule);
+  }
+  .border-rule-soft {
+    border-color: var(--aw-color-rule-soft);
+  }
+  .border-riso {
+    border-color: var(--aw-color-riso);
+  }
+
+  /* Fluid gutter */
+  .page-gutter {
+    padding-left: clamp(1.5rem, 5vw, 5rem);
+    padding-right: clamp(1.5rem, 5vw, 5rem);
+    max-width: 1600px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  /* DISPLAY — chunky grotesk, tight, uppercase option */
+  .display {
+    font-family: var(--aw-font-display);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 0.88;
+  }
+  .display-tight {
+    font-family: var(--aw-font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+  }
+
+  /* EDITORIAL SERIF — big display moments (Gloock has wedge strokes) */
+  .display-serif {
+    font-family: var(--aw-font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+
+  /* HAND — scrawled annotations, tilted, always in riso ink */
+  .hand {
+    font-family: var(--aw-font-hand);
+    font-weight: 700;
+    color: var(--aw-color-riso);
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  /* OFF-REGISTER — green shadow offset, looks misprinted + glowing */
+  .offset-riso {
+    text-shadow:
+      3px 3px 0 var(--aw-color-riso),
+      4px 4px 0 var(--aw-color-riso);
+  }
+  .offset-riso-lg {
+    text-shadow:
+      5px 5px 0 var(--aw-color-riso),
+      6px 6px 0 var(--aw-color-riso),
+      7px 7px 0 var(--aw-color-riso);
+  }
+  .offset-riso-sm {
+    text-shadow: 2px 2px 0 var(--aw-color-riso);
+  }
+
+  /* GLOW — used sparingly, a faint cyan aura */
+  .glow {
+    text-shadow:
+      0 0 12px rgba(75, 162, 206, 0.45),
+      0 0 28px rgba(75, 162, 206, 0.22);
+  }
+
+  /* CAPTIONS — heavy mono */
+  .caption {
+    font-family: var(--aw-font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--aw-color-ink);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  /* TAG — uppercase mono, punchy */
+  .tag {
+    display: inline-block;
+    font-family: var(--aw-font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--aw-color-ink);
+  }
+  .tag-riso {
+    color: var(--aw-color-riso);
+  }
+
+  /* INDEX NUMBERS — circled, scrawled */
+  .lineno {
+    font-family: var(--aw-font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--aw-color-ink);
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+    text-transform: uppercase;
+  }
+
+  /* RIBBON — green strip, BLACK text, slight rotation */
+  .ribbon {
+    display: inline-block;
+    background: var(--aw-color-riso);
+    color: #0a0a08;
+    font-family: var(--aw-font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.6rem;
+    transform: rotate(-1.5deg);
+  }
+
+  /* PHOTO — duotone; cyan base, image in screen blend */
+  .duotone {
+    position: relative;
+    display: block;
+    background: #0a0a08;
+    outline: 2px solid var(--aw-color-ink);
+  }
+  .duotone img {
+    mix-blend-mode: screen;
+    filter: grayscale(1) contrast(1.25) brightness(0.95) sepia(0.45)
+      hue-rotate(165deg) saturate(2.8);
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0.9;
+  }
+  .duotone::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 3px,
+      rgba(0, 0, 0, 0.35) 3px,
+      rgba(0, 0, 0, 0.35) 4px
+    );
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  /* TILTED — sticker feel */
+  .tilt-l {
+    transform: rotate(-1.5deg);
+  }
+  .tilt-r {
+    transform: rotate(1.5deg);
+  }
+  .tilt-lg-l {
+    transform: rotate(-3deg);
+  }
+  .tilt-lg-r {
+    transform: rotate(3deg);
+  }
+
+  /* HEAVY RULES — the ink layer */
+  .rule-top {
+    border-top: 2px solid var(--aw-color-ink);
+  }
+  .rule-bottom {
+    border-bottom: 2px solid var(--aw-color-ink);
+  }
+  .rule-thick {
+    border-width: 3px;
   }
 }
 
 @layer components {
+  .prose-lead {
+    font-size: clamp(1.0625rem, 1.25vw, 1.1875rem);
+    line-height: 1.5;
+    color: var(--aw-color-ink);
+    font-weight: 450;
+  }
+
+  /* LINK — riso underline */
+  .link {
+    color: var(--aw-color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--aw-color-riso);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+    transition: color 0.1s ease;
+  }
+  .link:hover {
+    color: var(--aw-color-riso);
+  }
+
+  /* STICKER CTA — neon green block, BLACK text (the sticker IS the neon) */
+  .sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--aw-font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    padding: 0.75rem 1.25rem;
+    background: var(--aw-color-riso);
+    color: #0a0a08;
+    border: 2px solid var(--aw-color-ink);
+    border-radius: 0;
+    transform: rotate(-1.5deg);
+    transition:
+      transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.15s ease;
+    box-shadow: 4px 4px 0 0 var(--aw-color-ink);
+  }
+  .sticker:hover {
+    transform: rotate(1.5deg) translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--aw-color-ink);
+  }
+
+  /* BTN — flat ink box, riso invert on hover */
   .btn {
-    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--aw-font-mono);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.1rem;
+    border: 2px solid var(--aw-color-ink);
+    color: var(--aw-color-ink);
+    background: transparent;
+    border-radius: 0;
+    transition:
+      background 0.1s ease,
+      color 0.1s ease;
   }
-
+  .btn:hover {
+    background: var(--aw-color-riso);
+    color: #0a0a08;
+    border-color: var(--aw-color-riso);
+  }
   .btn-primary {
-    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
+    background: var(--aw-color-riso);
+    color: #0a0a08;
+    border-color: var(--aw-color-riso);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--aw-color-riso);
+    border-color: var(--aw-color-riso);
   }
 
-  .btn-secondary {
-    @apply btn;
+  .arrow {
+    display: inline-block;
+    transition: transform 0.15s ease;
   }
-
-  .btn-tertiary {
-    @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+  .btn:hover .arrow,
+  a:hover > .arrow,
+  .sticker:hover .arrow {
+    transform: translateX(3px);
   }
 }
 
-#header.scroll > div:first-child {
-  @apply bg-page md:bg-white/90 md:backdrop-blur-md;
-  box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%);
-}
-.dark #header.scroll > div:first-child,
-#header.scroll.dark > div:first-child {
-  @apply bg-page md:bg-[#030621e6] border-b border-gray-500/20;
-  box-shadow: none;
-}
-/* #header.scroll > div:last-child {
-  @apply py-3;
-} */
-
-#header.expanded nav {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  right: 0;
-  bottom: 70px !important;
-  padding: 0 5px;
-}
-
-.dropdown:focus .dropdown-menu,
-.dropdown:focus-within .dropdown-menu,
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-[astro-icon].icon-light > * {
-  stroke-width: 1.2;
-}
-
-[astro-icon].icon-bold > * {
-  stroke-width: 2.4;
+#header.scroll::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: var(--aw-color-ink);
 }
 
 [data-aw-toggle-menu] path {
   @apply transition;
-}
-[data-aw-toggle-menu].expanded g > path:first-child {
-  @apply -rotate-45 translate-y-[15px] translate-x-[-3px];
-}
-
-[data-aw-toggle-menu].expanded g > path:last-child {
-  @apply rotate-45 translate-y-[-8px] translate-x-[14px];
-}
-
-/* To deprecated */
-
-.dd *:first-child {
-  margin-top: 0;
-}
-
-a.link {
-  @apply text-blue-600 underline;
 }
