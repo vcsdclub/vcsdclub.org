@@ -110,11 +110,11 @@
     text-shadow: 2px 2px 0 var(--aw-color-riso);
   }
 
-  /* PHOSPHOR GLOW — used sparingly, a faint greenish aura */
+  /* GLOW — used sparingly, a faint cyan aura */
   .glow {
     text-shadow:
-      0 0 12px rgba(170, 255, 0, 0.45),
-      0 0 28px rgba(170, 255, 0, 0.22);
+      0 0 12px rgba(75, 162, 206, 0.45),
+      0 0 28px rgba(75, 162, 206, 0.22);
   }
 
   /* CAPTIONS — heavy mono */
@@ -167,7 +167,7 @@
     transform: rotate(-1.5deg);
   }
 
-  /* PHOTO — phosphor duotone; green base, image in screen blend */
+  /* PHOTO — duotone; cyan base, image in screen blend */
   .duotone {
     position: relative;
     display: block;
@@ -176,8 +176,8 @@
   }
   .duotone img {
     mix-blend-mode: screen;
-    filter: grayscale(1) contrast(1.25) brightness(0.95) sepia(0.4)
-      hue-rotate(40deg) saturate(3.5);
+    filter: grayscale(1) contrast(1.25) brightness(0.95) sepia(0.45)
+      hue-rotate(165deg) saturate(2.8);
     display: block;
     width: 100%;
     height: auto;
