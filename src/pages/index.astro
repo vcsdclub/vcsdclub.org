@@ -46,26 +46,27 @@ const marquee = [
 ---
 
 <Layout metadata={metadata}>
-  <!-- HERO — stacked, huge, pink-offset -->
+  <!-- HERO — headline + copy left, photo right; stacks on mobile -->
   <section class="page-gutter pt-8 md:pt-16 pb-16">
     <div class="flex items-center justify-between mb-8">
       <span class="tag">issue №01 · 2025–26</span>
       <span class="hand" style="font-size: 1.5rem; transform: rotate(-3deg); display: inline-block;">printed weekly*</span>
     </div>
 
-    <h1
-      class="display text-ink offset-riso-lg"
-      style="font-size: clamp(2.75rem, 9vw, 7.5rem); line-height: 0.86;"
-      data-hero-headline
-    >
-      <span class="block">BUILD</span>
-      <span class="block">REAL</span>
-      <span class="block" style="font-family: var(--aw-font-serif); font-style: italic; font-weight: 400;">software.</span>
-    </h1>
+    <div class="grid grid-cols-12 gap-x-6 gap-y-10 items-end">
+      <!-- LEFT: headline + lead + CTA -->
+      <div class="col-span-12 lg:col-span-7">
+        <h1
+          class="display text-ink offset-riso-lg"
+          style="font-size: clamp(2.75rem, 8vw, 7rem); line-height: 0.86;"
+          data-hero-headline
+        >
+          <span class="block">BUILD</span>
+          <span class="block">REAL</span>
+          <span class="block" style="font-family: var(--aw-font-serif); font-style: italic; font-weight: 400;">software.</span>
+        </h1>
 
-    <div class="mt-12 grid grid-cols-12 gap-x-6 gap-y-10 items-end">
-      <div class="col-span-12 lg:col-span-6">
-        <p class="prose-lead max-w-[52ch]">
+        <p class="prose-lead max-w-[48ch] mt-10">
           A student-run club at Valley Christian High School. We teach the
           craft of engineering the way it's actually practiced: messily,
           collaboratively, one shipped version at a time.
@@ -91,13 +92,14 @@ const marquee = [
         </div>
       </div>
 
-      <figure class="col-span-12 lg:col-span-6 relative" data-hero-photo>
+      <!-- RIGHT: photo, bottom-aligned to the row -->
+      <figure class="col-span-12 lg:col-span-5 relative" data-hero-photo>
         <div class="duotone">
           <Image
             src={groupPhoto}
             alt="Members of the Software Development Club"
             widths={[480, 960, 1400]}
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes="(max-width: 1024px) 100vw, 42vw"
           />
         </div>
         <!-- scrawled annotation, absolute -->
