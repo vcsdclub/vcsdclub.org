@@ -13,7 +13,10 @@
     "astro": "$astro",
     "sharp": "$sharp",
     "svgo": "^4.1.0",
-    "remark-smartypants": "3.0.2"
+    "remark-smartypants": "3.0.2",
+    "picomatch@^2.0.0": "^2.3.2",
+    "postcss-selector-parser": "^7.1.7",
+    "deepmerge-ts": "^8.0.2"
   },
   "scripts": {
     "dev": "astro dev",
