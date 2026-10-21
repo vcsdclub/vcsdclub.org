@@ -1,10 +1,12 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
-import { defineConfig, squooshImageService } from "astro/config";
+import { defineConfig, sharpImageService } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
+import { unified } from "@astrojs/markdown-remark";
+import tailwind from "tailwindcss";
+import autoprefixer from "autoprefixer";
 import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
 import icon from "astro-icon";
@@ -30,12 +32,10 @@ const whenExternalScripts = (items = []) =>
 
 export default defineConfig({
   output: "static",
+  compressHTML: true,
   site: "https://vcsdclub.org",
 
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
     sitemap({
   serialize(item) {
     return item;
@@ -75,16 +75,21 @@ export default defineConfig({
   ],
 
   image: {
-    service: squooshImageService(),
+    service: sharpImageService(),
     domains: ["cdn.pixabay.com"],
   },
 
   markdown: {
-    remarkPlugins: [readingTimeRemarkPlugin],
-    rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
+    processor: unified({
+      remarkPlugins: [readingTimeRemarkPlugin],
+      rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
+    }),
   },
 
   vite: {
+    css: {
+      postcss: { plugins: [tailwind(), autoprefixer()] },
+    },
     resolve: {
       alias: {
         "~": path.resolve(__dirname, "./src"),
